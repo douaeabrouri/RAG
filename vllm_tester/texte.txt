@@ -1,0 +1,30 @@
+=== ARTIFICIAL INTELLIGENCE CORE DATASET ===
+Generated: 2026-10-02
+
+[SECTION 1: CORE DEFINITIONS]
+- Artificial Intelligence (AI): The simulation of human intelligence processes by machines, especially computer systems.
+- Machine Learning (ML): A subset of AI focused on building systems that learn from data to improve performance without explicit programming.
+- Deep Learning (DL): A subset of ML based on artificial neural networks with multiple layers (deep architectures).
+- Large Language Models (LLM): Deep learning models trained on massive text datasets capable of understanding and generating human-like text.
+
+[SECTION 2: HISTORICAL TIMELINE KEY MILESTONES]
+- 1950: Alan Turing publishes "Computing Machinery and Intelligence" introducing the Turing Test.
+- 1956: The Dartmouth Summer Research Project on Artificial Intelligence coins the term "Artificial Intelligence".
+- 1997: IBM's Deep Blue defeats world chess champion Garry Kasparov.
+- 2012: AlexNet wins the ImageNet competition, sparking the modern deep learning boom.
+- 2017: Google researchers introduce the Transformer architecture ("Attention Is All You Need").
+- 2022: OpenAI releases ChatGPT, bringing generative AI into mainstream consumer adoption.
+
+[SECTION 3: PRIMARY AI SUBFIELDS & APPLICATIONS]
+- Natural Language Processing (NLP): Chatbots, translation, sentiment analysis.
+- Computer Vision: Autonomous vehicles, facial recognition, medical imaging diagnostics.
+- Robotics: Automated manufacturing, drone navigation, robotic surgery.
+- Expert Systems: Financial fraud detection, algorithmic trading, logistical routing.
+
+[SECTION 4: CORE ETHICAL CHALLENGES]
+- Data Bias & Fairness: Models inheriting historical or social prejudices present in training data.
+- Transparency & Explainability: The "black box" problem where deep neural network decisions are hard for humans to trace.
+- Intellectual Property & Copyright: Scraping copyrighted creative works for large-scale model training without explicit consent.
+- Energy Consumption: High carbon footprint and water usage required to train and run massive parameter data centers.
+
+=== END OF FILE ===
