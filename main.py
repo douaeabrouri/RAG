@@ -1,7 +1,6 @@
 from pathlib import Path
-import os, ast
-import linecache
-import traceback
+from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
+import ast
 
 PATH = Path("/Users/ameen/Desktop/RAG-douae/vllm_tester")
 MAX_CHARS = 2000
@@ -52,13 +51,13 @@ def chunking_file(file_path: Path):
         
         chunk = []
         for node in tree.body:
-            chunk.extend(chunk_node(node, lines))
+            chunk.extend(chunk_py_node(node, lines))
         return chunk
     else:
         ...
 
 
-def chunk_node(node, lines):
+def chunk_py_node(node, lines):
 
     start = node.lineno - 1
     end = node.end_lineno
@@ -70,8 +69,25 @@ def chunk_node(node, lines):
     if not getattr(node, "body", None):
         return split_long(code, MAX_CHARS)
     for child in node.body:
-        child_chunks = chunk_node(child, lines)
+        child_chunks = chunk_py_node(child, lines)
         chunks.extend(child_chunks)
     return chunks
 
+def chunk_markdown():
+    with open("/Users/ameen/Desktop/RAG-douae/vllm_tester/README.md", "r") as file:
+        code = file.read()
+    headers_t = [('#', "headear 1"), ('##', "headear 2"), ('###', "headear 3")]
+    markdown_file = MarkdownHeaderTextSplitter(headers_t, False)
+    md_header = markdown_file.split_text(code)
+    size_spliter = RecursiveCharacterTextSplitter(
+        chunk_size=MAX_CHARS,
+        chunk_overlap=200,
+    )
+    docs = size_spliter.split_documents(md_header)
+    print([d.page_content for d in docs])
+    # print(docs)
+chunk_markdown()
 
+
+def chunk_txt_node():
+    ...
