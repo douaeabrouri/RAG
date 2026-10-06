@@ -1,1 +1,29 @@
-['A lightweight command-line task manager that keeps your to-do list in a plain JSON file.  \n![License](https://img.shields.io/badge/license-MIT-green)\n![Version](https://img.shields.io/badge/version-1.2.0-blue)', '- Add, list, complete, and delete tasks from the terminal\n- Priorities and due dates\n- Data stored locally in a readable JSON file\n- No external dependencies', 'Requires Python 3.9 or newer.  \n```bash\ngit clone https://github.com/your-username/taskpilot.git\ncd taskpilot\npip install .\n```', '```bash\n# Add a task\ntaskpilot add "Write project report" --priority high --due 2026-10-15\n\n# List all tasks\ntaskpilot list\n\n# Mark a task as done\ntaskpilot done 3\n\n# Delete a task\ntaskpilot delete 3\n```  \nExample output:  \n```\nID  Priority  Due         Task\n1   high      2026-10-15  Write project report\n2   low       -           Buy groceries\n```', 'TaskPilot reads an optional config file at `~/.taskpilot/config.json`:  \n| Option          | Default                   | Description                  |\n|-----------------|---------------------------|------------------------------|\n| `data_file`     | `~/.taskpilot/tasks.json` | Where tasks are stored       |\n| `date_format`   | `%Y-%m-%d`                | Format used for due dates    |\n| `color_output`  | `true`                    | Enable colored terminal text |', 'Contributions are welcome!  \n1. Fork the repository\n2. Create a feature branch (`git checkout -b feature/my-feature`)\n3. Commit your changes (`git commit -m "Add my feature"`)\n4. Push to the branch (`git push origin feature/my-feature`)\n5. Open a pull request  \nPlease run the tests before submitting:  \n```bash\npytest\n```', 'This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.', 'Questions or feedback? Open an issue or email maintainer@example.com.']
+=== ARTIFICIAL INTELLIGENCE CORE DATASET ===
+Generated: 2026-10-02
+
+[SECTION 1: CORE DEFINITIONS]
+- Artificial Intelligence (AI): The simulation of human intelligence processes by machines, especially computer systems.
+- Machine Learning (ML): A subset of AI focused on building systems that learn from data to improve performance without explicit programming.
+- Deep Learning (DL): A subset of ML based on artificial neural networks with multiple layers (deep architectures).
+- Large Language Models (LLM): Deep learning models trained on massive text datasets capable of understanding and generating human-like text.
+
+[SECTION 2: HISTORICAL TIMELINE KEY MILESTONES]
+- 1950: Alan Turing publishes "Computing Machinery and Intelligence" introducing the Turing Test.
+- 1956: The Dartmouth Summer Research Project on Artificial Intelligence coins the term "Artificial Intelligence".
+- 1997: IBM's Deep Blue defeats world chess champion Garry Kasparov.
+- 2012: AlexNet wins the ImageNet competition, sparking the modern deep learning boom.
+- 2017: Google researchers introduce the Transformer architecture ("Attention Is All You Need").
+- 2022: OpenAI releases ChatGPT, bringing generative AI into mainstream consumer adoption.
+
+[SECTION 3: PRIMARY AI SUBFIELDS & APPLICATIONS]
+- Natural Language Processing (NLP): Chatbots, translation, sentiment analysis.
+- Computer Vision: Autonomous vehicles, facial recognition, medical imaging diagnostics.
+- Robotics: Automated manufacturing, drone navigation, robotic surgery.
+- Expert Systems: Financial fraud detection, algorithmic trading, logistical routing.
+[SECTION 4: CORE ETHICAL CHALLENGES]
+- Data Bias & Fairness: Models inheriting historical or social prejudices present in training data.
+- Transparency & Explainability: The "black box" problem where deep neural network decisions are hard for humans to trace.
+- Intellectual Property & Copyright: Scraping copyrighted creative works for large-scale model training without explicit consent.
+- Energy Consumption: High carbon footprint and water usage required to train and run massive parameter data centers.
+
+=== END OF FILE ===

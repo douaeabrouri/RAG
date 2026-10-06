@@ -1,5 +1,5 @@
 from pathlib import Path
-from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
+from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter, Language
 import ast
 
 PATH = Path("/Users/ameen/Desktop/RAG-douae/vllm_tester")
@@ -44,17 +44,23 @@ def chunking_file(file_path: Path):
     with open("/Users/ameen/Desktop/RAG-douae/vllm_tester/file.py", "r") as file:
         code = file.read()
     if file_path.endswith(".py"):
+        # this part for the py file
+
         tree = ast.parse(code)
         lines = code.splitlines()
         if (len(code) <= MAX_CHARS):
             return [code]
-        
         chunk = []
         for node in tree.body:
             chunk.extend(chunk_py_node(node, lines))
         return chunk
-    else:
-        ...
+    elif file_path.endswith(".md"):
+        #this part for the markdown file
+
+        return chunk_markdown(code)
+    elif file_path.endswith(".txt"):
+        # txt file
+        return chunk_txt(code)
 
 
 def chunk_py_node(node, lines):
@@ -73,21 +79,23 @@ def chunk_py_node(node, lines):
         chunks.extend(child_chunks)
     return chunks
 
-def chunk_markdown():
-    with open("/Users/ameen/Desktop/RAG-douae/vllm_tester/README.md", "r") as file:
-        code = file.read()
-    headers_t = [('#', "headear 1"), ('##', "headear 2"), ('###', "headear 3")]
-    markdown_file = MarkdownHeaderTextSplitter(headers_t, False)
-    md_header = markdown_file.split_text(code)
-    size_spliter = RecursiveCharacterTextSplitter(
-        chunk_size=MAX_CHARS,
-        chunk_overlap=200,
+
+def chunk_markdown(text) -> list[str]:
+    md_splitter = RecursiveCharacterTextSplitter.from_language(
+        Language.MARKDOWN, chunk_size=MAX_CHARS, chunk_overlap=200
     )
-    docs = size_spliter.split_documents(md_header)
-    print([d.page_content for d in docs])
-    # print(docs)
-chunk_markdown()
+    chunk  = md_splitter.split_text(text)
+    return chunk
 
 
-def chunk_txt_node():
-    ...
+def chunk_txt(text) -> list[str]:
+
+    with open("/Users/ameen/Desktop/RAG-douae/vllm_tester/text.txt", "r") as file:
+        text = file.read()
+    txt_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=MAX_CHARS, chunk_overlap=200
+    )
+    chunk = txt_splitter.split_text(text)
+    return chunk
+
+    
