@@ -1,9 +1,9 @@
-import ast
+from pydantic import BaseModel
 
-class Chunker() :
-    id    : int = 0
-    start : int = 0
-    end   : int = 0
-    path  : str = ""
-    chunk : str = ""
+class Chunk(BaseModel) :
+    id    : int
+    text   : str
+    first_char_index : int
+    last_char_index  : int 
+    text_path  : str 
 

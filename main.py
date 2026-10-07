@@ -1,5 +1,6 @@
 from pathlib import Path
 from langchain_text_splitters import MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter, Language
+from chunker import Chunk
 import ast
 
 PATH = Path("/Users/ameen/Desktop/RAG-douae/vllm_tester")
@@ -45,7 +46,6 @@ def chunking_file(file_path: Path):
         code = file.read()
     if file_path.endswith(".py"):
         # this part for the py file
-
         tree = ast.parse(code)
         lines = code.splitlines()
         if (len(code) <= MAX_CHARS):
@@ -63,10 +63,13 @@ def chunking_file(file_path: Path):
         return chunk_txt(code)
 
 
-def chunk_py_node(node, lines):
+def chunk_py_node(node, lines , path):
 
     start = node.lineno - 1
     end = node.end_lineno
+    start_col = node.col_offset
+    end_col = node.end_col_offset
+    test = Chunk()
 
     code = "\n".join(lines[start:end])
     if len(code) <= MAX_CHARS:
@@ -74,18 +77,46 @@ def chunk_py_node(node, lines):
     chunks = []
     if not getattr(node, "body", None):
         return split_long(code, MAX_CHARS)
+    index = 1
     for child in node.body:
         child_chunks = chunk_py_node(child, lines)
         chunks.extend(child_chunks)
+        test(
+            id = index,
+            text = chunks,
+            first_char_index = start + start_col,
+            last_char_index = end + end_col
+            text_path = path,
+        )
+        print(f"{test.id}\n{test.text}\n{test.first_char_index}\n{test.last_char_index}\n{test.text_path}")
     return chunks
+chunk_py_node()
 
 
-def chunk_markdown(text) -> list[str]:
+def chunk_markdown() -> list[str]:
+
+    with open("/Users/ameen/Desktop/RAG-douae/vllm_tester/README.md", "r") as file:
+        text = file.read()
+    chunk = Chunk()
+
     md_splitter = RecursiveCharacterTextSplitter.from_language(
         Language.MARKDOWN, chunk_size=MAX_CHARS, chunk_overlap=200
     )
-    chunk  = md_splitter.split_text(text)
-    return chunk
+    test = md_splitter.split_text(text)
+    next_id = 1
+    for i in range(len(test)):
+        chunk(
+            id = next_id,
+            text = i,
+            first_char_index = ...,
+            last_char_index = ...,
+            text_path = "/Users/ameen/Desktop/RAG-douae/vllm_tester/README.md"
+        )
+        next_id += 1
+    print(len(test))
+
+chunk_markdown()
+    
 
 
 def chunk_txt(text) -> list[str]:
@@ -97,5 +128,3 @@ def chunk_txt(text) -> list[str]:
     )
     chunk = txt_splitter.split_text(text)
     return chunk
-
-    
