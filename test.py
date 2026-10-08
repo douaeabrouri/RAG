@@ -1,9 +1,17 @@
 from main import split_long
 from chunker import Chunk
+import ast
 
 MAX_CHARS = 2000
+file_path = "/Users/ameen/Desktop/RAG-douae/vllm_tester/file.py"
 
-def chunk_py_node(node, lines , path):
+with open(file_path, "r") as file:
+    code = file.read()
+tree = ast.parse(code)
+lines = code.splitlines()
+
+
+def chunk_py_node(node, lines, path):
 
     start = node.lineno - 1
     end = node.end_lineno
@@ -25,8 +33,16 @@ def chunk_py_node(node, lines , path):
             id = index,
             text = chunks,
             first_char_index = start + start_col,
-            last_char_index = end + end_col
+            last_char_index = end + end_col,
             text_path = path,
         )
         print(f"{test.id}\n{test.text}\n{test.first_char_index}\n{test.last_char_index}\n{test.text_path}")
     return chunks
+
+for node in tree.body:
+    chunk_py_node(
+        node,
+        lines,
+        file_path,
+    )
+       
