@@ -7,3 +7,4 @@ class Chunk(BaseModel) :
     last_char_index  : int 
     # text_path  : str 
 
+
