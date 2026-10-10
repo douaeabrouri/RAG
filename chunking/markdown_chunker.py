@@ -1,7 +1,6 @@
-from main import split_long
 from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
-from chunker import MinimalSource, MAX_CHARS
-import ast
+from chunker import MAX_CHARS, MinimalSource
+
 
 def chunk_markdown(path_file, text) -> list:
 
@@ -21,24 +20,10 @@ def chunk_markdown(path_file, text) -> list:
         chunks.append(MinimalSource(
             id = i,
             text = info.page_content,
-            file_path=file_path,
+            file_path=path_file,
             first_line= first_line,
             last_line=last_line,
             first_char_index=start_index,
             last_char_index=end_index,
         ))
     return chunks
-
-
-if __name__ == "__main__":
-
-    file_path = "/Users/ameen/Desktop/RAG/vllm_tester/README.md"
-
-    with open(file_path, "r") as file:
-        text = file.read()
-
-    test = chunk_markdown(file_path, text)
-    for info in test:
-        print(f"{info.first_line},{info.last_line}")
-    
-
