@@ -5,5 +5,5 @@ class Chunk(BaseModel) :
     text   : str
     first_char_index : int
     last_char_index  : int 
-    text_path  : str 
+    # text_path  : str 
 

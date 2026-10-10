@@ -1,6 +1,7 @@
 from main import split_long
 from chunker import Chunk
 import ast
+
 def chunk_py_node(node, lines, path, chunks):
 
     start = node.lineno - 1
@@ -11,7 +12,7 @@ def chunk_py_node(node, lines, path, chunks):
     children = getattr(node, "body", None)
 
     if len(code) <= MAX_CHARS:
-        piece = [code]
+        pieces = [code]
 
     elif isinstance(children, list) and children:
         for child in children:
@@ -25,15 +26,15 @@ def chunk_py_node(node, lines, path, chunks):
         chunks.append(Chunk(
             id=len(chunks),
             text=piece,
-            text_path=path,
             first_line=start,
             last_line=end,
+            # text_path=path,
         ))
 
 if __name__ == "__main__":
 
     MAX_CHARS = 2000
-    file_path = "/home/doabrour/Desktop/RAG/vllm_tester/file.py"
+    file_path = "/Users/ameen/Desktop/RAG/vllm_tester/file.py"
 
     with open(file_path, "r") as file:
         code = file.read()
@@ -45,5 +46,5 @@ if __name__ == "__main__":
         chunk_py_node(node, lines, file_path, chunks)
 
     for c in chunks:
-        print(f"Chunk id: {c.id}, first line: {c.first_line}")
+        print(f"Chunk id: {c.id}, first line: {c.first_line}, end line: {c.last_line}")
        
