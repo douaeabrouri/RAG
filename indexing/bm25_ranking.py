@@ -1,10 +1,10 @@
 # TODO: Ranks documents based on query-term matches, rarity, frequency, and document length.
 
 
-from chunking.chunker import get_files_path, PATH
+from chunking.chunker import get_files_path, PATH, chunking_files
 
-ALL_FILES: list[str] = []
+ALL_FILES_PATH: list[str] = []
+ALL_FILES_PATH = get_files_path(PATH)
 
-ALL_FILES = get_files_path(PATH)
 
 
