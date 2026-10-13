@@ -6,11 +6,12 @@ def chunk_txt(path_file, text) -> list[str]:
     chunks = []
 
     txt_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=MAX_CHARS, chunk_overlap=200
+        chunk_size=MAX_CHARS, chunk_overlap=200, add_start_index= True
     )
-    docs = txt_splitter.create_documents(text)
+    docs = txt_splitter.create_documents([text])
 
     for i, info in enumerate(docs):
+
         start_index = info.metadata["start_index"]
         end_index = start_index + len(info.page_content)
 
