@@ -1,6 +1,7 @@
 from chunking.chunker import get_files_path, PATH
 from chunking.models import chunking_files
 from pathlib import Path
+import numpy as np
 from rank_bm25 import BM25Okapi
 
 ALL_FILES_PATH: list[str] = []
@@ -30,13 +31,21 @@ def build_index(PATH_TEST) -> tuple:
 
 question: str = "What are the default values for FP8_MIN and FP8_MAX constants in vLLM's triton_flash_attention module?"
 
-def search(question, t):
+def search(question, t, k):
 
     bm25, chunks = t
     token_from_question = question.lower().split()
     score =  bm25.get_scores(token_from_question)
-    top_k = bm25.get_top_n(token_from_question, chunks, 1)
-    print(top_k.text)
+    # top_k = bm25.get_top_n(token_from_question, chunks, 1)
+    top_idx = np.argsort(score)[::-1][:k]
 
-search(question, build_index(PATH_TEST))
+    result = []
+    for i in top_idx:
+        if score[i] <= 0:
+            continue
+        chunk = chunks[i]
+        result.append((chunk.file_path, chunk.first_char_index, chunk.last_char_index))
+        print(result)
+    return result
+search(question, build_index(PATH_TEST), k=3)
 
