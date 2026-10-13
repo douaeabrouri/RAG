@@ -8,11 +8,12 @@ PATH = Path("/Users/ameen/Desktop/RAG/vllm_tester")
 class MinimalSource(BaseModel) :
     id    : int
     text   : str
-    file_path: str
+    file_path: Path
     first_line : int
     last_line  : int 
     first_char_index: int
     last_char_index: int
+
 
 def get_files_path(root: str) -> list[Path]:
     files_paths: list[Path] = []
@@ -24,5 +25,3 @@ def get_files_path(root: str) -> list[Path]:
             continue
         files_paths.append(file)
     return files_paths
-
-
