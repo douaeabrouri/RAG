@@ -3,7 +3,8 @@ from pathlib import Path
 
 ALLOWED_FILES = [".py", ".md", ".txt"]
 MAX_CHARS = 2000
-PATH = Path("/Users/ameen/Desktop/RAG/vllm_tester")
+BASE_DIR = Path(__file__).resolve().parent
+PATH = BASE_DIR.parent / "vllm_tester"
 
 class MinimalSource(BaseModel) :
     id    : int
