@@ -21,10 +21,22 @@ with open(PATH / "dataset_code_public.json", "r") as file:
     questions = json.load(file)
 
 result = []
+
 for item in questions["rag_questions"]:
-    result = search(item["question"], build_index(ALL_FILES_PATH), 5)
-    for chunk in result:
-        print(i.file for i in chunk) 
+    for path, start, end in search(item["question"], build_index(ALL_FILES_PATH), 5):
+        result.append(UnansweredQuestion(
+            question_id = item["question_id"],
+            question = item["question"]
+        ))
+        result.append(AnsweredQuestion(
+            sources = [
+                file_path=path,
+                first_character_index = start,
+                last_character_index = end
+            ],
+            answer=
+        ))
+
 
 
 
