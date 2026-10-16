@@ -2,10 +2,8 @@ from chunking.chunker import get_files_path, PATH
 from chunking.models import chunking_files
 import numpy as np
 from rank_bm25 import BM25Okapi
+from collections import Counter
 
-
-ALL_FILES_PATH: list[str] = []
-ALL_FILES_PATH = get_files_path(PATH)
 
 def build_index(ALL_FILES_PATH: list[str]):
 
@@ -27,6 +25,7 @@ def build_index(ALL_FILES_PATH: list[str]):
     bm25 = BM25Okapi(token_from_corpus)
     return (bm25, chunks)
 
+
 def search(question, t, k):
 
     bm25, chunks = t
@@ -40,6 +39,5 @@ def search(question, t, k):
             continue
         chunk = chunks[i]
         result.append((chunk.file_path, chunk.first_char_index, chunk.last_char_index))
-        print(result)
     return result
 

@@ -1,28 +1,30 @@
-# now i should learn about bm25 and how can i use it.
-# TODO: Ranks documents based on query-term matches, rarity, frequency, and document length.
-from rank_bm25 import BM25Okapi
+from chunking.chunker import MinimalSource, ALL_FILES_PATH
+from .bm25_ranking import search, build_index
+from pydantic import BaseModel, Field
+from pathlib import Path
+from typing import List
+import uuid
+import json
 
-corpus = [
-    "The cat sat on the mat",
-    "Dogs are great pets and love to play",
-    "The cat chased the mouse around the house",
-    # "Python is a popular programming language",
-]
+class UnansweredQuestion(BaseModel):
+    question_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    question: str
+class AnsweredQuestion(UnansweredQuestion):
+    sources: List[MinimalSource]
+    answer: str
 
-token_from_corpus = []
 
-for doc in corpus:
-    token_from_corpus.append(doc.lower().split())
+BASE_DIR = Path(__file__).resolve().parent
+PATH = BASE_DIR.parent / "data/input"
 
-bm25 = BM25Okapi(token_from_corpus)
+with open(PATH / "dataset_code_public.json", "r") as file:
+    questions = json.load(file)
 
-word = "the cat"
+result = []
+for item in questions["rag_questions"]:
+    result = search(item["question"], build_index(ALL_FILES_PATH), 5)
+    for chunk in result:
+        print(i.file for i in chunk) 
 
-token_word = word.lower().split()
-score = bm25.get_scores(token_word)
 
-print(score)
 
-top_docs = bm25.get_top_n(token_word, corpus, n=2)
-
-print(top_docs)

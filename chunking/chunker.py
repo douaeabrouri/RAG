@@ -5,6 +5,7 @@ ALLOWED_FILES = [".py", ".md", ".txt"]
 MAX_CHARS = 2000
 BASE_DIR = Path(__file__).resolve().parent
 PATH = BASE_DIR.parent / "vllm_tester"
+ALL_FILES_PATH: list[str] = []
 
 class MinimalSource(BaseModel) :
     id    : int
@@ -26,3 +27,5 @@ def get_files_path(root: str) -> list[Path]:
             continue
         files_paths.append(file)
     return files_paths
+
+ALL_FILES_PATH = get_files_path(PATH)
