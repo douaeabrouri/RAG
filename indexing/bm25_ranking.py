@@ -37,7 +37,6 @@ def search(question, t, k):
     for i in top_idx:
         if score[i] <= 0:
             continue
-        chunk = chunks[i]
-        result.append((chunk.file_path, chunk.first_char_index, chunk.last_char_index))
+        result.append(chunks[i])
     return result
 

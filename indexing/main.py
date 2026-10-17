@@ -9,6 +9,7 @@ import json
 class UnansweredQuestion(BaseModel):
     question_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     question: str
+
 class AnsweredQuestion(UnansweredQuestion):
     sources: List[MinimalSource]
     answer: str
@@ -21,22 +22,16 @@ with open(PATH / "dataset_code_public.json", "r") as file:
     questions = json.load(file)
 
 result = []
+t = build_index(ALL_FILES_PATH)
 
 for item in questions["rag_questions"]:
-    for path, start, end in search(item["question"], build_index(ALL_FILES_PATH), 5):
-        result.append(UnansweredQuestion(
-            question_id = item["question_id"],
-            question = item["question"]
-        ))
-        result.append(AnsweredQuestion(
-            sources = [
-                file_path=path,
-                first_character_index = start,
-                last_character_index = end
-            ],
-            answer=
-        ))
+    source = []
+    sources = search(item["question"], t, 5)
 
-
-
+    result.append(AnsweredQuestion(
+        question_id = item["question_id"],
+        question = item["question"],
+        sources = sources,
+        answer = "",
+    ))
 
