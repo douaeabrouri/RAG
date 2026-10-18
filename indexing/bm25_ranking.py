@@ -1,8 +1,6 @@
-from chunking.chunker import get_files_path, PATH
 from chunking.models import chunking_files
 import numpy as np
 from rank_bm25 import BM25Okapi
-from collections import Counter
 
 
 def build_index(ALL_FILES_PATH: list[str]):

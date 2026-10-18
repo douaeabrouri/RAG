@@ -1,5 +1,6 @@
 import ast
-from chunking.chunker import MAX_CHARS, MinimalSource
+from main import  MinimalSource
+from constants import MAX_CHARS
 
 def split_long(text: str, limit: int) -> str:
 

@@ -1,20 +1,8 @@
-from pydantic import BaseModel
+from constants import PATH, ALLOWED_FILES
 from pathlib import Path
 
-ALLOWED_FILES = [".py", ".md", ".txt"]
-MAX_CHARS = 2000
-BASE_DIR = Path(__file__).resolve().parent
-PATH = BASE_DIR.parent / "vllm_tester"
-ALL_FILES_PATH: list[str] = []
 
-class MinimalSource(BaseModel) :
-    id    : int
-    text   : str
-    file_path: Path
-    first_line : int
-    last_line  : int 
-    first_char_index: int
-    last_char_index: int
+ALL_FILES_PATH: list[str] = []
 
 
 def get_files_path(root: str) -> list[Path]:
