@@ -2,11 +2,10 @@ from chunking.chunker import  ALL_FILES_PATH
 from indexing.bm25_ranking import search, build_index
 from pathlib import Path
 import json
-from constants import MODEL_NAME
+from constants import MODEL_NAME, Client
 import re
 from src.answerdquestion import AnsweredQuestion
-from ollama import Client
-
+import ollama
 
 BASE_DIR = Path(__file__).resolve().parent
 PATH = BASE_DIR / "data" / "input"
@@ -21,6 +20,7 @@ result = []
 t = build_index(ALL_FILES_PATH)
 
 for item in questions["rag_questions"]:
+
     source = []
     question = item["question"]
     sources = search(question, t, 5)
@@ -35,18 +35,20 @@ for item in questions["rag_questions"]:
         f"Context:\n{context}\n\n"
         f"Question: {question} /no_think"
     )
-    response = Client.chat.completions.create(
+
+    response = Client.chat(
         model=MODEL_NAME,
         messages=[{"role": "user", "content": prompt}],
-        temperature=0,
+        options={"temperature": 0},
     )
-    answer = response.choices[0].message.content or ""
+    answer = response.message.content or ""
     answer = re.sub(r"<think>.*?</think>", "", answer, flags=re.DOTALL).strip()
     print(answer)
 
-    result.append(AnsweredQuestion(
-        question_id = item["question_id"],
-        question = question,
-        sources = sources,
-        answer = "",
-    ))
+    # result.append(AnsweredQuestion(
+    #     question_id = item["question_id"],
+    #     question = question,
+    #     sources = sources,
+    #     answer = "",
+    # ))
+
