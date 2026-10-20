@@ -1,36 +1,18 @@
 from chunking.chunker import  ALL_FILES_PATH
 from indexing.bm25_ranking import search, build_index
-from pydantic import BaseModel, Field
 from pathlib import Path
-from typing import List
-import uuid
 import json
-from ollama import client
+from ollama import Client
 from constants import MODEL_NAME
 import re
-
-class MinimalSource(BaseModel) :
-    id    : int
-    text   : str
-    file_path: Path
-    first_line : int
-    last_line  : int 
-    first_char_index: int
-    last_char_index: int
-
-class UnansweredQuestion(BaseModel):
-    question_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    question: str
-
-class AnsweredQuestion(UnansweredQuestion):
-    sources: List[MinimalSource]
-    answer: str
+from src.answerdquestion import AnsweredQuestion
 
 
 BASE_DIR = Path(__file__).resolve().parent
-PATH = BASE_DIR.parent / "data/input"
+PATH = BASE_DIR / "data" / "input"
+f = PATH / "dataset_code_public.json"
 
-with open(PATH / "dataset_code_public.json", "r") as file:
+with open(f, "r") as file:
     questions = json.load(file)
 
 result = []
@@ -51,7 +33,7 @@ for item in questions["rag_questions"]:
         f"Context:\n{context}\n\n"
         f"Question: {question} /no_think"
     )
-    response = client.chat.completions.create(
+    response = Client.chat.completions.create(
         model=MODEL_NAME,
         messages=[{"role": "user", "content": prompt}],
         temperature=0,

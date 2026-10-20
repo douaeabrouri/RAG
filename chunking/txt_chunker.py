@@ -1,5 +1,5 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
-from main import  MinimalSource
+from src.minimalsource import  MinimalSource
 from constants import MAX_CHARS
 
 def chunk_txt(path_file, text) -> list[str]:

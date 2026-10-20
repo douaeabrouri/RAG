@@ -1,5 +1,5 @@
 import ast
-from main import  MinimalSource
+from src.minimalsource import  MinimalSource
 from constants import MAX_CHARS
 
 def split_long(text: str, limit: int) -> str:
