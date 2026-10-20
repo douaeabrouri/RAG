@@ -2,10 +2,10 @@ from chunking.chunker import  ALL_FILES_PATH
 from indexing.bm25_ranking import search, build_index
 from pathlib import Path
 import json
-from ollama import Client
 from constants import MODEL_NAME
 import re
 from src.answerdquestion import AnsweredQuestion
+from ollama import Client
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -14,6 +14,8 @@ f = PATH / "dataset_code_public.json"
 
 with open(f, "r") as file:
     questions = json.load(file)
+print("folder:", PATH, "| exists:", PATH.exists())
+print("everything inside:", list(PATH.rglob("*"))[:10])
 
 result = []
 t = build_index(ALL_FILES_PATH)
