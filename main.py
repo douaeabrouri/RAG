@@ -62,4 +62,15 @@ if __name__ == "__main__" :
             sources = source,
             answer = "",
         ))
-    
+
+    OUT_PATH = BASE_DIR / "data" / "output"
+    output_file = OUT_PATH / "dataset_code_public.json"
+
+    try:
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+    except FileNotFoundError:
+        raise "You need to create an output file!"
+
+    with open(output_file, "w") as file:
+        json.dump([obj.model_dump() for obj in result], output_file, indent=3)
+        
