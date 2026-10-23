@@ -1,5 +1,6 @@
 import ast
 from src.minimalsource import  MinimalSource
+from chunking.txt_chunker import chunk_txt
 from constants import MAX_CHARS
 
 def split_long(text: str, limit: int) -> str:
@@ -74,8 +75,10 @@ def pack(pieces, path):
     return chunks
 
 def chunk_python(code, file_path):
-
-    tree = ast.parse(code)
+    try:
+        tree = ast.parse(code, filename=str(file_path))
+    except SyntaxError:
+        return chunk_txt(file_path, code)
     lines = code.splitlines()
 
     offsets = [0]

@@ -22,7 +22,6 @@ def build_index(ALL_FILES_PATH: list[str]):
     bm25 = BM25Okapi(token_from_corpus)
     return (bm25, chunks)
 
-
 def search(question, t, k):
 
     bm25, chunks = t

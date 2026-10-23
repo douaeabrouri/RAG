@@ -1,24 +1,2 @@
-folder: /Users/ameen/Desktop/RAG/data/input | exists: True
-everything inside: [PosixPath('/Users/ameen/Desktop/RAG/data/input/dataset_code_public.json')]
-The context does not mention activation formats returned by the fused batched MoE layer in vLLM. Therefore, I don't know the answer.
-The context provided does not mention the activation formats returned by the fused batched MoE layer in vLLM. Therefore, I don't know the answer to this question.
-The fused batched MoE layer in vLLM uses **FP8 formats** like E4M3 and E5M2, which provide different numerical precision and dynamic range. These formats are defined by constants `FP8_MIN` and `FP8_MAX` in the implementation.
-The question is not addressed in the provided context, which discusses FP8 numerical boundaries in the Triton Flash Attention module but not MoE activation formats.
-The question is not addressed in the provided context about activation formats in the fused batched MoE layer. The context focuses on floating-point formats like FP8 and numerical limits, but there is no information related to MoE activation formats in vLLM.
-The question about activation formats in the fused batched MoE layer is not addressed in the provided context. The context focuses on numerical limits, FP8, and GPU optimization techniques, but does not mention MoE layers or activation formats.
-The context does not mention activation formats returned by the fused batched MoE layer in vLLM. Therefore, I don't know the answer based on the provided information.
-The context provided does not mention activation formats related to the fused batched MoE layer in vLLM. Therefore, I don't know the answer to this question.
-The context provided does not mention activation formats returned by the fused batched MoE layer in vLLM. Therefore, the answer cannot be derived from the given information.
-The question about activation formats in the MoE layer is not addressed in the provided context. The context focuses on FP8 constants, attention computation, and GPU kernel implementation details, but there is no information about MoE activation formats.
-The question is outside the provided context, which discusses numerical constants in FP8 operations and Triton Flash Attention, but does not mention activation formats from the MoE layer in vLLM.
-The context does not mention anything about the activation formats returned by the fused batched MoE layer in vLLM. The focus is on FP8 numerical boundaries and their implementation in the Triton Flash Attention module.
-The context does not mention activation formats returned by the fused batched MoE layer in vLLM. Therefore, I don't know the answer based on the provided information.
-The context provided does not mention anything about activation formats in the fused batched MoE layer or related components in vLLM. Therefore, I don't know the answer based on the given information.
-The context provided does not mention activation formats returned by the fused batched MoE layer in vLLM. Therefore, the answer cannot be derived from the given information.
-The question about activation formats in the fused batched MoE layer is not addressed in the provided context. The context focuses on FP8 numerical limits and constants in the Triton Flash Attention module, not MoE layer-related details. Therefore, I don't know the answer based on the given information.
-The context does not provide information about activation formats returned by the fused batched MoE layer in vLLM. Therefore, I don't know the answer based on the given context.
-The context provided does not mention the activation formats returned by the fused batched MoE layer in vLLM. Therefore, based on the given information, I cannot determine the answer.
-The context does not mention anything about the activation formats returned by the fused batched MoE layer in vLLM. Therefore, I don't know the answer based on the provided information.
-The context does not mention activation formats returned by the fused batched MoE layer in vLLM. Therefore, I don't know the answer.
-The question is not addressed in the provided context about vLLM's fused batched MoE layer. The context focuses on numerical formats like FP8 and details related to Triton Flash Attention, but does not mention MoE activation formats.
-The context does not provide information about the activation formats returned by the fused batched MoE layer in vLLM. Therefore, I cannot answer the question based on the given context.
+Skipping /Users/ameen/Desktop/RAG/vllm-0.10.1/.buildkite/nightly-benchmarks/scripts/convert-results-json-to-markdown.py: f-string expression part cannot include a backslash (convert-results-json-to-markdown.py, line 372)
+You >> 
