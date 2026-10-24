@@ -1,4 +1,4 @@
-from .minimalsource import MinimalSource
+from .minimalsource import Source
 from typing import List
 import uuid
 from pydantic import BaseModel, Field
@@ -10,5 +10,5 @@ class UnansweredQuestion(BaseModel):
 
 
 class AnsweredQuestion(UnansweredQuestion):
-    sources: List[MinimalSource]
+    sources: List[Source]
     answer: str

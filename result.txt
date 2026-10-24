@@ -1,2 +1,37 @@
-Skipping /Users/ameen/Desktop/RAG/vllm-0.10.1/.buildkite/nightly-benchmarks/scripts/convert-results-json-to-markdown.py: f-string expression part cannot include a backslash (convert-results-json-to-markdown.py, line 372)
-You >> 
+/Users/ameen/Desktop/RAG/data/output/dataset_code_public.json
+hey
+question = What HTTP endpoint is used to dynamically load a LoRA adapter in vLLM?
+Answer = The HTTP endpoint used to dynamically load a LoRA adapter in vLLM is `/v1/load_lora_adapter`.
+hey
+question = What command can be used to evaluate the accuracy of a quantized model using lm_eval with vLLM?
+Answer = The command to evaluate accuracy using lm_eval with vLLM is:  
+```bash  
+lm_eval --model vllm --model_args pretrained="./Meta-Llama-3-8B-Instruct-W4A16-G128",add_bos_token=True --tasks gsm8k --num_fewshot 5 --limit 250  
+```  
+This command is used in both int4 and int8 quantization scenarios.
+hey
+question = What parallelism strategy does vLLM support for large-scale deployment of Mixture of Experts models?
+Answer = vLLM supports both Data Parallelism (DP) and Tensor Parallelism (TP) for large-scale deployment of Mixture of Experts (MoE) models. These strategies enable parallelism by distributing the model across GPUs, optimizing locality, and throughput.
+hey
+question = How can you check if a model is natively supported in vLLM?
+Answer = To check if a model is natively supported in vLLM, examine the `config.json` file within the HF repository. If the `"architectures"` field contains the model's architecture, it is supported. Otherwise, register the model manually using the provided instructions.
+hey
+question = What are the three key abstractions used for disaggregated prefilling in vLLM?
+Answer = The three key abstractions for disaggregated prefilling in vLLM are **Connector**, **LookupBuffer**, and **Pipe**.
+hey
+question = Which model architectures support tensor parallelism in vLLM for the Llama family of models?
+Answer = The Llama family of models (meta-llama/Llama-3.1, meta-llama/Llama-3.2, meta-llama/Llama-4-) support tensor parallelism in vLLM.
+hey
+question = What method needs to be overridden in BaseProcessingInfo to specify the maximum number of input items for each modality in vLLM multimodal models?
+Answer = The method that needs to be overridden in BaseProcessingInfo is `get_supported_mm_limits`, which returns the maximum number of input items for each modality. For example, if a model supports images but limits video input, this method should return a mapping like `{"image": None, "video": 1}`.
+hey
+question = What are the system requirements for running vLLM with Intel Gaudi devices?
+Answer = The system requirements for running vLLM with Intel Gaudi devices include Ubuntu 22.04 LTS, Python 3.10, an Intel Gaudi accelerator, and the Intel Gaudi software version 1.18.0.
+hey
+question = How do you install vLLM with a specific CUDA version using pip?
+Answer = To install vLLM with a specific CUDA version using pip, set the `CUDA_VERSION` environment variable in the pip install command. For example:  
+```bash  
+export CUDA_VERSION=118 # or 126  
+uv pip install --extra-index-url https://download.pytorch.org/whl/cu${CUDA_VERSION} vllm  
+```  
+This ensures vLLM uses the specified CUDA version.
