@@ -15,6 +15,9 @@ f = PATH / "dataset_code_public.json"
 
 exit_list = ["bye", "exit", "quit", "q", "close"]
 
+OUT_PATH = BASE_DIR / "data" / "output"
+output_file = OUT_PATH / "dataset_code_public.json"
+print(output_file)
 
 if __name__ == "__main__" :
 
@@ -27,9 +30,6 @@ if __name__ == "__main__" :
     for item in questions["rag_questions"]:
         question = item["question"]
         top_chunks = search(question, t, 5)
-
-        if not question == "" :
-            continue
         if question.lower() in exit_list :
             sys.exit()
 
@@ -60,11 +60,9 @@ if __name__ == "__main__" :
             question_id = item["question_id"],
             question = question,
             sources = source,
-            answer = "",
+            answer = answer,
         ))
 
-    OUT_PATH = BASE_DIR / "data" / "output"
-    output_file = OUT_PATH / "dataset_code_public.json"
 
     try:
         output_file.parent.mkdir(parents=True, exist_ok=True)
@@ -72,5 +70,5 @@ if __name__ == "__main__" :
         raise "You need to create an output file!"
 
     with open(output_file, "w") as file:
-        json.dump([obj.model_dump() for obj in result], output_file, indent=3)
+        json.dump([obj.model_dump() for obj in result], file, indent=3)
         
