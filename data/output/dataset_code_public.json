@@ -7,26 +7,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/lora.md",
             "first_char_index": 4695,
             "last_char_index": 6098
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/plugins/lora_resolvers/README.md",
-            "first_char_index": 0,
-            "last_char_index": 829
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/lora.md",
-            "first_char_index": 4075,
-            "last_char_index": 4693
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/examples/others/tensorize_vllm_model.py",
-            "first_char_index": 2573,
-            "last_char_index": 4357
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/lora.md",
-            "first_char_index": 6100,
-            "last_char_index": 8080
          }
       ],
       "answer": "The HTTP endpoint used to dynamically load a LoRA adapter in vLLM is `/v1/load_lora_adapter`."
@@ -39,26 +19,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/int4.md",
             "first_char_index": 3387,
             "last_char_index": 3972
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/int8.md",
-            "first_char_index": 2439,
-            "last_char_index": 4408
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/fp8.md",
-            "first_char_index": 3163,
-            "last_char_index": 4563
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/quark.md",
-            "first_char_index": 6638,
-            "last_char_index": 8031
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/modelopt.md",
-            "first_char_index": 462,
-            "last_char_index": 1722
          }
       ],
       "answer": "The command to evaluate accuracy using lm_eval with vLLM is:  \n```bash  \nlm_eval --model vllm --model_args pretrained=\"./Meta-Llama-3-8B-Instruct-W4A16-G128\",add_bos_token=True --tasks gsm8k --num_fewshot 5 --limit 250  \n```  \nThis command is used in both int4 and int8 quantization scenarios."
@@ -71,26 +31,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/serving/parallelism_scaling.md",
             "first_char_index": 2554,
             "last_char_index": 4285
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/configuration/optimization.md",
-            "first_char_index": 5556,
-            "last_char_index": 7384
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/model_executor/layers/fused_moe/routing_simulator.py",
-            "first_char_index": 107,
-            "last_char_index": 1575
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/serving/parallelism_scaling.md",
-            "first_char_index": 4181,
-            "last_char_index": 5374
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/serving/expert_parallel_deployment.md",
-            "first_char_index": 0,
-            "last_char_index": 1956
          }
       ],
       "answer": "vLLM supports both Data Parallelism (DP) and Tensor Parallelism (TP) for large-scale deployment of Mixture of Experts (MoE) models. These strategies enable parallelism by distributing the model across GPUs, optimizing locality, and throughput."
@@ -103,26 +43,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/models/supported_models.md",
             "first_char_index": 6664,
             "last_char_index": 8464
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/usage/troubleshooting.md",
-            "first_char_index": 12432,
-            "last_char_index": 13683
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/models/supported_models.md",
-            "first_char_index": 2005,
-            "last_char_index": 3366
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/model/registration.md",
-            "first_char_index": 0,
-            "last_char_index": 1654
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/gguf.md",
-            "first_char_index": 1833,
-            "last_char_index": 3489
          }
       ],
       "answer": "To check if a model is natively supported in vLLM, examine the `config.json` file within the HF repository. If the `\"architectures\"` field contains the model's architecture, it is supported. Otherwise, register the model manually using the provided instructions."
@@ -135,26 +55,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/disagg_prefill.md",
             "first_char_index": 2755,
             "last_char_index": 4662
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/disagg_prefill.md",
-            "first_char_index": 1116,
-            "last_char_index": 2753
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/disagg_prefill.md",
-            "first_char_index": 0,
-            "last_char_index": 1114
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/disagg_prefill.md",
-            "first_char_index": 4986,
-            "last_char_index": 5892
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/distributed/kv_transfer/README.md",
-            "first_char_index": 1754,
-            "last_char_index": 2005
          }
       ],
       "answer": "The three key abstractions for disaggregated prefilling in vLLM are **Connector**, **LookupBuffer**, and **Pipe**."
@@ -167,26 +67,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/configuration/optimization.md",
             "first_char_index": 4250,
             "last_char_index": 5717
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/configuration/optimization.md",
-            "first_char_index": 5556,
-            "last_char_index": 7384
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/tool_calling.md",
-            "first_char_index": 8624,
-            "last_char_index": 10533
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/configuration/model_resolution.md",
-            "first_char_index": 0,
-            "last_char_index": 987
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/configuration/conserving_memory.md",
-            "first_char_index": 0,
-            "last_char_index": 1785
          }
       ],
       "answer": "The Llama family of models (meta-llama/Llama-3.1, meta-llama/Llama-3.2, meta-llama/Llama-4-) support tensor parallelism in vLLM."
@@ -199,26 +79,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/model/multimodal.md",
             "first_char_index": 5541,
             "last_char_index": 6387
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/multimodal/processing.py",
-            "first_char_index": 27322,
-            "last_char_index": 29274
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/multimodal/parse.py",
-            "first_char_index": 7758,
-            "last_char_index": 9701
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/v1/core/encoder_cache_manager.py",
-            "first_char_index": 108,
-            "last_char_index": 1926
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/multimodal/registry.py",
-            "first_char_index": 5839,
-            "last_char_index": 7419
          }
       ],
       "answer": "The method that needs to be overridden in BaseProcessingInfo is `get_supported_mm_limits`, which returns the maximum number of input items for each modality. For example, if a model supports images but limits video input, this method should return a mapping like `{\"image\": None, \"video\": 1}`."
@@ -231,29 +91,9 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/intel_gaudi.md",
             "first_char_index": 0,
             "last_char_index": 1490
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/intel_gaudi.md",
-            "first_char_index": 1492,
-            "last_char_index": 3055
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/intel_gaudi.md",
-            "first_char_index": 2956,
-            "last_char_index": 4673
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/inc.md",
-            "first_char_index": 0,
-            "last_char_index": 1313
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/intel_gaudi.md",
-            "first_char_index": 24318,
-            "last_char_index": 24881
          }
       ],
-      "answer": "The system requirements for running vLLM with Intel Gaudi devices include Ubuntu 22.04 LTS, Python 3.10, an Intel Gaudi accelerator, and Intel Gaudi software version 1.18.0."
+      "answer": "The system requirements for running vLLM with Intel Gaudi devices include Ubuntu 22.04 LTS, Python 3.10, an Intel Gaudi accelerator, and the Intel Gaudi software version 1.18.0."
    },
    {
       "question_id": "cd5e1f0b-1053-4bc0-b4d8-84e003834785",
@@ -263,29 +103,9 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/quickstart.md",
             "first_char_index": 0,
             "last_char_index": 1989
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/gpu/cuda.inc.md",
-            "first_char_index": 990,
-            "last_char_index": 2756
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/gpu/cuda.inc.md",
-            "first_char_index": 0,
-            "last_char_index": 1024
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/gpu/cuda.inc.md",
-            "first_char_index": 9569,
-            "last_char_index": 10867
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/gpu/cuda.inc.md",
-            "first_char_index": 7895,
-            "last_char_index": 9567
          }
       ],
-      "answer": "To install vLLM with a specific CUDA version using pip, set the `CUDA_VERSION` environment variable and run `uv pip install ...`. For example:  \n```bash  \nexport CUDA_VERSION=118  \nuv pip install vllm --extra-index-url https://download.pytorch.org/whl/cu128 torch torchvision torchaudio  \n```  \nThis ensures compatibility with the specified CUDA version."
+      "answer": "To install vLLM with a specific CUDA version using pip, set the `CUDA_VERSION` environment variable in the pip install command. For example:  \n```bash  \nexport CUDA_VERSION=118 # or 126  \nuv pip install --extra-index-url https://download.pytorch.org/whl/cu${CUDA_VERSION} vllm  \n```  \nThis ensures vLLM uses the specified CUDA version."
    },
    {
       "question_id": "8447d11b-fb89-4c9c-a8d9-6251ab28c7f6",
@@ -295,29 +115,9 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/gpu/xpu.inc.md",
             "first_char_index": 0,
             "last_char_index": 1927
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/intel_gaudi.md",
-            "first_char_index": 2956,
-            "last_char_index": 4673
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/intel_gaudi.md",
-            "first_char_index": 0,
-            "last_char_index": 1490
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/inc.md",
-            "first_char_index": 0,
-            "last_char_index": 1313
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/supported_hardware.md",
-            "first_char_index": 2059,
-            "last_char_index": 2697
          }
       ],
-      "answer": "vLLM supports FP8 quantization on Intel Gaudi 2 and 3, while other hardware models (Volta, Turing, etc.) are not supported for quantization."
+      "answer": "vLLM supports FP8 quantization on Intel Gaudi 2 and 3, but unsupported on Volta, Turing, Ampere, Ada, and Hopper."
    },
    {
       "question_id": "7f0cb10b-945c-482b-9ba7-100c39d9c64b",
@@ -327,26 +127,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/deployment/frameworks/helm.md",
             "first_char_index": 0,
             "last_char_index": 1589
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/deployment/integrations/production-stack.md",
-            "first_char_index": 1624,
-            "last_char_index": 2813
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/google_tpu.md",
-            "first_char_index": 6286,
-            "last_char_index": 7683
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/deployment/k8s.md",
-            "first_char_index": 3528,
-            "last_char_index": 4586
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/gpu/rocm.inc.md",
-            "first_char_index": 786,
-            "last_char_index": 2117
          }
       ],
       "answer": "To uninstall a vLLM deployment using Helm, run the command:  \n`helm uninstall test-vllm --namespace=ns-vllm`.  \nThis removes all Kubernetes components, including persistent volumes, and deletes the release."
@@ -359,26 +139,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/configuration/README.md",
             "first_char_index": 0,
             "last_char_index": 334
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/usage/usage_stats.md",
-            "first_char_index": 0,
-            "last_char_index": 1806
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/usage/usage_lib.py",
-            "first_char_index": 1460,
-            "last_char_index": 2399
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/compilation/sequence_parallelism.py",
-            "first_char_index": 15928,
-            "last_char_index": 16733
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/serving/data_parallel_deployment.md",
-            "first_char_index": 1708,
-            "last_char_index": 2489
          }
       ],
       "answer": "The context provided does not mention specific usage patterns supported by vLLM. If the question is based on the configuration or usage stats documentation, there's insufficient information to answer it."
@@ -391,26 +151,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/serving/openai_compatible_server.md",
             "first_char_index": 3960,
             "last_char_index": 5422
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/examples/online_serving/openai_transcription_client.py",
-            "first_char_index": 107,
-            "last_char_index": 1349
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/gguf.md",
-            "first_char_index": 0,
-            "last_char_index": 1832
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/gguf.md",
-            "first_char_index": 1833,
-            "last_char_index": 3489
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/models/extensions/tensorizer.md",
-            "first_char_index": 1040,
-            "last_char_index": 2688
          }
       ],
       "answer": "To serve a model with audio input support in vLLM, ensure the model is configured to accept audio streams. For example, use the OpenAI Whisper model in the `--model` parameter, specifying the correct model name and audio-related settings. This setup allows the server to process audio transcriptions as described in the example script."
@@ -423,26 +163,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/reasoning_outputs.md",
             "first_char_index": 8174,
             "last_char_index": 10067
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/README.md",
-            "first_char_index": 0,
-            "last_char_index": 1869
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/serving/openai_compatible_server.md",
-            "first_char_index": 3960,
-            "last_char_index": 5422
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/reasoning_outputs.md",
-            "first_char_index": 0,
-            "last_char_index": 1671
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/model/basic.md",
-            "first_char_index": 6112,
-            "last_char_index": 7704
          }
       ],
       "answer": "To add support for a new reasoning model in vLLM, first register the model using the `ReasoningParserManager` and define a new class that implements the `ReasoningParser` interface. For example:  \n```python  \n@ReasoningParserManager.register_module([\"new_reasoning_model\"])  \nclass NewReasoningParser(ReasoningParser):  \n    def ... (methods)  \n```  \nEnsure the model's configuration includes the necessary fields (e.g., `chat_template`) and implement the `extract_reasoning_content_streaming` method to handle streaming reasoning outputs."
@@ -455,26 +175,6 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/model_executor/models/interfaces.py",
             "first_char_index": 1975,
             "last_char_index": 4181
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/model/multimodal.md",
-            "first_char_index": 2769,
-            "last_char_index": 4529
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/v1/core/encoder_cache_manager.py",
-            "first_char_index": 108,
-            "last_char_index": 1926
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/v1/core/encoder_cache_manager.py",
-            "first_char_index": 3277,
-            "last_char_index": 4652
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/v1/worker/utils.py",
-            "first_char_index": 5846,
-            "last_char_index": 7007
          }
       ],
       "answer": "The returned multimodal embeddings must be in the shape `(num_items, feature_size, hidden_size)`. This is specified in the note for `get_multimodal_embeddings`."
@@ -487,188 +187,8 @@
             "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/models/generative_models.md",
             "first_char_index": 5192,
             "last_char_index": 5589
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/inc.md",
-            "first_char_index": 1315,
-            "last_char_index": 3144
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/lora.md",
-            "first_char_index": 4075,
-            "last_char_index": 4693
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/quickstart.md",
-            "first_char_index": 6294,
-            "last_char_index": 8077
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/models/pooling_models.md",
-            "first_char_index": 5741,
-            "last_char_index": 7568
          }
       ],
       "answer": "The vLLM server endpoints for offline LLM.generate and LLM.chat APIs are the Completions API and the Chat API, respectively."
-   },
-   {
-      "question_id": "0593b68b-2f74-440e-9d31-f09f06f09bb1",
-      "question": "What are the three recommended ways to implement third-party connectors for vLLM disaggregated prefilling?",
-      "sources": [
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/disagg_prefill.md",
-            "first_char_index": 4986,
-            "last_char_index": 5892
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/disagg_prefill.md",
-            "first_char_index": 2755,
-            "last_char_index": 4662
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/disagg_prefill.md",
-            "first_char_index": 1116,
-            "last_char_index": 2753
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/disagg_prefill.md",
-            "first_char_index": 0,
-            "last_char_index": 1114
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/models/supported_models.md",
-            "first_char_index": 52121,
-            "last_char_index": 53617
-         }
-      ],
-      "answer": "The three recommended ways to implement third-party connectors in vLLM for disaggregated prefilling are: fully-customized connectors, database-like connectors, and distributed P2P connectors."
-   },
-   {
-      "question_id": "5521313f-eae6-431d-9ff4-f3cc31698bfa",
-      "question": "What should you do if you encounter persistent or strange build errors in vLLM after significant changes or switching branches?",
-      "sources": [
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/incremental_build.md",
-            "first_char_index": 7404,
-            "last_char_index": 8351
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/gpu/cuda.inc.md",
-            "first_char_index": 5738,
-            "last_char_index": 7383
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/README.md",
-            "first_char_index": 10060,
-            "last_char_index": 11555
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/getting_started/installation/gpu/cuda.inc.md",
-            "first_char_index": 7895,
-            "last_char_index": 9567
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/incremental_build.md",
-            "first_char_index": 5469,
-            "last_char_index": 7402
-         }
-      ],
-      "answer": "If you encounter persistent or strange build errors, remove the CMake build directory and re-run `cmake --preset` and `cmake --build` commands. This will reset the build environment. Also, ensure your Python packages are up to date using the `VLLM_PRECOMPILED_WHEEL_LOCATION` environment variable."
-   },
-   {
-      "question_id": "66bcc3cc-043c-4705-9f54-0bd98185e403",
-      "question": "How do you evaluate accuracy of a quantized model using lm_eval in vLLM?",
-      "sources": [
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/int4.md",
-            "first_char_index": 3387,
-            "last_char_index": 3972
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/int8.md",
-            "first_char_index": 2439,
-            "last_char_index": 4408
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/fp8.md",
-            "first_char_index": 3163,
-            "last_char_index": 4563
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/modelopt.md",
-            "first_char_index": 462,
-            "last_char_index": 1722
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/quantization/quark.md",
-            "first_char_index": 6638,
-            "last_char_index": 8031
-         }
-      ],
-      "answer": "To evaluate accuracy of a quantized model using lm_eval in vLLM, run the following command:  \n```bash  \nlm_eval --model vllm --model_args pretrained=... --tasks gsm8k --num_fewshot 5 --limit 250 --batch_size 'auto'  \n```  \nEnsure the `add_bos_token=True` argument is included when running evaluations, as quantized models may be sensitive to the presence of the `bos` token."
-   },
-   {
-      "question_id": "359b6c20-fa53-4cc3-871d-2d42e9001c3f",
-      "question": "How do you report security vulnerabilities in vLLM?",
-      "sources": [
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/vulnerability_management.md",
-            "first_char_index": 0,
-            "last_char_index": 1821
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/usage/security.md",
-            "first_char_index": 3354,
-            "last_char_index": 4366
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/SECURITY.md",
-            "first_char_index": 0,
-            "last_char_index": 1971
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/vulnerability_management.md",
-            "first_char_index": 1823,
-            "last_char_index": 2610
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/contributing/README.md",
-            "first_char_index": 0,
-            "last_char_index": 1869
-         }
-      ],
-      "answer": "To report security vulnerabilities in vLLM, follow these steps:  \n1. Report privately via GitHub using the vulnerability submission form.  \n2. The VMT will triage the report, coordinate with maintainers, and prepare a security advisory.  \n3. The VMT will publish a fix and release update, followed by a GitHub security advisory.  \n4. Ensure all communication is done through the project’s GitHub system."
-   },
-   {
-      "question_id": "626fea67-be37-41c7-b801-ff643ca89b8c",
-      "question": "What FusedMoEPrepareAndFinalize implementation is used when there is no expert parallelism in vLLM?",
-      "sources": [
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/design/fused_moe_modular_kernel.md",
-            "first_char_index": 15519,
-            "last_char_index": 16915
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/configuration/optimization.md",
-            "first_char_index": 5556,
-            "last_char_index": 7384
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/docs/features/spec_decode.md",
-            "first_char_index": 7507,
-            "last_char_index": 8885
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/config/parallel.py",
-            "first_char_index": 2107,
-            "last_char_index": 4047
-         },
-         {
-            "file_path": "/Users/ameen/Desktop/RAG/vllm-0.10.1/vllm/model_executor/layers/fused_moe/config.py",
-            "first_char_index": 6199,
-            "last_char_index": 8196
-         }
-      ],
-      "answer": "The FusedMoEPrepareAndFinalize implementation used when there is no expert parallelism is **MoEPrepareAndFinalizeNoEP**, which is contiguous and uses no all2all kernels."
    }
 ]
