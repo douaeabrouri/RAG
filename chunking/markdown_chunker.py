@@ -1,5 +1,5 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
-from src.minimalsource import  MinimalSource
+from src.minimalsource import  BigChunk
 from constants import MAX_CHARS
 
 
@@ -18,7 +18,7 @@ def chunk_markdown(path_file, text) -> list:
         first_line = text.count('\n', 0, start_index) + 1
         last_line  = text.count('\n', 0, end_index - 1) + 1
 
-        chunks.append(MinimalSource(
+        chunks.append(BigChunk(
             id = i,
             text = info.page_content,
             file_path=path_file,

@@ -9,3 +9,4 @@ PATH = BASE_DIR / "vllm-0.10.1"
 OLLAM_HOST = "http://127.0.0.1:11434"
 MODEL_NAME="qwen3:0.6b"
 Client = Client(host=OLLAM_HOST)
+K = 3

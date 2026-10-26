@@ -1,5 +1,5 @@
 import ast
-from src.minimalsource import  MinimalSource
+from src.minimalsource import  BigChunk
 from chunking.txt_chunker import chunk_txt
 from constants import MAX_CHARS
 
@@ -49,11 +49,11 @@ def chunk_py_node(node, lines, pieces, offsets):
     
 def pack(pieces, path):
 
-    chunks: list[MinimalSource] = []
+    chunks: list[BigChunk] = []
     cur = None   # [text, first_line, last_line, first_char, last_char]
 
     def flush():
-        chunks.append(MinimalSource(
+        chunks.append(BigChunk(
             id=len(chunks), text=cur[0], file_path=path,
             first_line=cur[1], last_line=cur[2],
             first_char_index=cur[3], last_char_index=cur[4],
