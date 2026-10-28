@@ -1,3 +1,4 @@
+import pickle
 from chunking.models import chunking_files
 import numpy as np
 from rank_bm25 import BM25Okapi
@@ -35,4 +36,16 @@ def search(question, t, k) ->list:
             continue
         result.append(chunks[i])
     return result
+
+def load_index(proessed_dir: str):
+
+    PATH = proessed_dir / "index.pkl"
+    if not PATH.exits():
+        raise FileNotFoundError(f"ERROR: file {PATH} not found")
+
+    try:
+        with open(proessed_dir, "rb") as file:
+            return (pickle.load(file))
+    except Exception as e:
+        raise ValueError(f"ERROR: {e}")
 
