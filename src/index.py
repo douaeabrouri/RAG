@@ -2,7 +2,8 @@
 import pickle
 from pathlib import Path
 from chunking.chunker import get_files_path
-from indexing.bm25_ranking import build_index
+from indexing.bm25_ranking import search as search_chunks
+from indexing.bm25_ranking import build_index, load_index
 
 
 class CLI():
@@ -31,3 +32,14 @@ class CLI():
             pickle.dump(t, file)
         print("\nIngestion complete! Indices saved under data/processed/\n")
 
+    def search(self, query: str, K: int = 3, processed_data: str = "data/processed"):
+
+        processed_dir = Path(processed_data) / "index.pkl"
+        t = load_index(processed_dir)
+
+        if 0 <= K :
+            raise ValueError("The Value of K must be > 0")
+        
+
+
+        
