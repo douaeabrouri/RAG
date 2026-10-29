@@ -1,5 +1,5 @@
 
-import pickle
+import pickle, json
 from pathlib import Path
 from chunking.chunker import get_files_path
 from indexing.bm25_ranking import search as search_chunks
@@ -21,7 +21,7 @@ class CLI():
             print("ERROR: FIle not found")
             return 
         try:
-            t = build_index(get_files_path(raw))
+            bm25, chunks = build_index(get_files_path(raw))
         except Exception as e:
             print(f"ERROR: {e}")
             return
@@ -29,17 +29,28 @@ class CLI():
         processed = Path(processed_data)
         processed.mkdir(parents=True, exist_ok=True)
         with (processed / "index.pkl").open("wb") as file:
-            pickle.dump(t, file)
+            pickle.dump(bm25, file)
+        chunks_metadata = []
+        for chunk in chunks:
+            metadata = {
+                "file_path": str(chunk.file_path),
+                "first_charactere_index": str(chunk.first_char_index),
+                "last_charactere_index": str(chunk.last_char_index), 
+            }
+            chunks_metadata.append(metadata)
+        with (processed / "chunks.json").open("w") as file:
+            json.dump(chunks_metadata, file)
         print("\nIngestion complete! Indices saved under data/processed/\n")
 
-    def search(self, query: str, K: int = 3, processed_data: str = "data/processed"):
-
-        processed_dir = Path(processed_data) / "index.pkl"
-        t = load_index(processed_dir)
+    def search(self, query: str, K: int = 3):
 
         if 0 <= K :
             raise ValueError("The Value of K must be > 0")
-        
+
+        result_of_query = search_chunks(query, build_index(get_files_path("data/processed//vllm-0.10.1")) ,K)
+        print(result_of_query)
+
+    
 
 
         
