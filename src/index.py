@@ -11,7 +11,7 @@ class CLI():
               raw_data: str = "data/raw",
               processed_data: str = "data/processed") -> None:
 
-        if not (0 < max_chunk_size <= 2000):
+        if not (0 <= max_chunk_size <= 2000):
             print("The chunk maxe size must be positive and > 0!")
             return 
         try:
@@ -50,16 +50,15 @@ class CLI():
     
         if 0 >= K :
             raise ValueError("The Value of K must be > 0")
-        with bm25_path.open("r") as file:
+        with bm25_path.open("rb") as file:
             bm25 = pickle.load(file)
-        print("Hey")
         with chunks_path.open("r") as file:
             chunks = json.load(file)
 
         result_of_query = search_chunks(query, bm25, chunks ,K)
-        print(result_of_query)
-
-    
-
-
-        
+        if not result_of_query:
+            print("There is no answere for this Query!")
+            return
+        for item in result_of_query:
+            print(f'{item["file_path"]} [{item["first_charactere_index"]}:{item["last_charactere_index"]}]')
+            
