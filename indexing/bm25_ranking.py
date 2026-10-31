@@ -23,9 +23,8 @@ def build_index(ALL_FILES_PATH: list[str]):
     bm25 = BM25Okapi(token_from_corpus)
     return (bm25, chunks)
 
-def search(question, t, k) ->list:
+def search(question, bm25, chunks, k) ->list:
 
-    bm25, chunks = t
     token_from_question = question.lower().split()
     score =  bm25.get_scores(token_from_question)
     top_idx = np.argsort(score)[::-1][:k]

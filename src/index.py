@@ -44,10 +44,18 @@ class CLI():
 
     def search(self, query: str, K: int = 3):
 
-        if 0 <= K :
+        processed_path = Path("data/processed")
+        chunks_path = processed_path / "chunks.json"
+        bm25_path = processed_path / "index.pkl"
+    
+        if 0 >= K :
             raise ValueError("The Value of K must be > 0")
+        with chunks_path.open("r") as file:
+            chunks = json.load(file)
+        with bm25_path.open("r") as file:
+            bm25 = pickle.load(file)
 
-        result_of_query = search_chunks(query, build_index(get_files_path("data/processed//vllm-0.10.1")) ,K)
+        result_of_query = search_chunks(query, bm25, chunks ,K)
         print(result_of_query)
 
     
