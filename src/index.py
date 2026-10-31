@@ -39,7 +39,7 @@ class CLI():
             }
             chunks_metadata.append(metadata)
         with (processed / "chunks.json").open("w") as file:
-            json.dump(chunks_metadata, file)
+            json.dump(chunks_metadata, file, indent=2)
         print("\nIngestion complete! Indices saved under data/processed/\n")
 
     def search(self, query: str, K: int = 3):
@@ -50,10 +50,11 @@ class CLI():
     
         if 0 >= K :
             raise ValueError("The Value of K must be > 0")
-        with chunks_path.open("r") as file:
-            chunks = json.load(file)
         with bm25_path.open("r") as file:
             bm25 = pickle.load(file)
+        print("Hey")
+        with chunks_path.open("r") as file:
+            chunks = json.load(file)
 
         result_of_query = search_chunks(query, bm25, chunks ,K)
         print(result_of_query)
