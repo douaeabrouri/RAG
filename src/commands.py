@@ -61,4 +61,6 @@ class CLI():
             return
         for item in result_of_query:
             print(f'{item["file_path"]} [{item["first_charactere_index"]}:{item["last_charactere_index"]}]')
+
+    
             
