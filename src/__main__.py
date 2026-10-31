@@ -7,23 +7,6 @@
 import fire
 from src.commands import  CLI
 
-
-# PATH = BASE_DIR / "data" / "datasets_public" / "public" / "UnansweredQuestions"
-# FILE1 = PATH / "dataset_code_public.json"
-
-# OUT_PATH = BASE_DIR / "data" / "output" / "search_results_and_answer" / "AnsweredQuestions"
-# output_file = OUT_PATH / "dataset_code_public.json"
-# output_file.parent.mkdir(parents=True, exist_ok=True)
-# OUT_PATH1 = BASE_DIR / "data" / "output" / "search_results" / "AnsweredQuestions"
-# output_file1 = OUT_PATH / "dataset_code_public.json"
-# output_file1.parent.mkdir(parents=True, exist_ok=True)
-
-
-
-# with open(FILE1, "r") as file:
-#     questions = json.load(file) 
-
-
 # t = build_index(ALL_FILES_PATH)
 # searched = []
 # chunks_by_id = {}

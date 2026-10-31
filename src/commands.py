@@ -4,10 +4,13 @@ from pathlib import Path
 from chunking.chunker import get_files_path
 from indexing.bm25_ranking import search as search_chunks
 from indexing.bm25_ranking import build_index, load_index
-from ask_llm import ask_llm
-from build_context import build_context
+from src.ask_llm import ask_llm, to_source
+from src.build_context import build_context
+from managing_answers.save import save_unanswered, save_answered
+from src.minimalsource import MinimalSearchResults
+from constants import EXIT_FILES 
 
-class CLI():
+class CLI:
     def index(self, max_chunk_size: int = 2000, 
               raw_data: str = "data/raw",
               processed_data: str = "data/processed") -> None:
@@ -73,16 +76,46 @@ class CLI():
 
     def answer(self, query: str, K: int = 3):
         try:
+            processed_path = Path("data/processed")
+            chunks_path = processed_path / "chunks.json"
+            bm25_path = processed_path / "index.pkl"
+        
             if not query:
                 raise ValueError("The query cannot be empty.")
             if 0 >= K :
                 raise ValueError("The Value of K must be > 0")
+            with bm25_path.open("rb") as file:
+                bm25 = pickle.load(file)
+            with chunks_path.open("r") as file:
+                chunks = json.load(file)
 
-            top_chunks = self.search(query, K)
+            top_chunks = search_chunks(query, bm25, chunks, K)
             answer = ask_llm(query, top_chunks)
             print(answer)
         except Exception as e:
             print(f"ERROR: {e}")
+
+    def search_dataset(self, dataset_path: str, K: int, save_directory: str):
+
+        bm25, chunks = build_index(get_files_path(Path("data/raw/vllm-0.10.1")))
+        searched = []
+        chunks_by_id = {}
+
+        with open(dataset_path, "r") as file:
+            questions = json.load(file)
+            
+        for item in questions["rag_questions"]:
+            top_chunks = search_chunks(item["question"], bm25, chunks, K)
+            chunks_by_id[item["question_id"]] = top_chunks
+            searched.append(MinimalSearchResults(
+                question_id=item["question_id"],
+                question=item["question"],
+                retrieved_sources = to_source(top_chunks),
+            ))
+            if item["question"].lower() in EXIT_FILES :
+                return
+
+            save_unanswered(searched, K, save_directory)
         
     
             
