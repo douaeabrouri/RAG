@@ -7,10 +7,11 @@ from indexing.bm25_ranking import build_index, load_index
 from src.ask_llm import ask_llm, to_source
 from src.build_context import build_context
 from managing_answers.save import save_unanswered, save_answered
-from src.minimalsource import MinimalSearchResults
+from src.minimalsource import MinimalSearchResults, MinimalAnswer
 from constants import EXIT_FILES 
 
 class CLI:
+
     def index(self, max_chunk_size: int = 2000, 
               raw_data: str = "data/raw",
               processed_data: str = "data/processed") -> None:
@@ -97,25 +98,60 @@ class CLI:
 
     def search_dataset(self, dataset_path: str, K: int, save_directory: str):
 
-        bm25, chunks = build_index(get_files_path(Path("data/raw/vllm-0.10.1")))
-        searched = []
-        chunks_by_id = {}
+        try:
+            bm25, chunks = build_index(get_files_path(Path("data/raw/vllm-0.10.1")))
+            searched = []
+            chunks_by_id = {}
 
-        with open(dataset_path, "r") as file:
-            questions = json.load(file)
-            
-        for item in questions["rag_questions"]:
-            top_chunks = search_chunks(item["question"], bm25, chunks, K)
-            chunks_by_id[item["question_id"]] = top_chunks
-            searched.append(MinimalSearchResults(
-                question_id=item["question_id"],
-                question=item["question"],
-                retrieved_sources = to_source(top_chunks),
-            ))
-            if item["question"].lower() in EXIT_FILES :
-                return
+            with open(dataset_path, "r") as file:
+                questions = json.load(file)
 
-            save_unanswered(searched, K, save_directory)
-        
-    
+            for item in questions["rag_questions"]:
+                top_chunks = search_chunks(item["question"], bm25, chunks, K)
+                chunks_by_id[item["question_id"]] = top_chunks
+                searched.append(MinimalSearchResults(
+                    question_id=item["question_id"],
+                    question=item["question"],
+                    retrieved_sources = to_source(top_chunks),
+                ))
+                if item["question"].lower() in EXIT_FILES :
+                    return
+                out_dir = Path(save_directory)
+                out_dir.mkdir(parents=True, exist_ok=True)
+
+                out_file = out_dir / Path(dataset_path).name
+
+                save_unanswered(searched, K, out_file)
+
+        except Exception as e:
+            print(f"ERROR: {e}")
+
+    def answer_dataset(self, student_search_results_path: str, save_directory: str):
+
+        try:
+            with open(student_search_results_path, "r") as file:
+                questions = json.load(file)
+
+            if not questions:
+                raise ValueError("Empty file!!")
             
+            answered = []
+            chunks_by_id = {}
+
+            print(questions["K"])
+            # for item in questions["search_results"]:
+                # top_chunks = chunks_by_id[item["question_id"]]
+                # if top_chunks:
+                #     answer = ask_llm(item["question"], top_chunks)
+                # else:
+                #     answer =  "I don't Know!"                
+                # answered.append(MinimalAnswer(
+                #     question_id=item["question_id"],
+                #     question=item["question"],
+                #     retrieved_sources=to_source(top_chunks),
+                #     answer=answer,
+                # ))
+                # save_answered(answered, K, save_directory)
+            
+        except Exception as e:
+            print(f"ERROR: {e}")  
