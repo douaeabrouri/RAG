@@ -9,6 +9,7 @@ from src.build_context import build_context
 from managing_answers.save import save_unanswered, save_answered
 from src.minimalsource import MinimalSearchResults, MinimalAnswer
 from constants import EXIT_FILES 
+from evaluation import evaluate_ssr
 
 class CLI:
 
@@ -118,7 +119,6 @@ class CLI:
                     return
                 out_dir = Path(save_directory)
                 out_dir.mkdir(parents=True, exist_ok=True)
-
                 out_file = out_dir / Path(dataset_path).name
 
                 save_unanswered(searched, K, out_file)
@@ -129,29 +129,42 @@ class CLI:
     def answer_dataset(self, student_search_results_path: str, save_directory: str):
 
         try:
-            with open(student_search_results_path, "r") as file:
+            with open(Path(student_search_results_path), "r") as file:
                 questions = json.load(file)
 
             if not questions:
                 raise ValueError("Empty file!!")
-            
+    
             answered = []
-            chunks_by_id = {}
 
-            print(questions["K"])
-            # for item in questions["search_results"]:
-                # top_chunks = chunks_by_id[item["question_id"]]
-                # if top_chunks:
-                #     answer = ask_llm(item["question"], top_chunks)
-                # else:
-                #     answer =  "I don't Know!"                
-                # answered.append(MinimalAnswer(
-                #     question_id=item["question_id"],
-                #     question=item["question"],
-                #     retrieved_sources=to_source(top_chunks),
-                #     answer=answer,
-                # ))
-                # save_answered(answered, K, save_directory)
+            for item in questions["search_results"]:
+                retrieved_sources = item["retrieved_sources"]
+                if retrieved_sources:
+                    answer = ask_llm(item["question"], retrieved_sources)
+                else:
+                    answer =  "I don't Know!"                
+                answered.append(MinimalAnswer(
+                    question_id=item["question_id"],
+                    question=item["question"],
+                    retrieved_sources=to_source(retrieved_sources),
+                    answer=answer,
+                ))
+                out_dir = Path(save_directory)
+                out_dir.mkdir(parents=True, exist_ok=True)
+                out_file = out_dir / Path(save_directory).name
+                save_answered(answered, questions["k"], out_file)
             
         except Exception as e:
-            print(f"ERROR: {e}")  
+            print(f"ERROR: {e}")
+
+    def evaluate_search_results(self, student_path: str, dataset_path: str, k: int = 10):
+        try:
+            if not (Path(student_path).exists() and Path(dataset_path).exists()):
+                raise FileNotFoundError("One or both input paths do not exist.")
+            if not 0 < k:
+                raise ValueError("The value of k must be positive.")
+            
+            evaluate_ssr(student_path, dataset_path, k)
+        except Exception as e:
+            print(f"ERROR: {e}")
+

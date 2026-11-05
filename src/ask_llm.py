@@ -17,10 +17,14 @@ def to_source(top_chunks) -> list[MinimalAnswer]:
 def make_prompt(question, top_chunks) -> str:
     context = build_context(top_chunks)
     return (
-        "Answer in 1 to 3 sentences using only the context below. "
-        "If the answer is not in the context, say you don't know.\n\n"
+        "You are an assistant that answers questions about the vLLM project, "
+        "Rules:"
+        "- If the context contains part of the answer, give that part."
+        "- Answer in 1 to 3 sentences using only the context below. "
+        "- If the answer is not in the context, say you don't know.\n\n"
         f"Context:\n{context}\n\n"
         f"Question: {question} /no_think"
+        "Answer: "
     )
 
 def ask_llm(question, chunks) -> str:
