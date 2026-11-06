@@ -56,7 +56,7 @@ def pack(pieces, path):
         chunks.append(BigChunk(
             id=len(chunks), text=cur[0], file_path=path,
             first_line=cur[1], last_line=cur[2],
-            first_char_index=cur[3], last_char_index=cur[4],
+            first_character_index=cur[3], last_character_index=cur[4],
         ))
 
     for text, fl, ll, fc, lc in pieces:

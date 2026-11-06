@@ -41,8 +41,8 @@ class CLI:
             for chunk in chunks:
                 metadata = {
                     "file_path": str(chunk.file_path),
-                    "first_charactere_index": str(chunk.first_char_index),
-                    "last_charactere_index": str(chunk.last_char_index), 
+                    "first_character_index": str(chunk.first_character_index),
+                    "last_character_index": str(chunk.last_character_index), 
                 }
                 chunks_metadata.append(metadata)
             with (processed / "chunks.json").open("w") as file:
@@ -72,7 +72,7 @@ class CLI:
                 print("There is no answere for this Query!")
                 return
             for item in result_of_query:
-                print(f'{item["file_path"]} [{item["first_charactere_index"]}:{item["last_charactere_index"]}]')
+                print(f'{item["file_path"]} [{item["first_character_index"]}:{item["last_character_index"]}]')
         except Exception as e:
             print(f"ERROR: {e}")
 
@@ -97,7 +97,7 @@ class CLI:
         except Exception as e:
             print(f"ERROR: {e}")
 
-    def search_dataset(self, dataset_path: str, K: int, save_directory: str):
+    def search_dataset(self, dataset_path: str, k: int, save_directory: str):
 
         try:
             bm25, chunks = build_index(get_files_path(Path("data/raw/vllm-0.10.1")))
@@ -108,7 +108,7 @@ class CLI:
                 questions = json.load(file)
 
             for item in questions["rag_questions"]:
-                top_chunks = search_chunks(item["question"], bm25, chunks, K)
+                top_chunks = search_chunks(item["question"], bm25, chunks, k)
                 chunks_by_id[item["question_id"]] = top_chunks
                 searched.append(MinimalSearchResults(
                     question_id=item["question_id"],
@@ -121,7 +121,7 @@ class CLI:
                 out_dir.mkdir(parents=True, exist_ok=True)
                 out_file = out_dir / Path(dataset_path).name
 
-                save_unanswered(searched, K, out_file)
+                save_unanswered(searched, k, out_file)
 
         except Exception as e:
             print(f"ERROR: {e}")
@@ -163,7 +163,6 @@ class CLI:
                 raise FileNotFoundError("One or both input paths do not exist.")
             if not 0 < k:
                 raise ValueError("The value of k must be positive.")
-            
             evaluate_ssr(student_path, dataset_path, k)
         except Exception as e:
             print(f"ERROR: {e}")

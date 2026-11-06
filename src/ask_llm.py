@@ -8,8 +8,8 @@ def to_source(top_chunks) -> list[MinimalAnswer]:
     return [
         MinimalSource(
             file_path = str(c.file_path),
-            first_char_index = str(c.first_char_index),
-            last_char_index = str(c.last_char_index),
+            first_character_index = c.first_character_index,
+            last_character_index = c.last_character_index,
         )
         for c in top_chunks
     ]

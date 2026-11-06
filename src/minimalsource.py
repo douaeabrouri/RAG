@@ -8,13 +8,13 @@ class BigChunk(BaseModel):
     file_path: Path
     first_line : int
     last_line  : int 
-    first_char_index: int
-    last_char_index: int
+    first_character_index: int
+    last_character_index: int
 
 class MinimalSource(BaseModel):
     file_path: str
-    first_char_index: int
-    last_char_index: int
+    first_character_index: int
+    last_character_index: int
 
 class MinimalSearchResults(BaseModel):
     question_id: str

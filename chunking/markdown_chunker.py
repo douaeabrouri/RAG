@@ -24,7 +24,7 @@ def chunk_markdown(path_file, text) -> list:
             file_path=path_file,
             first_line= first_line,
             last_line=last_line,
-            first_char_index=start_index,
-            last_char_index=end_index,
+            first_character_index=start_index,
+            last_character_index=end_index,
         ))
     return chunks
