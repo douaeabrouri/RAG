@@ -2,8 +2,8 @@ from pathlib import Path
 import json
 
 def iou(start1, end1, start2, end2):
-    intersection = (0, min(end1, end2) - max(start1, start2))
-    union = start1 - end2
+    intersection = max(0, min(end1, end2) - max(start1, start2))
+    union = (end1 - start1) + (end2 - start2) - intersection    
     iou = intersection / union
     return iou
 
@@ -62,11 +62,8 @@ def evaluate_ssr(student_path, dataset_path, k):
     print("========================================")
     print(f"Questions evaluated: {with_or_without_rs}")
 
-    # index = 0
-    # for item in scores:
-    #     recall = sum(item) / len(item)
-    #     print(f"Recall@{index}: {recall:.2%} {(recall * 100):.1%}")
-    #     index+=1
+    recall = sum(scores) / len(scores)
+    print(f"{(recall*100)}%")
 
     return recall
                     
