@@ -55,6 +55,8 @@ def evaluate_ssr(student_path, dataset_path, k):
         print("Maybe you compare the wrong files, check your input!")
         return 
     recall = sum(scores) / len(scores)
+    successful_retrievals = sum(1 for score in scores if score == 1.0)
+    failed_retrievals = sum(1 for score in scores if score == 0.0)
     print(f"Student data is valid: {valid}")
     print(f"Total number of questions with student sources: {with_rs}")
     print(f"Total number of questions: {len(truth_by_id)}\n")
@@ -63,7 +65,9 @@ def evaluate_ssr(student_path, dataset_path, k):
     print(f"Questions evaluated: {with_or_without_rs}")
 
     recall = sum(scores) / len(scores)
-    print(f"{(recall*100)}%")
+    print(f"successful_retrievals: {successful_retrievals}")
+    print(f"failed_retrievals: {failed_retrievals}")
+    print(f"recall: {(recall*100)}%")
 
     return recall
                     
