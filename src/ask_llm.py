@@ -18,13 +18,18 @@ def make_prompt(question, top_chunks) -> str:
     context = build_context(top_chunks)
     return (
         "You are an assistant that answers questions about the vLLM project, "
-        "Rules:"
-        "- If the context contains part of the answer, give that part."
-        "- Answer in 1 to 3 sentences using only the context below. "
-        "- If the answer is not in the context, say you don't know.\n\n"
+        "using only the context below. The context contains documentation and "
+        "source code, each block labeled with its file path.\n\n"
+        "Rules:\n"
+        "- Answer in 1 to 3 sentences.\n"
+        "- Copy identifiers exactly as written in the context: endpoint paths, "
+        "function names, class names, parameter names, environment variables.\n"
+        "- If the context contains part of the answer, give that part. "
+        "Say you don't know only if the context has nothing relevant.\n"
+        "- Don't use knowledge from outside the context.\n\n"
         f"Context:\n{context}\n\n"
-        f"Question: {question} /no_think"
-        "Answer: "
+        f"Question: {question}\n"
+        "Answer:"
     )
 
 def ask_llm(question, chunks) -> str:
