@@ -2,6 +2,12 @@ import pickle
 from chunking.models import chunking_files
 import numpy as np
 from rank_bm25 import BM25Okapi
+import re
+
+def tokenize(text: str) -> list[str]:
+    text = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", text)
+    return re.findall(r"[a-z]+|[0-9]+", text.lower())
+
 
 def build_index(ALL_FILES_PATH: list[str]):
 
@@ -17,7 +23,7 @@ def build_index(ALL_FILES_PATH: list[str]):
     for doc in corpus:
         if doc is None:
             continue
-        token_from_corpus.append(doc.lower().split())
+        token_from_corpus.append(tokenize(doc))
     if not token_from_corpus:
         raise ZeroDivisionError("No documents to index")
     bm25 = BM25Okapi(token_from_corpus)
@@ -25,7 +31,7 @@ def build_index(ALL_FILES_PATH: list[str]):
 
 def search(question, bm25, chunks, k) ->list:
 
-    token_from_question = question.lower().split()
+    token_from_question = tokenize(question)
     score =  bm25.get_scores(token_from_question)
     top_idx = np.argsort(score)[::-1][:k]
 

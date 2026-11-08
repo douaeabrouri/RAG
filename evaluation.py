@@ -67,7 +67,7 @@ def evaluate_ssr(student_path, dataset_path, k):
     recall = sum(scores) / len(scores)
     print(f"successful_retrievals: {successful_retrievals}")
     print(f"failed_retrievals: {failed_retrievals}")
-    print(f"recall: {(recall*100)}%")
+    print(f"recall: {(recall*100):.2f}%")
 
     return recall
                     

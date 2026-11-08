@@ -5,9 +5,29 @@
          "question": "What activation formats does the fused batched MoE layer return in vLLM?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/usage/faq.md",
-               "first_character_index": 1077,
-               "last_character_index": 2043
+               "file_path": "data/raw/vllm-0.10.1/docs/design/fused_moe_modular_kernel.md",
+               "first_character_index": 10666,
+               "last_character_index": 12512
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/batched_triton_or_deep_gemm_moe.py",
+               "first_character_index": 2515,
+               "last_character_index": 4349
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/cutlass_moe.py",
+               "first_character_index": 23626,
+               "last_character_index": 25620
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/batched_deep_gemm_moe.py",
+               "first_character_index": 6201,
+               "last_character_index": 7584
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/modular_kernel.py",
+               "first_character_index": 15973,
+               "last_character_index": 18749
             }
          ]
       },
@@ -16,9 +36,29 @@
          "question": "What are the default values for FP8_MIN and FP8_MAX constants in vLLM's triton_flash_attention module?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/benchmarks/kernels/benchmark_w8a8_block_fp8.py",
-               "first_character_index": 5503,
-               "last_character_index": 7303
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/flash_attn.py",
+               "first_character_index": 24518,
+               "last_character_index": 26737
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/kernels/moe/test_triton_moe_ptpc_fp8.py",
+               "first_character_index": 3693,
+               "last_character_index": 5785
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/quantization/fp8.md",
+               "first_character_index": 0,
+               "last_character_index": 1723
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/platforms/cuda.py",
+               "first_character_index": 17794,
+               "last_character_index": 19713
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/kernels/quantization/test_int8_kernel.py",
+               "first_character_index": 3476,
+               "last_character_index": 5336
             }
          ]
       },
@@ -28,8 +68,28 @@
          "retrieved_sources": [
             {
                "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/sampler.py",
+               "first_character_index": 25685,
+               "last_character_index": 28489
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/sampler.py",
                "first_character_index": 21626,
                "last_character_index": 23307
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/sampler.py",
+               "first_character_index": 11527,
+               "last_character_index": 13151
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/sampler.py",
+               "first_character_index": 7495,
+               "last_character_index": 9409
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/sampler.py",
+               "first_character_index": 45983,
+               "last_character_index": 47829
             }
          ]
       },
@@ -38,9 +98,29 @@
          "question": "What's the default value of trust_remote_code in vLLM's LLM class constructor?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/transformers_utils/processor.py",
+               "first_character_index": 2774,
+               "last_character_index": 4564
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/transformers_utils/config.py",
                "first_character_index": 26614,
                "last_character_index": 28459
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/transformers_utils/config.py",
+               "first_character_index": 15046,
+               "last_character_index": 18783
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/transformers_utils/processor.py",
+               "first_character_index": 6380,
+               "last_character_index": 8365
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/transformers_utils/processor.py",
+               "first_character_index": 4567,
+               "last_character_index": 6377
             }
          ]
       },
@@ -48,6 +128,26 @@
          "question_id": "4235480a-cd9e-42a5-a852-b562386a83a3",
          "question": "What determines the values in cudagraph_inputs_embeds when capturing CUDA graph shapes in vLLM's ModelRunner?",
          "retrieved_sources": [
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/cuda_graph.py",
+               "first_character_index": 4499,
+               "last_character_index": 6211
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/worker/model_runner.py",
+               "first_character_index": 83755,
+               "last_character_index": 86637
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/worker/model_runner.py",
+               "first_character_index": 67868,
+               "last_character_index": 69850
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/worker/gpu_model_runner.py",
+               "first_character_index": 122210,
+               "last_character_index": 124424
+            },
             {
                "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/abstract.py",
                "first_character_index": 5365,
@@ -60,9 +160,29 @@
          "question": "What conditions must be met for vLLM's ModelRunner to use CUDA graphs instead of the regular model?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/benchmarks/datasets.py",
-               "first_character_index": 7959,
-               "last_character_index": 9156
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/llm.py",
+               "first_character_index": 48824,
+               "last_character_index": 50668
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/usage/reproducibility.md",
+               "first_character_index": 1914,
+               "last_character_index": 2396
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/getting_started/installation/intel_gaudi.md",
+               "first_character_index": 18476,
+               "last_character_index": 19290
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/usage/troubleshooting.md",
+               "first_character_index": 9509,
+               "last_character_index": 11057
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/getting_started/installation/intel_gaudi.md",
+               "first_character_index": 14752,
+               "last_character_index": 16711
             }
          ]
       },
@@ -74,6 +194,26 @@
                "file_path": "data/raw/vllm-0.10.1/vllm/envs.py",
                "first_character_index": 42378,
                "last_character_index": 44369
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/engine/async_llm_engine.py",
+               "first_character_index": 44829,
+               "last_character_index": 45504
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/envs.py",
+               "first_character_index": 20637,
+               "last_character_index": 22631
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/quantization/inc.md",
+               "first_character_index": 1315,
+               "last_character_index": 3144
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/llm.py",
+               "first_character_index": 26647,
+               "last_character_index": 28274
             }
          ]
       },
@@ -82,9 +222,29 @@
          "question": "What does the Gemma3ForCausalLM constructor assert about the tie_word_embeddings configuration?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/design/arch_overview.md",
-               "first_character_index": 6141,
-               "last_character_index": 7109
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/registry.py",
+               "first_character_index": 3248,
+               "last_character_index": 5213
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
+               "first_character_index": 14409,
+               "last_character_index": 16390
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/models/registry.py",
+               "first_character_index": 6444,
+               "last_character_index": 8412
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/models/hardware_supported_models/tpu.md",
+               "first_character_index": 59,
+               "last_character_index": 2027
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/transformers.py",
+               "first_character_index": 26249,
+               "last_character_index": 28102
             }
          ]
       },
@@ -96,6 +256,26 @@
                "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/mamba/ops/ssd_bmm.py",
                "first_character_index": 7100,
                "last_character_index": 8639
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/mamba/ops/ssd_combined.py",
+               "first_character_index": 273,
+               "last_character_index": 2983
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/mamba/ops/ssd_combined.py",
+               "first_character_index": 3645,
+               "last_character_index": 6698
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/mamba/mamba_utils.py",
+               "first_character_index": 3174,
+               "last_character_index": 4830
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/mamba/ops/ssd_chunk_state.py",
+               "first_character_index": 21363,
+               "last_character_index": 23573
             }
          ]
       },
@@ -104,9 +284,29 @@
          "question": "What is the default cudagraph_support value for TritonAttentionMetadataBuilder?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/.buildkite/nightly-benchmarks/README.md",
-               "first_character_index": 1372,
-               "last_character_index": 2856
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/worker/gpu_model_runner.py",
+               "first_character_index": 133233,
+               "last_character_index": 134981
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/worker/gpu_model_runner.py",
+               "first_character_index": 129747,
+               "last_character_index": 131773
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/attention/backends/mla/cutlass_mla.py",
+               "first_character_index": 108,
+               "last_character_index": 1344
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/worker/gpu_model_runner.py",
+               "first_character_index": 131821,
+               "last_character_index": 133131
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/attention/backends/utils.py",
+               "first_character_index": 4373,
+               "last_character_index": 6250
             }
          ]
       },
@@ -115,9 +315,29 @@
          "question": "What does the get_num_new_matched_tokens method in NIXLConnector return?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/design/fused_moe_modular_kernel.md",
-               "first_character_index": 12514,
-               "last_character_index": 13817
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py",
+               "first_character_index": 9600,
+               "last_character_index": 11323
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/lmcache_connector.py",
+               "first_character_index": 3479,
+               "last_character_index": 5381
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/v1/core/test_scheduler.py",
+               "first_character_index": 35019,
+               "last_character_index": 37104
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/v1/core/test_scheduler.py",
+               "first_character_index": 30542,
+               "last_character_index": 32635
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/multi_connector.py",
+               "first_character_index": 5618,
+               "last_character_index": 7594
             }
          ]
       },
@@ -126,9 +346,29 @@
          "question": "What types are supported as containers in vLLM's JSONTree type definition?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/usage/troubleshooting.md",
-               "first_character_index": 12432,
-               "last_character_index": 13683
+               "file_path": "data/raw/vllm-0.10.1/docs/deployment/docker.md",
+               "first_character_index": 2328,
+               "last_character_index": 3233
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/utils/jsontree.py",
+               "first_character_index": 107,
+               "last_character_index": 1640
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/scalar_type.py",
+               "first_character_index": 108,
+               "last_character_index": 2313
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/.buildkite/nightly-benchmarks/README.md",
+               "first_character_index": 8615,
+               "last_character_index": 10290
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
+               "first_character_index": 0,
+               "last_character_index": 595
             }
          ]
       },
@@ -137,9 +377,29 @@
          "question": "What value does _MAX_IMAGE_SIZE use in vLLM's keye model for determining the image size with most features?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
-               "first_character_index": 597,
-               "last_character_index": 2003
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/step3_vl.py",
+               "first_character_index": 17612,
+               "last_character_index": 19138
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/keye.py",
+               "first_character_index": 4758,
+               "last_character_index": 6311
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/keye.py",
+               "first_character_index": 40599,
+               "last_character_index": 41949
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/test_chat_utils.py",
+               "first_character_index": 15277,
+               "last_character_index": 16582
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/test_chat_utils.py",
+               "first_character_index": 16585,
+               "last_character_index": 18226
             }
          ]
       },
@@ -148,9 +408,29 @@
          "question": "What is the default language value when None is passed to Whisper's validate_language method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/transformers_utils/configs/arctic.py",
-               "first_character_index": 960,
-               "last_character_index": 2960
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/whisper.py",
+               "first_character_index": 26948,
+               "last_character_index": 28860
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/whisper.py",
+               "first_character_index": 30842,
+               "last_character_index": 32777
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/speech_to_text.py",
+               "first_character_index": 3010,
+               "last_character_index": 5493
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/interfaces.py",
+               "first_character_index": 22439,
+               "last_character_index": 24381
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/voxtral.py",
+               "first_character_index": 19383,
+               "last_character_index": 21086
             }
          ]
       },
@@ -159,9 +439,29 @@
          "question": "What condition determines whether batch reordering is skipped in GPUModelRunner's update_batch_order method?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/tests/v1/worker/test_gpu_model_runner.py",
+               "first_character_index": 13483,
+               "last_character_index": 15252
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/v1/worker/gpu_model_runner.py",
                "first_character_index": 134983,
                "last_character_index": 136190
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/worker/cpu_model_runner.py",
+               "first_character_index": 990,
+               "last_character_index": 2248
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/examples/offline_inference/openai_batch/README.md",
+               "first_character_index": 11311,
+               "last_character_index": 12293
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/worker/worker.py",
+               "first_character_index": 2388,
+               "last_character_index": 4622
             }
          ]
       },
@@ -170,9 +470,29 @@
          "question": "What are the default values for tensor fields in vLLM's AiterMLAMetadata class?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/design/arch_overview.md",
-               "first_character_index": 10194,
-               "last_character_index": 10966
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/attention/backends/mla/rocm_aiter_mla.py",
+               "first_character_index": 108,
+               "last_character_index": 2091
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/third_party/pynvml.py",
+               "first_character_index": 50867,
+               "last_character_index": 52624
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/rocm_aiter_mla.py",
+               "first_character_index": 108,
+               "last_character_index": 2389
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/lora/peft_helper.py",
+               "first_character_index": 2135,
+               "last_character_index": 2972
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/protocol.py",
+               "first_character_index": 63733,
+               "last_character_index": 65055
             }
          ]
       },
@@ -182,8 +502,28 @@
          "retrieved_sources": [
             {
                "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_coordinator.py",
+               "first_character_index": 9299,
+               "last_character_index": 11336
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_coordinator.py",
                "first_character_index": 11338,
                "last_character_index": 13369
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_coordinator.py",
+               "first_character_index": 7442,
+               "last_character_index": 9297
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/v1/core/test_kv_cache_utils.py",
+               "first_character_index": 28409,
+               "last_character_index": 29875
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_utils.py",
+               "first_character_index": 34463,
+               "last_character_index": 36409
             }
          ]
       },
@@ -192,9 +532,29 @@
          "question": "What is the shape and structure of the array returned by the KV cache mapping metadata computation function in TPUModelRunner?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/v1/worker/tpu_model_runner.py",
-               "first_character_index": 25310,
-               "last_character_index": 27246
+               "file_path": "data/raw/vllm-0.10.1/docs/design/torch_compile.md",
+               "first_character_index": 3863,
+               "last_character_index": 4979
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/kernels/attention/test_encoder_decoder_attn.py",
+               "first_character_index": 24998,
+               "last_character_index": 26989
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/kernels/attention/test_encoder_decoder_attn.py",
+               "first_character_index": 34578,
+               "last_character_index": 36503
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/worker/enc_dec_model_runner.py",
+               "first_character_index": 16316,
+               "last_character_index": 18450
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/design/torch_compile.md",
+               "first_character_index": 4981,
+               "last_character_index": 6857
             }
          ]
       },
@@ -203,9 +563,29 @@
          "question": "What is the default value of the z parameter in the selective_state_update function call in vLLM's mamba_mixer2.py?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/mamba/mamba_mixer.py",
+               "first_character_index": 108,
+               "last_character_index": 2854
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/docs/features/tool_calling.md",
                "first_character_index": 3183,
                "last_character_index": 4939
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/tool_parsers/qwen3coder_tool_parser.py",
+               "first_character_index": 2358,
+               "last_character_index": 4260
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/phi4flash.py",
+               "first_character_index": 14432,
+               "last_character_index": 16351
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/usage/reproducibility.md",
+               "first_character_index": 0,
+               "last_character_index": 1912
             }
          ]
       },
@@ -214,9 +594,29 @@
          "question": "What block size divisibility requirement does HybridKVCacheCoordinator enforce when caching is enabled?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/core/scheduler.py",
-               "first_character_index": 87719,
-               "last_character_index": 88682
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_coordinator.py",
+               "first_character_index": 6237,
+               "last_character_index": 7439
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_coordinator.py",
+               "first_character_index": 11338,
+               "last_character_index": 13369
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_coordinator.py",
+               "first_character_index": 9299,
+               "last_character_index": 11336
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_coordinator.py",
+               "first_character_index": 15642,
+               "last_character_index": 16485
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_coordinator.py",
+               "first_character_index": 7442,
+               "last_character_index": 9297
             }
          ]
       },
@@ -225,9 +625,29 @@
          "question": "What is the default value for min_dynamic_patch parameter in NemotronVL model initialization?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/config/__init__.py",
-               "first_character_index": 7978,
-               "last_character_index": 9943
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/nemotron_vl.py",
+               "first_character_index": 5573,
+               "last_character_index": 7628
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/nemotron_vl.py",
+               "first_character_index": 7630,
+               "last_character_index": 9038
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/internvl.py",
+               "first_character_index": 16455,
+               "last_character_index": 18417
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/nemotron_vl.py",
+               "first_character_index": 3926,
+               "last_character_index": 5570
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/interns1.py",
+               "first_character_index": 5561,
+               "last_character_index": 7024
             }
          ]
       },
@@ -236,9 +656,29 @@
          "question": "What exception is raised when pixel_values has incorrect number of channels in InternS1VisionEmbeddings forward method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/v1/worker/utils.py",
-               "first_character_index": 4563,
-               "last_character_index": 5843
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/interns1_vit.py",
+               "first_character_index": 1116,
+               "last_character_index": 2679
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/interns1.py",
+               "first_character_index": 23257,
+               "last_character_index": 25345
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/interns1.py",
+               "first_character_index": 2002,
+               "last_character_index": 3898
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/interns1.py",
+               "first_character_index": 25346,
+               "last_character_index": 27100
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/phi4_multimodal.py",
+               "first_character_index": 48673,
+               "last_character_index": 50325
             }
          ]
       },
@@ -247,9 +687,29 @@
          "question": "What does the HunyuanA13BReasoningParser return when reasoning_content or response_content has zero length?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/reasoning/hunyuan_a13b_reasoning_parser.py",
-               "first_character_index": 3558,
-               "last_character_index": 5311
+               "file_path": "data/raw/vllm-0.10.1/vllm/reasoning/__init__.py",
+               "first_character_index": 108,
+               "last_character_index": 997
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/reasoning/test_hunyuan_reasoning_parser.py",
+               "first_character_index": 108,
+               "last_character_index": 1964
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/reasoning_outputs.md",
+               "first_character_index": 8174,
+               "last_character_index": 10067
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/reasoning/granite_reasoning_parser.py",
+               "first_character_index": 11755,
+               "last_character_index": 13532
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/openai/tool_parsers/test_hunyuan_a13b_tool_parser.py",
+               "first_character_index": 127,
+               "last_character_index": 6161
             }
          ]
       },
@@ -258,9 +718,29 @@
          "question": "What are the input tensor shapes and types used in MiddleAllReduceRMSNormPattern's get_inputs method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/design/fused_moe_modular_kernel.md",
-               "first_character_index": 0,
-               "last_character_index": 1784
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/sequence_parallelism.py",
+               "first_character_index": 16735,
+               "last_character_index": 18434
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/sequence_parallelism.py",
+               "first_character_index": 5871,
+               "last_character_index": 7402
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/sequence_parallelism.py",
+               "first_character_index": 4525,
+               "last_character_index": 5868
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/sequence_parallelism.py",
+               "first_character_index": 9846,
+               "last_character_index": 11526
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/collective_fusion.py",
+               "first_character_index": 22968,
+               "last_character_index": 24975
             }
          ]
       },
@@ -269,9 +749,29 @@
          "question": "What are all the registered KV connector names in vLLM's KVConnectorFactory?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/factory.py",
+               "first_character_index": 3322,
+               "last_character_index": 3946
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/base.py",
                "first_character_index": 4082,
                "last_character_index": 5704
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/multi_connector.py",
+               "first_character_index": 107,
+               "last_character_index": 1379
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_transfer_state.py",
+               "first_character_index": 107,
+               "last_character_index": 2103
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/factory.py",
+               "first_character_index": 1169,
+               "last_character_index": 3320
             }
          ]
       },
@@ -280,9 +780,29 @@
          "question": "What is the default value of the kv_states parameter in HunYuanModel's forward method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/kernels/attention/test_encoder_decoder_attn.py",
-               "first_character_index": 29225,
-               "last_character_index": 30465
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/hunyuan_v1.py",
+               "first_character_index": 19919,
+               "last_character_index": 21691
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/hunyuan_v1.py",
+               "first_character_index": 35020,
+               "last_character_index": 36874
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/utils/__init__.py",
+               "first_character_index": 99851,
+               "last_character_index": 102617
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/hunyuan_v1.py",
+               "first_character_index": 18167,
+               "last_character_index": 19917
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/linear.py",
+               "first_character_index": 65639,
+               "last_character_index": 67508
             }
          ]
       },
@@ -291,9 +811,29 @@
          "question": "What is the default value for mlp_bias in ExaoneGatedMLP initialization?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/openai/test_metrics.py",
-               "first_character_index": 4653,
-               "last_character_index": 6280
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/exaone.py",
+               "first_character_index": 9144,
+               "last_character_index": 10790
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/exaone4.py",
+               "first_character_index": 9081,
+               "last_character_index": 11070
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/deepseek.py",
+               "first_character_index": 16109,
+               "last_character_index": 17866
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/zamba2.py",
+               "first_character_index": 11395,
+               "last_character_index": 13440
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/transformers_utils/configs/nemotron_h.py",
+               "first_character_index": 6924,
+               "last_character_index": 10648
             }
          ]
       },
@@ -305,6 +845,26 @@
                "file_path": "data/raw/vllm-0.10.1/docs/features/prompt_embeds.md",
                "first_character_index": 0,
                "last_character_index": 1747
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/model_loader/tensorizer.py",
+               "first_character_index": 15799,
+               "last_character_index": 17732
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/transformers_utils/processors/ovis.py",
+               "first_character_index": 1199,
+               "last_character_index": 3009
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/transformers_utils/configs/ovis.py",
+               "first_character_index": 4906,
+               "last_character_index": 7657
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/llm.py",
+               "first_character_index": 36931,
+               "last_character_index": 38859
             }
          ]
       },
@@ -316,6 +876,26 @@
                "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/flashinfer.py",
                "first_character_index": 5600,
                "last_character_index": 7314
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/attention/backends/utils.py",
+               "first_character_index": 11063,
+               "last_character_index": 15829
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/attention/backends/utils.py",
+               "first_character_index": 9429,
+               "last_character_index": 11060
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/flashinfer.py",
+               "first_character_index": 4135,
+               "last_character_index": 5597
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/flashinfer.py",
+               "first_character_index": 26667,
+               "last_character_index": 29271
             }
          ]
       },
@@ -324,9 +904,29 @@
          "question": "What is the return type annotation for the _apply_matches function in vLLM's multimodal processing module?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/core/block/prefix_caching_block.py",
-               "first_character_index": 22355,
-               "last_character_index": 24021
+               "file_path": "data/raw/vllm-0.10.1/tests/multimodal/test_processing.py",
+               "first_character_index": 108,
+               "last_character_index": 4319
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/lora/utils.py",
+               "first_character_index": 5950,
+               "last_character_index": 7749
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/fusion.py",
+               "first_character_index": 23594,
+               "last_character_index": 24856
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/examples/online_serving/openai_chat_completion_client_for_multimodal.py",
+               "first_character_index": 8014,
+               "last_character_index": 9631
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/models/multimodal/generation/vlm_utils/builders.py",
+               "first_character_index": 107,
+               "last_character_index": 2440
             }
          ]
       },
@@ -335,9 +935,29 @@
          "question": "What are the default percentiles calculated for ITL and E2EL metrics in vLLM's serve benchmark?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/examples/others/logging_configuration.md",
-               "first_character_index": 5059,
-               "last_character_index": 5617
+               "file_path": "data/raw/vllm-0.10.1/benchmarks/benchmark_serving_structured_output.py",
+               "first_character_index": 35061,
+               "last_character_index": 36965
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/benchmarks/serve.py",
+               "first_character_index": 11053,
+               "last_character_index": 13623
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/benchmarks/benchmark_serving.py",
+               "first_character_index": 5918,
+               "last_character_index": 8443
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/benchmarks/serve.py",
+               "first_character_index": 32615,
+               "last_character_index": 34357
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/benchmarks/benchmark_serving_structured_output.py",
+               "first_character_index": 13162,
+               "last_character_index": 15651
             }
          ]
       },
@@ -346,9 +966,29 @@
          "question": "What happens when min_dynamic_patch is None in InternVL's initialization?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
-               "first_character_index": 4598,
-               "last_character_index": 5949
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/internvl.py",
+               "first_character_index": 16455,
+               "last_character_index": 18417
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/interns1.py",
+               "first_character_index": 3901,
+               "last_character_index": 5559
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/interns1.py",
+               "first_character_index": 5561,
+               "last_character_index": 7024
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/nemotron_vl.py",
+               "first_character_index": 5573,
+               "last_character_index": 7628
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/nemotron_vl.py",
+               "first_character_index": 7630,
+               "last_character_index": 9038
             }
          ]
       },
@@ -357,9 +997,29 @@
          "question": "What is the default value of _is_remote_reader in vLLM's shared memory broadcast implementation?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/usage/troubleshooting.md",
-               "first_character_index": 1850,
-               "last_character_index": 3071
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/shm_broadcast.py",
+               "first_character_index": 2207,
+               "last_character_index": 4165
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/shm_broadcast.py",
+               "first_character_index": 7703,
+               "last_character_index": 9513
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/parallel_state.py",
+               "first_character_index": 51295,
+               "last_character_index": 53224
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/shm_broadcast.py",
+               "first_character_index": 15869,
+               "last_character_index": 18595
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/design/paged_attention.md",
+               "first_character_index": 0,
+               "last_character_index": 1496
             }
          ]
       },
@@ -368,9 +1028,29 @@
          "question": "What are the default values for alpha and limit parameters in vLLM's SwiGLUOAI activation layer?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/fused_marlin_moe.py",
-               "first_character_index": 5585,
-               "last_character_index": 7092
+               "file_path": "data/raw/vllm-0.10.1/docs/models/extensions/tensorizer.md",
+               "first_character_index": 2690,
+               "last_character_index": 4515
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/kernels/core/test_activation.py",
+               "first_character_index": 2380,
+               "last_character_index": 4659
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/__init__.py",
+               "first_character_index": 68849,
+               "last_character_index": 70830
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/usage/troubleshooting.md",
+               "first_character_index": 1850,
+               "last_character_index": 3071
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/llm/test_score.py",
+               "first_character_index": 108,
+               "last_character_index": 2005
             }
          ]
       },
@@ -379,9 +1059,29 @@
          "question": "What's the default value of the image_mode parameter in vLLM's fetch_video_async method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/base.py",
-               "first_character_index": 1492,
-               "last_character_index": 3463
+               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/utils.py",
+               "first_character_index": 8406,
+               "last_character_index": 10205
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/multimodal/test_utils.py",
+               "first_character_index": 5909,
+               "last_character_index": 8056
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/examples/offline_inference/vision_language.py",
+               "first_character_index": 42784,
+               "last_character_index": 43916
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/envs.py",
+               "first_character_index": 20637,
+               "last_character_index": 22631
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/utils.py",
+               "first_character_index": 6903,
+               "last_character_index": 8404
             }
          ]
       },
@@ -393,6 +1093,26 @@
                "file_path": "data/raw/vllm-0.10.1/vllm/distributed/parallel_state.py",
                "first_character_index": 46857,
                "last_character_index": 48754
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/parallel_state.py",
+               "first_character_index": 300,
+               "last_character_index": 1937
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/parallel.py",
+               "first_character_index": 6776,
+               "last_character_index": 8458
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/parallel_state.py",
+               "first_character_index": 45168,
+               "last_character_index": 46854
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/configuration/optimization.md",
+               "first_character_index": 5556,
+               "last_character_index": 7384
             }
          ]
       },
@@ -401,9 +1121,29 @@
          "question": "What does the MessageQueue.create_from_handle method return after calling wait_until_ready in vLLM's shared memory broadcast implementation?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/core/block/block_table.py",
-               "first_character_index": 9275,
-               "last_character_index": 10715
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/executor/multiproc_executor.py",
+               "first_character_index": 17369,
+               "last_character_index": 19527
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/shm_broadcast.py",
+               "first_character_index": 23769,
+               "last_character_index": 24958
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/executor/multiproc_executor.py",
+               "first_character_index": 3452,
+               "last_character_index": 5461
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/executor/multiproc_executor.py",
+               "first_character_index": 20972,
+               "last_character_index": 22729
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/utils/__init__.py",
+               "first_character_index": 14278,
+               "last_character_index": 16342
             }
          ]
       },
@@ -412,9 +1152,29 @@
          "question": "What happens when cudagraph_capture_sizes is already set in vLLM's init_with_cudagraph_sizes method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
-               "first_character_index": 4598,
-               "last_character_index": 5949
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/compilation.py",
+               "first_character_index": 20050,
+               "last_character_index": 21807
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/design/torch_compile.md",
+               "first_character_index": 12745,
+               "last_character_index": 14462
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/compilation.py",
+               "first_character_index": 11087,
+               "last_character_index": 12678
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/cudagraph_dispatcher.py",
+               "first_character_index": 2638,
+               "last_character_index": 4502
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/__init__.py",
+               "first_character_index": 159100,
+               "last_character_index": 160487
             }
          ]
       },
@@ -426,6 +1186,26 @@
                "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/model_loader/utils.py",
                "first_character_index": 3703,
                "last_character_index": 5266
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/gptq_marlin_24.py",
+               "first_character_index": 9130,
+               "last_character_index": 11017
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_w4a16_nvfp4.py",
+               "first_character_index": 2280,
+               "last_character_index": 3929
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_w4a16_24.py",
+               "first_character_index": 1829,
+               "last_character_index": 3842
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/model_loader/tpu.py",
+               "first_character_index": 1314,
+               "last_character_index": 3258
             }
          ]
       },
@@ -434,9 +1214,29 @@
          "question": "What happens when encoder_inputs is None in the encoder_seq creation in LLMEngine?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/inputs/data.py",
+               "first_character_index": 7623,
+               "last_character_index": 9155
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/engine/llm_engine.py",
-               "first_character_index": 23492,
-               "last_character_index": 25160
+               "first_character_index": 75121,
+               "last_character_index": 77079
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/profiling.py",
+               "first_character_index": 5484,
+               "last_character_index": 7262
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/conftest.py",
+               "first_character_index": 22728,
+               "last_character_index": 24641
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/worker/enc_dec_model_runner.py",
+               "first_character_index": 16316,
+               "last_character_index": 18450
             }
          ]
       },
@@ -445,9 +1245,29 @@
          "question": "What assertion is made about vocab_size and tp_size when loading fairseq2 LLaMA embedding weights?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/test_chat_utils.py",
-               "first_character_index": 42525,
-               "last_character_index": 43262
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/fairseq2_llama.py",
+               "first_character_index": 5499,
+               "last_character_index": 6553
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llama.py",
+               "first_character_index": 1178,
+               "last_character_index": 2832
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/spec_decode.md",
+               "first_character_index": 8815,
+               "last_character_index": 10668
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/fairseq2_llama.py",
+               "first_character_index": 3449,
+               "last_character_index": 5262
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/models/registry.py",
+               "first_character_index": 34453,
+               "last_character_index": 36425
             }
          ]
       },
@@ -456,9 +1276,29 @@
          "question": "What is the default max_threads value used when creating the GrammarCompiler in vLLM's XGrammar backend?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/models/generative_models.md",
-               "first_character_index": 943,
-               "last_character_index": 2650
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/engine/processor.py",
+               "first_character_index": 7851,
+               "last_character_index": 10440
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/structured_output/backend_xgrammar.py",
+               "first_character_index": 3135,
+               "last_character_index": 3574
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/structured_output/backend_xgrammar.py",
+               "first_character_index": 3576,
+               "last_character_index": 5891
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/__init__.py",
+               "first_character_index": 124405,
+               "last_character_index": 128222
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/structured_output/__init__.py",
+               "first_character_index": 3189,
+               "last_character_index": 5020
             }
          ]
       },
@@ -467,9 +1307,29 @@
          "question": "What does the usage property return in vLLM's KV cache manager?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/engine/llm_engine.py",
-               "first_character_index": 68830,
-               "last_character_index": 70806
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/kv_cache_interface.py",
+               "first_character_index": 6571,
+               "last_character_index": 7998
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/sched/scheduler.py",
+               "first_character_index": 48224,
+               "last_character_index": 49983
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/kv_cache_interface.py",
+               "first_character_index": 108,
+               "last_character_index": 1967
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/envs.py",
+               "first_character_index": 46364,
+               "last_character_index": 48152
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_coordinator.py",
+               "first_character_index": 6237,
+               "last_character_index": 7439
             }
          ]
       },
@@ -478,9 +1338,29 @@
          "question": "What is the default value of the stream parameter in vLLM's OpenAI protocol translation parameters?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/openai/test_translation_validation.py",
-               "first_character_index": 2015,
-               "last_character_index": 3964
+               "file_path": "data/raw/vllm-0.10.1/docs/serving/openai_compatible_server.md",
+               "first_character_index": 14304,
+               "last_character_index": 16055
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/protocol.py",
+               "first_character_index": 88674,
+               "last_character_index": 90361
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/examples/online_serving/openai_translation_client.py",
+               "first_character_index": 107,
+               "last_character_index": 2078
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/spec_decode.md",
+               "first_character_index": 1930,
+               "last_character_index": 3010
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/serving/openai_compatible_server.md",
+               "first_character_index": 7949,
+               "last_character_index": 9908
             }
          ]
       },
@@ -489,9 +1369,29 @@
          "question": "What is the default value for the multimodal_embeddings parameter in the get_input_embeddings method of the Molmo model?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/utils/__init__.py",
-               "first_character_index": 99851,
-               "last_character_index": 102617
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/worker/utils.py",
+               "first_character_index": 4563,
+               "last_character_index": 5843
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/whisper.py",
+               "first_character_index": 30842,
+               "last_character_index": 32777
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/glm4_1v.py",
+               "first_character_index": 54003,
+               "last_character_index": 55795
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/interns1.py",
+               "first_character_index": 29090,
+               "last_character_index": 31087
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/qwen2_vl.py",
+               "first_character_index": 45970,
+               "last_character_index": 47894
             }
          ]
       },
@@ -500,9 +1400,29 @@
          "question": "What are the supported bit values for W4A16Sparse24 quantization in vLLM's compressed tensors?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_w4a16_24.py",
+               "first_character_index": 108,
+               "last_character_index": 1827
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/schemes/__init__.py",
+               "first_character_index": 108,
+               "last_character_index": 1292
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/quantization/test_compressed_tensors.py",
+               "first_character_index": 107,
+               "last_character_index": 3123
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py",
-               "first_character_index": 26449,
-               "last_character_index": 28774
+               "first_character_index": 18455,
+               "last_character_index": 20133
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py",
+               "first_character_index": 108,
+               "last_character_index": 2033
             }
          ]
       },
@@ -511,9 +1431,29 @@
          "question": "What class does TritonScaledMMLinearKernel inherit from in vLLM's quantization kernels?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/examples/offline_inference/rlhf_utils.py",
-               "first_character_index": 878,
-               "last_character_index": 2406
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/kernels/scaled_mm/__init__.py",
+               "first_character_index": 108,
+               "last_character_index": 2186
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/kernels/scaled_mm/triton.py",
+               "first_character_index": 108,
+               "last_character_index": 1344
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/schemes/compressed_tensors_w8a8_int8.py",
+               "first_character_index": 108,
+               "last_character_index": 2209
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/kernels/scaled_mm/aiter.py",
+               "first_character_index": 1681,
+               "last_character_index": 4042
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/quark/schemes/quark_w8a8_int8.py",
+               "first_character_index": 108,
+               "last_character_index": 2427
             }
          ]
       },
@@ -525,6 +1465,26 @@
                "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
                "first_character_index": 0,
                "last_character_index": 595
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/__init__.py",
+               "first_character_index": 48246,
+               "last_character_index": 50146
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/model_loader/utils.py",
+               "first_character_index": 6955,
+               "last_character_index": 8868
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/quantization/fp8.md",
+               "first_character_index": 0,
+               "last_character_index": 1723
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/quantization/bnb.md",
+               "first_character_index": 0,
+               "last_character_index": 1744
             }
          ]
       },
@@ -533,9 +1493,29 @@
          "question": "How many bytes are allocated for the internal field in ncclUniqueId structure in vLLM's PyNCCL wrapper?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/device_allocator/cumem.py",
-               "first_character_index": 10711,
-               "last_character_index": 11017
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/pynccl.py",
+               "first_character_index": 2416,
+               "last_character_index": 4104
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/pynccl_wrapper.py",
+               "first_character_index": 9896,
+               "last_character_index": 11564
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/p2p/p2p_nccl_engine.py",
+               "first_character_index": 6099,
+               "last_character_index": 8156
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/usage/troubleshooting.md",
+               "first_character_index": 13685,
+               "last_character_index": 15154
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/p2p/p2p_nccl_engine.py",
+               "first_character_index": 11780,
+               "last_character_index": 16695
             }
          ]
       },
@@ -544,9 +1524,29 @@
          "question": "What is the default value of pp_locks in RayDistributedExecutor?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/openai/test_metrics.py",
-               "first_character_index": 4653,
-               "last_character_index": 6280
+               "file_path": "data/raw/vllm-0.10.1/vllm/executor/ray_distributed_executor.py",
+               "first_character_index": 28746,
+               "last_character_index": 30411
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/parallel.py",
+               "first_character_index": 4048,
+               "last_character_index": 5997
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/engine/arg_utils.py",
+               "first_character_index": 69548,
+               "last_character_index": 72020
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/parallel.py",
+               "first_character_index": 13205,
+               "last_character_index": 15152
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/distributed/test_pipeline_parallel.py",
+               "first_character_index": 13185,
+               "last_character_index": 15014
             }
          ]
       },
@@ -555,9 +1555,29 @@
          "question": "What does the extract_tool_calls method in MistralToolParser return when the bot_token is not present in the model output?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/registry.py",
-               "first_character_index": 25491,
-               "last_character_index": 27320
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/tool_parsers/mistral_tool_parser.py",
+               "first_character_index": 3437,
+               "last_character_index": 4863
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/tool_parsers/mistral_tool_parser.py",
+               "first_character_index": 1924,
+               "last_character_index": 3435
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/tool_parsers/llama_tool_parser.py",
+               "first_character_index": 1534,
+               "last_character_index": 3495
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/tool_parsers/abstract_tool_parser.py",
+               "first_character_index": 1597,
+               "last_character_index": 3477
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/models/language/generation/test_mistral.py",
+               "first_character_index": 8850,
+               "last_character_index": 10458
             }
          ]
       },
@@ -566,9 +1586,29 @@
          "question": "What happens when key is None in the CPU attention backend's reshape logic?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/dual_chunk_flash_attn.py",
+               "first_character_index": 17325,
+               "last_character_index": 19267
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/rocm_flash_attn.py",
                "first_character_index": 27724,
                "last_character_index": 29886
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/attention/backends/flashinfer.py",
+               "first_character_index": 30764,
+               "last_character_index": 32803
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/flash_attn.py",
+               "first_character_index": 29032,
+               "last_character_index": 30979
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
+               "first_character_index": 4598,
+               "last_character_index": 5949
             }
          ]
       },
@@ -578,8 +1618,28 @@
          "retrieved_sources": [
             {
                "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/routing_simulator.py",
-               "first_character_index": 2940,
-               "last_character_index": 4353
+               "first_character_index": 9154,
+               "last_character_index": 10429
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/routing_simulator.py",
+               "first_character_index": 107,
+               "last_character_index": 1575
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/test_routing_simulator.py",
+               "first_character_index": 130,
+               "last_character_index": 2130
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/test_routing_simulator.py",
+               "first_character_index": 2133,
+               "last_character_index": 3910
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/gguf.py",
+               "first_character_index": 20399,
+               "last_character_index": 21954
             }
          ]
       },
@@ -588,9 +1648,29 @@
          "question": "What dimension handling does vLLM's transformers model apply to vision embeddings when they are 2D tensors?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/features/prompt_embeds.md",
-               "first_character_index": 0,
-               "last_character_index": 1747
+               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
+               "first_character_index": 597,
+               "last_character_index": 2003
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
+               "first_character_index": 50369,
+               "last_character_index": 52119
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/transformers.py",
+               "first_character_index": 31198,
+               "last_character_index": 32802
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/blip2.py",
+               "first_character_index": 23455,
+               "last_character_index": 25395
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
+               "first_character_index": 44603,
+               "last_character_index": 46589
             }
          ]
       },
@@ -599,9 +1679,29 @@
          "question": "What is the default value of the pin_memory parameter in MultiModalKwargs._try_stack method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/usage/reproducibility.md",
-               "first_character_index": 0,
-               "last_character_index": 1912
+               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/inputs.py",
+               "first_character_index": 22840,
+               "last_character_index": 24655
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/inputs.py",
+               "first_character_index": 24675,
+               "last_character_index": 26404
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/utils.py",
+               "first_character_index": 12535,
+               "last_character_index": 14049
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/inputs.py",
+               "first_character_index": 9767,
+               "last_character_index": 11523
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/inputs.py",
+               "first_character_index": 7768,
+               "last_character_index": 9740
             }
          ]
       },
@@ -610,9 +1710,29 @@
          "question": "What are all possible values for the QuickReduceRegime enum in vLLM's distributed communication?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/scalar_type.py",
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/quick_all_reduce.py",
+               "first_character_index": 5929,
+               "last_character_index": 7900
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/quick_all_reduce.py",
                "first_character_index": 108,
-               "last_character_index": 2313
+               "last_character_index": 1693
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/usage/security.md",
+               "first_character_index": 0,
+               "last_character_index": 1861
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/envs.py",
+               "first_character_index": 30514,
+               "last_character_index": 32506
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/distributed/test_custom_all_reduce.py",
+               "first_character_index": 108,
+               "last_character_index": 1973
             }
          ]
       },
@@ -621,9 +1741,29 @@
          "question": "What's the default value of max_position_embeddings in ChameleonSwinDecoderLayer?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/base.py",
-               "first_character_index": 1492,
-               "last_character_index": 3463
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/chameleon.py",
+               "first_character_index": 33211,
+               "last_character_index": 34703
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/chameleon.py",
+               "first_character_index": 15051,
+               "last_character_index": 16914
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/chameleon.py",
+               "first_character_index": 12355,
+               "last_character_index": 14218
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/hunyuan_v1.py",
+               "first_character_index": 18167,
+               "last_character_index": 19917
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/chameleon.py",
+               "first_character_index": 9097,
+               "last_character_index": 11072
             }
          ]
       },
@@ -632,9 +1772,29 @@
          "question": "What happens when the residual parameter is None in Gemma2DecoderLayer's forward method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
-               "first_character_index": 4598,
-               "last_character_index": 5949
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/layernorm.py",
+               "first_character_index": 5294,
+               "last_character_index": 6617
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/bamba.py",
+               "first_character_index": 12907,
+               "last_character_index": 14702
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/granitemoehybrid.py",
+               "first_character_index": 15553,
+               "last_character_index": 17467
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/jamba.py",
+               "first_character_index": 13687,
+               "last_character_index": 15503
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/nemotron_h.py",
+               "first_character_index": 13570,
+               "last_character_index": 15345
             }
          ]
       },
@@ -643,9 +1803,29 @@
          "question": "What is the default value of the spec_step_index parameter in DeepSeekMultiTokenPredictor's forward method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/kernels/attention/test_encoder_decoder_attn.py",
-               "first_character_index": 29225,
-               "last_character_index": 30465
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/deepseek_mtp.py",
+               "first_character_index": 3440,
+               "last_character_index": 5090
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/deepseek_mtp.py",
+               "first_character_index": 5092,
+               "last_character_index": 7262
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/mimo_mtp.py",
+               "first_character_index": 3741,
+               "last_character_index": 5720
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/deepseek_mtp.py",
+               "first_character_index": 1608,
+               "last_character_index": 3390
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/glm4_moe_mtp.py",
+               "first_character_index": 4527,
+               "last_character_index": 6121
             }
          ]
       },
@@ -654,9 +1834,29 @@
          "question": "What happens when a reshape operation in vLLM's noop elimination has more than one -1 in the shape parameter?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/noop_elimination.py",
+               "first_character_index": 2451,
+               "last_character_index": 5504
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/tests/models/language/generation/test_bart.py",
                "first_character_index": 3236,
                "last_character_index": 5996
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/tool_calling.md",
+               "first_character_index": 3183,
+               "last_character_index": 4939
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/pass_manager.py",
+               "first_character_index": 108,
+               "last_character_index": 1832
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/compilation.py",
+               "first_character_index": 2109,
+               "last_character_index": 4043
             }
          ]
       },
@@ -665,9 +1865,29 @@
          "question": "What is the default value for the use_bitsandbytes_4bit attribute when it's not present on a parameter object in vLLM's linear layer?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/linear.py",
+               "first_character_index": 64232,
+               "last_character_index": 65637
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/docs/features/tool_calling.md",
                "first_character_index": 3183,
                "last_character_index": 4939
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/bitsandbytes.py",
+               "first_character_index": 14545,
+               "last_character_index": 16055
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/quantization/bnb.md",
+               "first_character_index": 0,
+               "last_character_index": 1744
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/bitsandbytes.py",
+               "first_character_index": 5027,
+               "last_character_index": 6922
             }
          ]
       },
@@ -676,9 +1896,29 @@
          "question": "What conditions must be met for use_aiter_and_is_supported to be True in vLLM's FP8 quantization?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/benchmarks/datasets.py",
-               "first_character_index": 7959,
-               "last_character_index": 9156
+               "file_path": "data/raw/vllm-0.10.1/tests/quantization/test_fp8.py",
+               "first_character_index": 2171,
+               "last_character_index": 4673
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/envs.py",
+               "first_character_index": 30514,
+               "last_character_index": 32506
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/platforms/rocm.py",
+               "first_character_index": 5835,
+               "last_character_index": 7240
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/quantization/test_fp8.py",
+               "first_character_index": 107,
+               "last_character_index": 1881
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/fp8.py",
+               "first_character_index": 8355,
+               "last_character_index": 10616
             }
          ]
       },
@@ -687,9 +1927,29 @@
          "question": "What are the supported spatial pooling modes in LlavaNextVideoPooler?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llava_next_video.py",
+               "first_character_index": 7381,
+               "last_character_index": 8742
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llava_next_video.py",
+               "first_character_index": 1705,
+               "last_character_index": 3578
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/pooler.py",
                "first_character_index": 2021,
                "last_character_index": 3804
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/pooler.py",
+               "first_character_index": 21769,
+               "last_character_index": 23709
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llava_onevision.py",
+               "first_character_index": 1743,
+               "last_character_index": 3785
             }
          ]
       },
@@ -698,9 +1958,29 @@
          "question": "What is the default value for apply_router_weight_on_input parameter in the DeepGemm MoE kernel function call?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/utils/flashinfer_utils.py",
+               "first_character_index": 2747,
+               "last_character_index": 4643
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/modular_kernel.py",
+               "first_character_index": 5714,
+               "last_character_index": 7510
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/triton_deep_gemm_moe.py",
+               "first_character_index": 4808,
+               "last_character_index": 6349
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/envs.py",
                "first_character_index": 38430,
                "last_character_index": 40384
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/design/fused_moe_modular_kernel.md",
+               "first_character_index": 4487,
+               "last_character_index": 6175
             }
          ]
       },
@@ -709,9 +1989,29 @@
          "question": "What are the compilation levels that cause do_not_compile to be set to True in vLLM's compilation decorator?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/__init__.py",
+               "first_character_index": 167353,
+               "last_character_index": 169292
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/docs/design/torch_compile.md",
                "first_character_index": 469,
                "last_character_index": 2069
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/decorators.py",
+               "first_character_index": 108,
+               "last_character_index": 1916
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/decorators.py",
+               "first_character_index": 6171,
+               "last_character_index": 7457
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/worker/worker.py",
+               "first_character_index": 16372,
+               "last_character_index": 17596
             }
          ]
       },
@@ -723,6 +2023,26 @@
                "file_path": "data/raw/vllm-0.10.1/vllm/transformers_utils/config.py",
                "first_character_index": 26614,
                "last_character_index": 28459
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/blip2.py",
+               "first_character_index": 23455,
+               "last_character_index": 25395
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/gpt_bigcode.py",
+               "first_character_index": 8900,
+               "last_character_index": 10884
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/deepseek_mtp.py",
+               "first_character_index": 3440,
+               "last_character_index": 5090
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llava.py",
+               "first_character_index": 25931,
+               "last_character_index": 27924
             }
          ]
       },
@@ -731,9 +2051,29 @@
          "question": "What prefixes does the AutoWeightsLoader skip in MiniCPM Eagle model when tie_word_embeddings is True?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/features/spec_decode.md",
-               "first_character_index": 7507,
-               "last_character_index": 8885
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/grok1.py",
+               "first_character_index": 21435,
+               "last_character_index": 22732
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/gpt_bigcode.py",
+               "first_character_index": 12847,
+               "last_character_index": 13547
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/granite.py",
+               "first_character_index": 18500,
+               "last_character_index": 20355
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/exaone4.py",
+               "first_character_index": 19359,
+               "last_character_index": 20659
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/exaone.py",
+               "first_character_index": 19834,
+               "last_character_index": 21146
             }
          ]
       },
@@ -742,9 +2082,29 @@
          "question": "What are all the NVML GPU instance profile constants defined in vLLM's pynvml module?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/third_party/pynvml.py",
+               "first_character_index": 37650,
+               "last_character_index": 39787
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/utils/__init__.py",
+               "first_character_index": 103500,
+               "last_character_index": 105045
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/third_party/pynvml.py",
+               "first_character_index": 194391,
+               "last_character_index": 196233
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/platforms/__init__.py",
                "first_character_index": 1839,
                "last_character_index": 3805
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/third_party/pynvml.py",
+               "first_character_index": 82697,
+               "last_character_index": 84683
             }
          ]
       },
@@ -753,9 +2113,29 @@
          "question": "What are the shard_id values used in the stacked_params_mapping for gate_up_proj in vLLM's step3_text model?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/gemma.py",
+               "first_character_index": 12326,
+               "last_character_index": 14369
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llama_eagle3.py",
                "first_character_index": 5311,
                "last_character_index": 6690
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/kimi_vl.py",
+               "first_character_index": 19248,
+               "last_character_index": 21088
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llama_eagle.py",
+               "first_character_index": 3038,
+               "last_character_index": 4524
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/olmo2.py",
+               "first_character_index": 12080,
+               "last_character_index": 13892
             }
          ]
       },
@@ -764,9 +2144,29 @@
          "question": "What is the default value of tie_word_embeddings in vLLM's FalconForCausalLM class when the config doesn't specify it?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/falcon.py",
+               "first_character_index": 18846,
+               "last_character_index": 20721
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
+               "first_character_index": 14409,
+               "last_character_index": 16390
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/models/language/generation/test_hybrid.py",
+               "first_character_index": 108,
+               "last_character_index": 2674
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
                "first_character_index": 4598,
                "last_character_index": 5949
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/telechat2.py",
+               "first_character_index": 3305,
+               "last_character_index": 6394
             }
          ]
       },
@@ -775,9 +2175,29 @@
          "question": "What is the default value for engine_id when creating connectors in MultiKVConnector?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/openai/test_metrics.py",
-               "first_character_index": 4653,
-               "last_character_index": 6280
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/multi_connector.py",
+               "first_character_index": 1381,
+               "last_character_index": 3510
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/multi_connector.py",
+               "first_character_index": 5618,
+               "last_character_index": 7594
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/base.py",
+               "first_character_index": 9012,
+               "last_character_index": 10654
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py",
+               "first_character_index": 3758,
+               "last_character_index": 5792
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/base.py",
+               "first_character_index": 107,
+               "last_character_index": 1886
             }
          ]
       },
@@ -786,9 +2206,29 @@
          "question": "What datasets are supported by ASRDataset and MLPerfDataset in vLLM benchmarks?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
-               "first_character_index": 0,
-               "last_character_index": 595
+               "file_path": "data/raw/vllm-0.10.1/vllm/benchmarks/datasets.py",
+               "first_character_index": 56755,
+               "last_character_index": 57460
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/benchmarks/benchmark_serving.py",
+               "first_character_index": 107,
+               "last_character_index": 2065
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/benchmarks/throughput.py",
+               "first_character_index": 107,
+               "last_character_index": 2048
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/.buildkite/nightly-benchmarks/nightly-descriptions.md",
+               "first_character_index": 1,
+               "last_character_index": 1914
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/benchmarks/serve.py",
+               "first_character_index": 107,
+               "last_character_index": 1622
             }
          ]
       },
@@ -797,9 +2237,29 @@
          "question": "What are some of the test model names used in vLLM's test_utils.py for testing different model types and quantization methods?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/base_config.py",
-               "first_character_index": 5291,
-               "last_character_index": 5770
+               "file_path": "data/raw/vllm-0.10.1/docs/design/fused_moe_modular_kernel.md",
+               "first_character_index": 13819,
+               "last_character_index": 15517
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/contributing/ci/update_pytorch_version.md",
+               "first_character_index": 572,
+               "last_character_index": 2349
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/models/multimodal/generation/test_common.py",
+               "first_character_index": 107,
+               "last_character_index": 1901
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/contributing/model/tests.md",
+               "first_character_index": 0,
+               "last_character_index": 1801
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/models/multimodal/generation/vlm_utils/builders.py",
+               "first_character_index": 107,
+               "last_character_index": 2440
             }
          ]
       },
@@ -808,9 +2268,29 @@
          "question": "What is the default value of global_num_experts parameter in the forward_xpu method of vLLM's fused MOE layer?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/envs.py",
-               "first_character_index": 38430,
-               "last_character_index": 40384
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe.py",
+               "first_character_index": 7293,
+               "last_character_index": 9312
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe.py",
+               "first_character_index": 9313,
+               "last_character_index": 11483
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe.py",
+               "first_character_index": 15472,
+               "last_character_index": 17405
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/layer.py",
+               "first_character_index": 74145,
+               "last_character_index": 75939
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/fused_moe/layer.py",
+               "first_character_index": 33618,
+               "last_character_index": 35711
             }
          ]
       },
@@ -819,9 +2299,29 @@
          "question": "What is the default value for the intermediate_tensors parameter in GranitemoehybridForCausalLM's forward method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/openai/test_metrics.py",
-               "first_character_index": 4653,
-               "last_character_index": 6280
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/adapters.py",
+               "first_character_index": 7507,
+               "last_character_index": 8580
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/deepseek_vl2.py",
+               "first_character_index": 13014,
+               "last_character_index": 14959
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/internlm2_ve.py",
+               "first_character_index": 3976,
+               "last_character_index": 5800
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/internlm2.py",
+               "first_character_index": 15595,
+               "last_character_index": 17004
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/decorators.py",
+               "first_character_index": 3929,
+               "last_character_index": 6169
             }
          ]
       },
@@ -830,9 +2330,29 @@
          "question": "What is the default value of the dst parameter in tensor_model_parallel_gather function?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/base_device_communicator.py",
+               "first_character_index": 7556,
+               "last_character_index": 9122
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/parallel_state.py",
+               "first_character_index": 27105,
+               "last_character_index": 29495
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/cpu_communicator.py",
+               "first_character_index": 1275,
+               "last_character_index": 2461
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/distributed/parallel_state.py",
                "first_character_index": 23465,
                "last_character_index": 27103
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/parallel_state.py",
+               "first_character_index": 16476,
+               "last_character_index": 17982
             }
          ]
       },
@@ -844,6 +2364,26 @@
                "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
                "first_character_index": 4598,
                "last_character_index": 5949
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/design/paged_attention.md",
+               "first_character_index": 0,
+               "last_character_index": 1496
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/phi4mm_utils.py",
+               "first_character_index": 20855,
+               "last_character_index": 22838
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/ops/chunked_prefill_paged_decode.py",
+               "first_character_index": 6401,
+               "last_character_index": 8904
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/rocm_flash_attn.py",
+               "first_character_index": 25016,
+               "last_character_index": 26325
             }
          ]
       },
@@ -852,9 +2392,29 @@
          "question": "What is the default value of the pad_to parameter in vLLM's pad_vocab_size function?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/usage/reproducibility.md",
-               "first_character_index": 0,
-               "last_character_index": 1912
+               "file_path": "data/raw/vllm-0.10.1/docs/features/tool_calling.md",
+               "first_character_index": 3183,
+               "last_character_index": 4939
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/vocab_parallel_embedding.py",
+               "first_character_index": 981,
+               "last_character_index": 2730
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/v1/sample/test_sampler.py",
+               "first_character_index": 108,
+               "last_character_index": 1504
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/tool_parsers/qwen3coder_tool_parser.py",
+               "first_character_index": 2358,
+               "last_character_index": 4260
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/granite_speech.py",
+               "first_character_index": 26690,
+               "last_character_index": 28422
             }
          ]
       },
@@ -863,9 +2423,29 @@
          "question": "What is the default lora_int_id value when lora_request is None in vLLM's sequence?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/test_cache_block_hashing.py",
-               "first_character_index": 2084,
-               "last_character_index": 3837
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/llm.py",
+               "first_character_index": 23133,
+               "last_character_index": 25181
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/sequence.py",
+               "first_character_index": 37284,
+               "last_character_index": 39075
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/engine/async_llm_engine.py",
+               "first_character_index": 15801,
+               "last_character_index": 18203
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/lora/request.py",
+               "first_character_index": 108,
+               "last_character_index": 2138
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/core/scheduler.py",
+               "first_character_index": 35505,
+               "last_character_index": 37602
             }
          ]
       },
@@ -874,9 +2454,29 @@
          "question": "What condition must be met for prompt_tokens_details to be included in the final usage info in vLLM's completion serving?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/config/cache.py",
-               "first_character_index": 5567,
-               "last_character_index": 7256
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/serving_chat.py",
+               "first_character_index": 60202,
+               "last_character_index": 62065
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/serving_completion.py",
+               "first_character_index": 18707,
+               "last_character_index": 21317
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/serving_chat.py",
+               "first_character_index": 47780,
+               "last_character_index": 49471
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/serving_completion.py",
+               "first_character_index": 22896,
+               "last_character_index": 25230
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/openai/serving_embedding.py",
+               "first_character_index": 4849,
+               "last_character_index": 6475
             }
          ]
       },
@@ -888,6 +2488,26 @@
                "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llava_next_video.py",
                "first_character_index": 15685,
                "last_character_index": 17558
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llava_onevision.py",
+               "first_character_index": 36020,
+               "last_character_index": 37952
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llava_next.py",
+               "first_character_index": 20206,
+               "last_character_index": 22176
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/llava.py",
+               "first_character_index": 25931,
+               "last_character_index": 27924
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/models/supported_models.md",
+               "first_character_index": 38813,
+               "last_character_index": 40789
             }
          ]
       },
@@ -896,9 +2516,29 @@
          "question": "What environment variable does vLLM's collect_env.py check as a fallback when CUDNN library detection fails?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/cli/collect_env.py",
+               "first_character_index": 108,
+               "last_character_index": 1068
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/utils/flashinfer.py",
+               "first_character_index": 6134,
+               "last_character_index": 7332
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/usage/troubleshooting.md",
+               "first_character_index": 15156,
+               "last_character_index": 16070
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/docs/getting_started/installation/aws_neuron.md",
-               "first_character_index": 7570,
-               "last_character_index": 8391
+               "first_character_index": 3910,
+               "last_character_index": 5169
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/contributing/profiling.md",
+               "first_character_index": 0,
+               "last_character_index": 1954
             }
          ]
       },
@@ -907,9 +2547,29 @@
          "question": "What parameter value is set for requires_grad when creating Parameter objects in _load_weights_from_qkv_linear method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/usage/reproducibility.md",
-               "first_character_index": 0,
-               "last_character_index": 1912
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/tpu_distributed_utils.py",
+               "first_character_index": 2421,
+               "last_character_index": 4003
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/modelopt.py",
+               "first_character_index": 53615,
+               "last_character_index": 57852
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/kv_cache.py",
+               "first_character_index": 108,
+               "last_character_index": 1977
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/moe_wna16.py",
+               "first_character_index": 11845,
+               "last_character_index": 14353
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe.py",
+               "first_character_index": 7293,
+               "last_character_index": 9312
             }
          ]
       },
@@ -918,9 +2578,29 @@
          "question": "What are the dimensions and data types of the tensors returned by get_inputs method in LastAllReduceRMSNormPattern?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/kernels/attention/test_encoder_decoder_attn.py",
-               "first_character_index": 8027,
-               "last_character_index": 10025
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/sequence_parallelism.py",
+               "first_character_index": 16735,
+               "last_character_index": 18434
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/sequence_parallelism.py",
+               "first_character_index": 7405,
+               "last_character_index": 9212
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/sequence_parallelism.py",
+               "first_character_index": 4525,
+               "last_character_index": 5868
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/sequence_parallelism.py",
+               "first_character_index": 5871,
+               "last_character_index": 7402
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/compilation/collective_fusion.py",
+               "first_character_index": 43694,
+               "last_character_index": 45368
             }
          ]
       },
@@ -929,9 +2609,29 @@
          "question": "Can draft_probs be None in vLLM's rejection sampler and when does this happen?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/sample/rejection_sampler.py",
+               "first_character_index": 4197,
+               "last_character_index": 6554
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/v1/sample/test_rejection_sampler.py",
+               "first_character_index": 2485,
+               "last_character_index": 4416
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/spec_decode.md",
+               "first_character_index": 10670,
+               "last_character_index": 12611
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/v1/spec_decode/eagle.py",
                "first_character_index": 31867,
                "last_character_index": 33325
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/v1/sample/test_rejection_sampler.py",
+               "first_character_index": 18046,
+               "last_character_index": 19804
             }
          ]
       },
@@ -940,9 +2640,29 @@
          "question": "What parameter type does the copy_operation parameter accept in NixlConnector's set_host_xfer_buffer_ops method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/worker/neuronx_distributed_model_runner.py",
-               "first_character_index": 10842,
-               "last_character_index": 12666
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/base.py",
+               "first_character_index": 4082,
+               "last_character_index": 5704
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py",
+               "first_character_index": 5794,
+               "last_character_index": 7890
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py",
+               "first_character_index": 27229,
+               "last_character_index": 28924
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py",
+               "first_character_index": 45528,
+               "last_character_index": 46228
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py",
+               "first_character_index": 43761,
+               "last_character_index": 45526
             }
          ]
       },
@@ -951,9 +2671,29 @@
          "question": "What value is used for the num_kv_heads parameter when calling get_mla_metadata in FlashMLAState's graph_capture method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/features/tool_calling.md",
-               "first_character_index": 3183,
-               "last_character_index": 4939
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/attention/backends/flash_attn.py",
+               "first_character_index": 7350,
+               "last_character_index": 9638
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/flashmla.py",
+               "first_character_index": 2079,
+               "last_character_index": 3760
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/flashmla.py",
+               "first_character_index": 108,
+               "last_character_index": 2076
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/worker/model_runner.py",
+               "first_character_index": 43400,
+               "last_character_index": 46067
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/differential_flash_attn.py",
+               "first_character_index": 2166,
+               "last_character_index": 4360
             }
          ]
       },
@@ -962,9 +2702,29 @@
          "question": "What is the default value of the bias parameter in the __init__ method of vLLM's mllama model convolution class?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/phi4mm_utils.py",
-               "first_character_index": 14358,
-               "last_character_index": 14745
+               "file_path": "data/raw/vllm-0.10.1/tests/models/multimodal/generation/test_mllama.py",
+               "first_character_index": 19423,
+               "last_character_index": 21558
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/mllama.py",
+               "first_character_index": 15078,
+               "last_character_index": 16311
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/linear.py",
+               "first_character_index": 54513,
+               "last_character_index": 55974
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/examples/offline_inference/neuron_multimodal.py",
+               "first_character_index": 107,
+               "last_character_index": 2029
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/tool_calling.md",
+               "first_character_index": 3183,
+               "last_character_index": 4939
             }
          ]
       },
@@ -973,9 +2733,29 @@
          "question": "What is the constant value for NVML_FI_DEV_NVLINK_RECOVERY_ERROR_COUNT_TOTAL in vLLM's pynvml module?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/openai/test_metrics.py",
-               "first_character_index": 4653,
-               "last_character_index": 6280
+               "file_path": "data/raw/vllm-0.10.1/vllm/third_party/pynvml.py",
+               "first_character_index": 21601,
+               "last_character_index": 23576
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/third_party/pynvml.py",
+               "first_character_index": 25726,
+               "last_character_index": 27719
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/third_party/pynvml.py",
+               "first_character_index": 29863,
+               "last_character_index": 31831
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/third_party/pynvml.py",
+               "first_character_index": 33782,
+               "last_character_index": 35752
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/third_party/pynvml.py",
+               "first_character_index": 23577,
+               "last_character_index": 25725
             }
          ]
       },
@@ -984,9 +2764,29 @@
          "question": "What are the expected tensor dimensions for w13_weight_scale in vLLM's MXFP4 quantization layer?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors.py",
-               "first_character_index": 26449,
-               "last_character_index": 28774
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/utils/marlin_utils_fp4.py",
+               "first_character_index": 9491,
+               "last_character_index": 11517
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/modelopt.py",
+               "first_character_index": 16255,
+               "last_character_index": 18121
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/mxfp4.py",
+               "first_character_index": 20224,
+               "last_character_index": 22122
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe.py",
+               "first_character_index": 27447,
+               "last_character_index": 28474
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/compressed_tensors/compressed_tensors_moe.py",
+               "first_character_index": 5116,
+               "last_character_index": 7292
             }
          ]
       },
@@ -995,9 +2795,29 @@
          "question": "What's the default value of min_stats_update_interval_ms in DPCoordinatorProc's __init__ method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/multimodal/base.py",
-               "first_character_index": 1492,
-               "last_character_index": 3463
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/engine/coordinator.py",
+               "first_character_index": 4283,
+               "last_character_index": 7322
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/benchmarks/multi_turn/benchmark_serving_multi_turn.py",
+               "first_character_index": 4705,
+               "last_character_index": 7009
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/engine/coordinator.py",
+               "first_character_index": 7458,
+               "last_character_index": 8979
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/forward_context.py",
+               "first_character_index": 9211,
+               "last_character_index": 11061
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/test_api_server_process_manager.py",
+               "first_character_index": 1603,
+               "last_character_index": 2835
             }
          ]
       },
@@ -1006,9 +2826,29 @@
          "question": "What does the simple_buffer module return when tokens_recver is None in the KV lookup buffer?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/README.md",
-               "first_character_index": 1,
-               "last_character_index": 1752
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_lookup_buffer/simple_buffer.py",
+               "first_character_index": 5024,
+               "last_character_index": 7077
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_lookup_buffer/simple_buffer.py",
+               "first_character_index": 1789,
+               "last_character_index": 3639
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_lookup_buffer/base.py",
+               "first_character_index": 107,
+               "last_character_index": 1154
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_lookup_buffer/base.py",
+               "first_character_index": 3528,
+               "last_character_index": 4518
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/kv_transfer/kv_lookup_buffer/base.py",
+               "first_character_index": 1202,
+               "last_character_index": 2260
             }
          ]
       },
@@ -1017,9 +2857,29 @@
          "question": "What is the default value of the cutlass_block_fp8_supported parameter in apply_w8a8_block_fp8_linear?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/usage/reproducibility.md",
-               "first_character_index": 0,
-               "last_character_index": 1912
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/utils/fp8_utils.py",
+               "first_character_index": 5826,
+               "last_character_index": 7440
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/fp8.py",
+               "first_character_index": 19979,
+               "last_character_index": 22079
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/fp8.py",
+               "first_character_index": 108,
+               "last_character_index": 1980
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/fp8.py",
+               "first_character_index": 8355,
+               "last_character_index": 10616
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/modelopt.py",
+               "first_character_index": 108,
+               "last_character_index": 2030
             }
          ]
       },
@@ -1028,9 +2888,29 @@
          "question": "What is the default value of BLOCK_TABLE_EXTENDER in MLACommonMetadataBuilder?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/tests/entrypoints/openai/test_metrics.py",
-               "first_character_index": 4653,
-               "last_character_index": 6280
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/attention/backends/mla/common.py",
+               "first_character_index": 8988,
+               "last_character_index": 10965
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/rocm_aiter_mla.py",
+               "first_character_index": 108,
+               "last_character_index": 2389
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/rocm_aiter_mla.py",
+               "first_character_index": 2405,
+               "last_character_index": 4449
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/attention/backends/mla/common.py",
+               "first_character_index": 23607,
+               "last_character_index": 25540
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/attention/backends/mla/rocm_aiter_mla.py",
+               "first_character_index": 108,
+               "last_character_index": 2091
             }
          ]
       },
@@ -1039,9 +2919,29 @@
          "question": "What condition prevents tensors from being moved to device in FlashInfer attention backend's prepare method?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/vllm/v1/worker/gpu_model_runner.py",
-               "first_character_index": 18281,
-               "last_character_index": 20451
+               "file_path": "data/raw/vllm-0.10.1/vllm/platforms/cuda.py",
+               "first_character_index": 15021,
+               "last_character_index": 16961
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/kernels/moe/modular_kernel_tools/mk_objects.py",
+               "first_character_index": 6887,
+               "last_character_index": 7856
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/layers/quantization/utils/flashinfer_fp4_moe.py",
+               "first_character_index": 107,
+               "last_character_index": 1833
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/platforms/cuda.py",
+               "first_character_index": 13053,
+               "last_character_index": 15020
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/v1/cudagraph/test_cudagraph_mode.py",
+               "first_character_index": 1171,
+               "last_character_index": 2978
             }
          ]
       },
@@ -1050,9 +2950,29 @@
          "question": "What's the default value of the gpu parameter in vLLM's get_max_shared_memory_bytes function?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/docs/configuration/optimization.md",
-               "first_character_index": 930,
-               "last_character_index": 2274
+               "file_path": "data/raw/vllm-0.10.1/vllm/utils/__init__.py",
+               "first_character_index": 14278,
+               "last_character_index": 16342
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/v1/core/kv_cache_utils.py",
+               "first_character_index": 26107,
+               "last_character_index": 27995
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/tool_calling.md",
+               "first_character_index": 3183,
+               "last_character_index": 4939
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/tests/utils.py",
+               "first_character_index": 24596,
+               "last_character_index": 26322
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/shm_broadcast.py",
+               "first_character_index": 5806,
+               "last_character_index": 7701
             }
          ]
       },
@@ -1064,6 +2984,26 @@
                "file_path": "data/raw/vllm-0.10.1/tests/models/multimodal/generation/test_mllama.py",
                "first_character_index": 22169,
                "last_character_index": 23819
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/mllama.py",
+               "first_character_index": 61580,
+               "last_character_index": 62939
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/engine/arg_utils.py",
+               "first_character_index": 4102,
+               "last_character_index": 6510
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/mllama.py",
+               "first_character_index": 64360,
+               "last_character_index": 66281
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/model_executor/models/mllama.py",
+               "first_character_index": 45937,
+               "last_character_index": 47705
             }
          ]
       },
@@ -1072,9 +3012,29 @@
          "question": "What is the default timeout value for VLLM_RPC_TIMEOUT environment variable?",
          "retrieved_sources": [
             {
-               "file_path": "data/raw/vllm-0.10.1/.buildkite/nightly-benchmarks/README.md",
-               "first_character_index": 1372,
-               "last_character_index": 2856
+               "file_path": "data/raw/vllm-0.10.1/docs/features/multimodal_inputs.md",
+               "first_character_index": 19173,
+               "last_character_index": 20285
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/contributing/profiling.md",
+               "first_character_index": 0,
+               "last_character_index": 1954
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/multimodal_inputs.md",
+               "first_character_index": 14234,
+               "last_character_index": 15059
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/docs/features/quantization/inc.md",
+               "first_character_index": 1315,
+               "last_character_index": 3144
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/envs.py",
+               "first_character_index": 20637,
+               "last_character_index": 22631
             }
          ]
       },
@@ -1083,12 +3043,32 @@
          "question": "What determines whether custom allreduce is enabled in vLLM's CudaCommunicator?",
          "retrieved_sources": [
             {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/quick_all_reduce.py",
+               "first_character_index": 1804,
+               "last_character_index": 3789
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/config/compilation.py",
+               "first_character_index": 2109,
+               "last_character_index": 4043
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/platforms/rocm.py",
+               "first_character_index": 14738,
+               "last_character_index": 16834
+            },
+            {
                "file_path": "data/raw/vllm-0.10.1/vllm/envs.py",
                "first_character_index": 30514,
                "last_character_index": 32506
+            },
+            {
+               "file_path": "data/raw/vllm-0.10.1/vllm/distributed/device_communicators/cuda_communicator.py",
+               "first_character_index": 108,
+               "last_character_index": 1944
             }
          ]
       }
    ],
-   "k": 1
+   "k": 5
 }
