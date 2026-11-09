@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+from src.answerdquestion import AnsweredQuestion, RagDataset
 
 def iou(start1, end1, start2, end2):
     intersection = max(0, min(end1, end2) - max(start1, start2))
@@ -17,14 +18,18 @@ def evaluate_ssr(student_path, dataset_path, k):
     with open(Path(student_path), "r") as file:
         student = json.load(file)
 
-    with open(Path(dataset_path), "r") as file:
-        dataset = json.load(file)
+    with open(Path(dataset_path), "r", encoding="utf-8") as file:
+        dataset = RagDataset.model_validate_json(file.read())
     
     try:
         results = student["search_results"]
         with_rs = sum(1 for r in results if r["retrieved_sources"])
         with_or_without_rs = sum(1 for r in results)
-        truth_by_id = {q["question_id"]: q["sources"] for q in dataset["rag_questions"]}
+        truth_by_id = {
+            q.question_id: q.sources
+            for q in dataset.rag_questions
+            if isinstance(q, AnsweredQuestion)
+        }
         valid = True
     except (KeyError, TypeError):
         print("Student data is valid: False")
@@ -42,8 +47,8 @@ def evaluate_ssr(student_path, dataset_path, k):
         for t in truths:
             for r in retrieved:
                 if found(
-                    t["file_path"], r["file_path"],
-                    (t["first_character_index"], t["last_character_index"]),
+                    t.file_path, r["file_path"],
+                    (t.first_character_index, t.last_character_index),
                     (r["first_character_index"], r["last_character_index"]),
                 ):
                     hits += 1
@@ -71,5 +76,4 @@ def evaluate_ssr(student_path, dataset_path, k):
 
     return recall
                     
-
 

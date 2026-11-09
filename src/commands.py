@@ -1,6 +1,7 @@
 
 import pickle, json
 from pathlib import Path
+from pydantic import ValidationError
 from chunking.chunker import get_files_path
 from indexing.bm25_ranking import search as search_chunks
 from indexing.bm25_ranking import build_index, load_index
@@ -8,6 +9,7 @@ from src.ask_llm import ask_llm, to_source
 from src.build_context import build_context
 from managing_answers.save import save_unanswered, save_answered
 from src.minimalsource import MinimalSearchResults, MinimalAnswer
+from src.answerdquestion import RagDataset
 from constants import EXIT_FILES 
 from evaluation import evaluate_ssr
 
@@ -104,18 +106,18 @@ class CLI:
             searched = []
             chunks_by_id = {}
 
-            with open(dataset_path, "r") as file:
-                questions = json.load(file)
+            with open(dataset_path, "r", encoding="utf-8") as file:
+                questions = RagDataset.model_validate_json(file.read())
 
-            for item in questions["rag_questions"]:
-                top_chunks = search_chunks(item["question"], bm25, chunks, k)
-                chunks_by_id[item["question_id"]] = top_chunks
+            for question in questions.rag_questions:
+                top_chunks = search_chunks(question.question, bm25, chunks, k)
+                chunks_by_id[question.question_id] = top_chunks
                 searched.append(MinimalSearchResults(
-                    question_id=item["question_id"],
-                    question=item["question"],
+                    question_id=question.question_id,
+                    question=question.question,
                     retrieved_sources = to_source(top_chunks),
                 ))
-                if item["question"].lower() in EXIT_FILES :
+                if question.question.lower() in EXIT_FILES :
                     return
                 out_dir = Path(save_directory)
                 out_dir.mkdir(parents=True, exist_ok=True)
@@ -123,6 +125,10 @@ class CLI:
 
                 save_unanswered(searched, k, out_file)
 
+        except FileNotFoundError:
+            print(f"ERROR: Dataset file not found: {dataset_path}")
+        except ValidationError as e:
+            print(f"ERROR: Invalid dataset file: {e}")
         except Exception as e:
             print(f"ERROR: {e}")
 
@@ -166,4 +172,3 @@ class CLI:
             evaluate_ssr(student_path, dataset_path, k)
         except Exception as e:
             print(f"ERROR: {e}")
-

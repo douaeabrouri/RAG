@@ -4,6 +4,7 @@ import numpy as np
 from rank_bm25 import BM25Okapi
 import re
 
+
 def tokenize(text: str) -> list[str]:
     text = re.sub(r"([a-z0-9])([A-Z])", r"\1 \2", text)
     return re.findall(r"[a-z]+|[0-9]+", text.lower())
@@ -53,4 +54,7 @@ def load_index(proessed_dir: str):
             return (pickle.load(file))
     except Exception as e:
         raise ValueError(f"ERROR: {e}")
+
+
+
 
