@@ -3,6 +3,7 @@ from chunking.models import chunking_files
 import numpy as np
 from rank_bm25 import BM25Okapi
 import re
+from constants import DEFAULT_MAX_CHUNK_SIZE
 
 
 def tokenize(text: str) -> list[str]:
@@ -10,14 +11,17 @@ def tokenize(text: str) -> list[str]:
     return re.findall(r"[a-z]+|[0-9]+", text.lower())
 
 
-def build_index(ALL_FILES_PATH: list[str]):
+def build_index(
+    ALL_FILES_PATH: list[str],
+    max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE,
+):
 
     chunks = []
     corpus: list = []
     token_from_corpus: list = []
 
     for path in ALL_FILES_PATH:
-        chunks.extend(chunking_files(path))
+        chunks.extend(chunking_files(path, max_chunk_size))
 
     for obj in chunks:
         corpus.append(obj.text)
@@ -54,7 +58,6 @@ def load_index(proessed_dir: str):
             return (pickle.load(file))
     except Exception as e:
         raise ValueError(f"ERROR: {e}")
-
 
 
 

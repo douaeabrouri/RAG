@@ -1,9 +1,11 @@
 from pathlib import Path
 from ollama import Client
 
-
+GREEN = "\033[0;32m"
+RESET = "\033[0m"
+RED = "\033[31m"
 ALLOWED_FILES = [".py", ".md", ".txt"]
-MAX_CHARS = 2000
+DEFAULT_MAX_CHUNK_SIZE = 2000
 BASE_DIR = Path(__file__).resolve().parent
 PATH = BASE_DIR / "data" / "raw" / "vllm-0.10.1"
 OLLAM_HOST = "http://127.0.0.1:11434"

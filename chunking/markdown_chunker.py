@@ -1,13 +1,16 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
 from src.minimalsource import  BigChunk
-from constants import MAX_CHARS
+from constants import DEFAULT_MAX_CHUNK_SIZE
 
 
-def chunk_markdown(path_file, text) -> list:
+def chunk_markdown(path_file, text, max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE) -> list:
 
     chunks = []
     md_splitter = RecursiveCharacterTextSplitter.from_language(
-        Language.MARKDOWN, chunk_size=MAX_CHARS, chunk_overlap=200, add_start_index=True,
+        Language.MARKDOWN,
+        chunk_size=max_chunk_size,
+        chunk_overlap=min(200, max_chunk_size - 1),
+        add_start_index=True,
     )
 
     docs = md_splitter.create_documents([text])

@@ -2,6 +2,7 @@
 import pickle, json
 from pathlib import Path
 from pydantic import ValidationError
+from constants import DEFAULT_MAX_CHUNK_SIZE, EXIT_FILES, RED , RESET, GREEN
 from chunking.chunker import get_files_path
 from indexing.bm25_ranking import search as search_chunks
 from indexing.bm25_ranking import build_index, load_index
@@ -10,31 +11,29 @@ from src.build_context import build_context
 from managing_answers.save import save_unanswered, save_answered
 from src.minimalsource import MinimalSearchResults, MinimalAnswer
 from src.answerdquestion import RagDataset
-from constants import EXIT_FILES 
 from evaluation import evaluate_ssr
 
 class CLI:
 
-    def index(self, max_chunk_size: int = 2000, 
+    def index(self, max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE, 
               raw_data: str = "data/raw",
               processed_data: str = "data/processed") -> None:
 
         try:
-            if not (0 <= max_chunk_size <= 2000):
-                print("The chunk maxe size must be positive and > 0!")
-                return 
+            if not (0 < max_chunk_size <= DEFAULT_MAX_CHUNK_SIZE):
+                print(f"The chunk max size must be between 1 and {DEFAULT_MAX_CHUNK_SIZE}.")
+                return
             try:
                 raw = Path(raw_data + "/vllm-0.10.1") 
                 raw.mkdir(parents=True, exist_ok=True)
             except FileNotFoundError:
                 print("ERROR: FIle not found")
-                return 
+                return
             try:
-                bm25, chunks = build_index(get_files_path(raw))
+                bm25, chunks = build_index(get_files_path(raw), max_chunk_size)
             except Exception as e:
                 print(f"ERROR: {e}")
                 return
-        
             processed = Path(processed_data)
             processed.mkdir(parents=True, exist_ok=True)
             with (processed / "index.pkl").open("wb") as file:
@@ -49,9 +48,9 @@ class CLI:
                 chunks_metadata.append(metadata)
             with (processed / "chunks.json").open("w") as file:
                 json.dump(chunks_metadata, file, indent=2)
-            print("\nIngestion complete! Indices saved under data/processed/\n")
+            print("Ingestion complete! Indices saved under data/processed/")
         except Exception as e:
-            print(f"ERROR: {e}")
+            print(f"{RED}ERROR: {e}{RESET}")
 
     def search(self, query: str, K: int = 3) -> None:
 
@@ -76,7 +75,7 @@ class CLI:
             for item in result_of_query:
                 print(f'{item["file_path"]} [{item["first_character_index"]}:{item["last_character_index"]}]')
         except Exception as e:
-            print(f"ERROR: {e}")
+            print(f"{RED}ERROR: {e}{RESET}")
 
     def answer(self, query: str, K: int = 3):
         try:
@@ -95,9 +94,9 @@ class CLI:
 
             top_chunks = search_chunks(query, bm25, chunks, K)
             answer = ask_llm(query, top_chunks)
-            print(answer)
+            print(f"{GREEN}Answer:{RESET} {answer}")
         except Exception as e:
-            print(f"ERROR: {e}")
+            print(f"{RED}ERROR: {e}{RESET}")
 
     def search_dataset(self, dataset_path: str, k: int, save_directory: str):
 
@@ -126,11 +125,11 @@ class CLI:
                 save_unanswered(searched, k, out_file)
 
         except FileNotFoundError:
-            print(f"ERROR: Dataset file not found: {dataset_path}")
+            print(f"{RED}ERROR: Dataset file not found: {dataset_path}{RESET}")
         except ValidationError as e:
-            print(f"ERROR: Invalid dataset file: {e}")
+            print(f"{RED}ERROR: Invalid dataset file: {e}{RESET}")
         except Exception as e:
-            print(f"ERROR: {e}")
+            print(f"{RED}ERROR: {e}{RESET}")
 
     def answer_dataset(self, student_search_results_path: str, save_directory: str):
 
@@ -161,7 +160,7 @@ class CLI:
                 save_answered(answered, questions["k"], out_file)
             
         except Exception as e:
-            print(f"ERROR: {e}")
+            print(f"{RED}ERROR: {e}{RESET}")
 
     def evaluate_search_results(self, student_path: str, dataset_path: str, k: int = 10):
         try:
@@ -171,4 +170,4 @@ class CLI:
                 raise ValueError("The value of k must be positive.")
             evaluate_ssr(student_path, dataset_path, k)
         except Exception as e:
-            print(f"ERROR: {e}")
+            print(f"{RED}ERROR: {e}{RESET}")
