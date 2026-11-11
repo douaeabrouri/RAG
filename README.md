@@ -196,7 +196,7 @@ This approach helps reduce unsupported answers.
 
 Retrieval quality is evaluated using **Recall@k**.
 
-Recall@k measures how many relevant reference sources are retrieved within the first K results.
+Recall@k measures how many relevant reference sources are retrieved within the first k results.
 
 A retrieved source is considered relevant when:
 
@@ -212,15 +212,6 @@ The project evaluation uses the following official thresholds:
 | Code | Recall@5 | 50% |
 
 Recall@1, Recall@3, and Recall@10 can also be useful for understanding how retrieval ranking changes as K increases.
-
-### Current results
-
-| Dataset | Recall@5 | Required threshold | Status |
-|---|---:|---:|---|
-| Code | 24.24%* | 50% | Below target |
-| Documentation | To be measured | 80% | To be measured |
-
-*The code result is a previously reported experiment and should be measured again against the final committed implementation before submission.*
 
 ### Performance considerations
 
@@ -339,7 +330,7 @@ Run a search with a question:
 ```bash
 uv run python -m src search \
     --query="How does the attention mechanism work?" \
-    --K=5
+    --k=5
 ```
 
 ### Generate an answer
@@ -349,7 +340,7 @@ Run:
 ```bash
 uv run python -m src answer \
     --query="How does the attention mechanism work?" \
-    --K=5
+    --k=5
 ```
 
 The system retrieves the top five chunks and sends their context to Qwen3-0.6B.

@@ -1,10 +1,12 @@
 from pathlib import Path
-import json
 from src.answerdquestion import AnsweredQuestion, RagDataset
+from src.search_result import StudentSearchResults
 
 def iou(start1, end1, start2, end2):
     intersection = max(0, min(end1, end2) - max(start1, start2))
-    union = (end1 - start1) + (end2 - start2) - intersection    
+    union = (end1 - start1) + (end2 - start2) - intersection
+    if union <= 0:
+        return 0.0
     iou = intersection / union
     return iou
 
@@ -15,65 +17,55 @@ def found(file1, file2, ar1 ,ar2, threshold=0.05) -> bool:
 
 def evaluate_ssr(student_path, dataset_path, k):
 
-    with open(Path(student_path), "r") as file:
-        student = json.load(file)
-
-    with open(Path(dataset_path), "r", encoding="utf-8") as file:
-        dataset = RagDataset.model_validate_json(file.read())
+    student = StudentSearchResults.model_validate_json(
+        Path(student_path).read_text(encoding="utf-8")
+    )
+    dataset = RagDataset.model_validate_json(
+        Path(dataset_path).read_text(encoding="utf-8")
+    )
     
-    try:
-        results = student["search_results"]
-        with_rs = sum(1 for r in results if r["retrieved_sources"])
-        with_or_without_rs = sum(1 for r in results)
-        truth_by_id = {
-            q.question_id: q.sources
-            for q in dataset.rag_questions
-            if isinstance(q, AnsweredQuestion)
-        }
-        valid = True
-    except (KeyError, TypeError):
-        print("Student data is valid: False")
-        return
+    results = student.search_results
+    with_rs = sum(1 for result in results if result.retrieved_sources)
+    with_or_without_rs = len(results)
+    truth_by_id = {
+        question.question_id: question.sources
+        for question in dataset.rag_questions
+        if isinstance(question, AnsweredQuestion)
+    }
 
-    scores = []
-    for item in student["search_results"]:
-        truths = truth_by_id.get(item["question_id"])
-        if not truths:
-            continue
-        if "retrieved_sources" not in item:
-            continue
-        retrieved = item["retrieved_sources"][:k]
-        hits = 0
-        for t in truths:
-            for r in retrieved:
-                if found(
-                    t.file_path, r["file_path"],
-                    (t.first_character_index, t.last_character_index),
-                    (r["first_character_index"], r["last_character_index"]),
-                ):
-                    hits += 1
-                    break
-        scores.append(hits / len(truths))
-    print("evaluaion result:\n")
-    recall = 0.0
-    if not scores:
-        print("Maybe you compare the wrong files, check your input!")
-        return 
-    recall = sum(scores) / len(scores)
-    successful_retrievals = sum(1 for score in scores if score == 1.0)
-    failed_retrievals = sum(1 for score in scores if score == 0.0)
-    print(f"Student data is valid: {valid}")
-    print(f"Total number of questions with student sources: {with_rs}")
-    print(f"Total number of questions: {len(truth_by_id)}\n")
-    print("Evaluation Results")
-    print("========================================")
-    print(f"Questions evaluated: {with_or_without_rs}")
-
-    recall = sum(scores) / len(scores)
-    print(f"successful_retrievals: {successful_retrievals}")
-    print(f"failed_retrievals: {failed_retrievals}")
-    print(f"recall: {(recall*100):.2f}%")
-
+    i = 1
+    while i <= k:
+        scores = []
+        for item in results:
+            truths = truth_by_id.get(item.question_id)
+            if not truths:
+                continue
+            retrieved = item.retrieved_sources[:i]
+            hits = 0
+            for t in truths:
+                for r in retrieved:
+                    if found(
+                        t.file_path, r.file_path,
+                        (t.first_character_index, t.last_character_index),
+                        (r.first_character_index, r.last_character_index),
+                    ):
+                        hits += 1
+                        break
+            scores.append(hits / len(truths))
+        if not scores:
+            print("Maybe you compare the wrong files, check your input!")
+            return
+        recall = sum(scores) / len(scores)
+        successful_retrievals = sum(1 for score in scores if score == 1.0)
+        failed_retrievals = sum(1 for score in scores if score == 0.0)
+        print(f"Evaluation Results (Recall@{i})")
+        print("========================================")
+        print(f"Total number of questions with student sources: {with_rs}")
+        print(f"Total number of questions: {len(truth_by_id)}\n")
+        print(f"Questions evaluated: {with_or_without_rs}")
+        print(f"successful_retrievals: {successful_retrievals}")
+        print(f"failed_retrievals: {failed_retrievals}")
+        print(f"recall: {(recall*100):.2f}%")
+        i += 1
     return recall
                     
-

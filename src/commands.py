@@ -52,7 +52,7 @@ class CLI:
         except Exception as e:
             print(f"{RED}ERROR: {e}{RESET}")
 
-    def search(self, query: str, K: int = 3) -> None:
+    def search(self, query: str, k: int = 3) -> None:
 
         try:
             processed_path = Path("data/processed")
@@ -61,14 +61,14 @@ class CLI:
         
             if not query:
                 raise ValueError("The query cannot be empty.")
-            if 0 >= K :
+            if k <= 0 :
                 raise ValueError("The Value of K must be > 0")
             with bm25_path.open("rb") as file:
                 bm25 = pickle.load(file)
             with chunks_path.open("r") as file:
                 chunks = json.load(file)
 
-            result_of_query = search_chunks(query, bm25, chunks ,K)
+            result_of_query = search_chunks(query, bm25, chunks ,k)
             if not result_of_query:
                 print("There is no answere for this Query!")
                 return
@@ -77,7 +77,7 @@ class CLI:
         except Exception as e:
             print(f"{RED}ERROR: {e}{RESET}")
 
-    def answer(self, query: str, K: int = 3):
+    def answer(self, query: str, k: int = 3):
         try:
             processed_path = Path("data/processed")
             chunks_path = processed_path / "chunks.json"
@@ -85,14 +85,14 @@ class CLI:
         
             if not query:
                 raise ValueError("The query cannot be empty.")
-            if 0 >= K :
+            if k <= 0:
                 raise ValueError("The Value of K must be > 0")
             with bm25_path.open("rb") as file:
                 bm25 = pickle.load(file)
             with chunks_path.open("r") as file:
                 chunks = json.load(file)
 
-            top_chunks = search_chunks(query, bm25, chunks, K)
+            top_chunks = search_chunks(query, bm25, chunks, k)
             answer = ask_llm(query, top_chunks)
             print(f"{GREEN}Answer:{RESET} {answer}")
         except Exception as e:
@@ -101,6 +101,8 @@ class CLI:
     def search_dataset(self, dataset_path: str, k: int, save_directory: str):
 
         try:
+            if k <= 0:
+                raise ValueError("The Value of K must be > 0")
             bm25, chunks = build_index(get_files_path(Path("data/raw/vllm-0.10.1")))
             searched = []
             chunks_by_id = {}
@@ -121,7 +123,6 @@ class CLI:
                 out_dir = Path(save_directory)
                 out_dir.mkdir(parents=True, exist_ok=True)
                 out_file = out_dir / Path(dataset_path).name
-
                 save_unanswered(searched, k, out_file)
 
         except FileNotFoundError:
@@ -133,15 +134,14 @@ class CLI:
 
     def answer_dataset(self, student_search_results_path: str, save_directory: str):
 
+        if not (Path(student_search_results_path).exists() and Path(save_directory).exists()):
+            raise FileNotFoundError("One or both input paths do not exist.")
         try:
             with open(Path(student_search_results_path), "r") as file:
                 questions = json.load(file)
-
             if not questions:
                 raise ValueError("Empty file!!")
-    
             answered = []
-
             for item in questions["search_results"]:
                 retrieved_sources = item["retrieved_sources"]
                 if retrieved_sources:
@@ -156,13 +156,13 @@ class CLI:
                 ))
                 out_dir = Path(save_directory)
                 out_dir.mkdir(parents=True, exist_ok=True)
-                out_file = out_dir / Path(save_directory).name
+                out_file = out_dir / Path(student_search_results_path).name
                 save_answered(answered, questions["k"], out_file)
             
         except Exception as e:
             print(f"{RED}ERROR: {e}{RESET}")
 
-    def evaluate_search_results(self, student_path: str, dataset_path: str, k: int = 10):
+    def evaluate_search_results(self, student_path: str, dataset_path: str, k: int = 5):
         try:
             if not (Path(student_path).exists() and Path(dataset_path).exists()):
                 raise FileNotFoundError("One or both input paths do not exist.")

@@ -2,7 +2,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter, Language
 from src.minimalsource import  BigChunk
 from constants import DEFAULT_MAX_CHUNK_SIZE
 
-def chunk_txt(path_file, text, max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE) -> list[str]:
+def chunk_txt(path_file, text, max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE) -> list :
 
     chunks = []
 
