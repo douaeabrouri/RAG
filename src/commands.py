@@ -1,5 +1,5 @@
 
-import pickle, json
+import pickle , json
 from pathlib import Path
 from pydantic import ValidationError
 from constants import DEFAULT_MAX_CHUNK_SIZE, EXIT_FILES, RED , RESET, GREEN
@@ -14,10 +14,22 @@ from src.answerdquestion import RagDataset
 from evaluation import evaluate_ssr
 
 class CLI:
+    """Expose indexing, retrieval, answering, and evaluation commands."""
 
     def index(self, max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE, 
               raw_data: str = "data/raw",
               processed_data: str = "data/processed") -> None:
+        """Build and save a BM25 index from supported raw repository files.
+
+        Args:
+            max_chunk_size: Maximum number of characters per text chunk.
+            raw_data: Directory containing the ``vllm-0.10.1`` source folder.
+            processed_data: Directory where the index and chunk metadata are
+                written.
+
+        Returns:
+            None. Status and errors are reported in the command-line output.
+        """
 
         try:
             if not (0 < max_chunk_size <= DEFAULT_MAX_CHUNK_SIZE):
@@ -53,6 +65,15 @@ class CLI:
             print(f"{RED}ERROR: {e}{RESET}")
 
     def search(self, query: str, k: int = 3) -> None:
+        """Search the saved index and print matching source ranges.
+
+        Args:
+            query: Text to search for in the indexed chunks.
+            k: Maximum number of results to display.
+
+        Returns:
+            None. Matching sources or an error are printed to the console.
+        """
 
         try:
             processed_path = Path("data/processed")
@@ -78,6 +99,15 @@ class CLI:
             print(f"{RED}ERROR: {e}{RESET}")
 
     def answer(self, query: str, k: int = 3):
+        """Retrieve relevant chunks and print a generated answer.
+
+        Args:
+            query: Question to answer using indexed source material.
+            k: Maximum number of retrieved chunks to pass to the model.
+
+        Returns:
+            None. The answer or an error is printed to the console.
+        """
         try:
             processed_path = Path("data/processed")
             chunks_path = processed_path / "chunks.json"
@@ -99,6 +129,18 @@ class CLI:
             print(f"{RED}ERROR: {e}{RESET}")
 
     def search_dataset(self, dataset_path: str, k: int, save_directory: str):
+        """Run retrieval for every question in a dataset and save results.
+
+        Args:
+            dataset_path: JSON dataset containing RAG questions.
+            k: Maximum number of chunks to retrieve per question.
+            save_directory: Directory where the retrieval result file is
+                written.
+
+        Returns:
+            None. Results are saved as questions are processed; errors are
+            printed to the console.
+        """
 
         try:
             if k <= 0:
@@ -133,6 +175,20 @@ class CLI:
             print(f"{RED}ERROR: {e}{RESET}")
 
     def answer_dataset(self, student_search_results_path: str, save_directory: str):
+        """Generate and save answers for previously retrieved dataset results.
+
+        Args:
+            student_search_results_path: JSON file containing questions and
+                retrieved sources.
+            save_directory: Existing directory where answered results are
+                saved.
+
+        Returns:
+            None. Answered results are saved and errors are printed.
+
+        Raises:
+            FileNotFoundError: If either supplied path does not exist.
+        """
 
         if not (Path(student_search_results_path).exists() and Path(save_directory).exists()):
             raise FileNotFoundError("One or both input paths do not exist.")
@@ -163,6 +219,16 @@ class CLI:
             print(f"{RED}ERROR: {e}{RESET}")
 
     def evaluate_search_results(self, student_path: str, dataset_path: str, k: int = 5):
+        """Evaluate saved retrieval results against a reference dataset.
+
+        Args:
+            student_path: JSON file containing the student's search results.
+            dataset_path: JSON file containing reference questions and sources.
+            k: Highest retrieval rank to evaluate.
+
+        Returns:
+            None. Evaluation metrics or errors are printed to the console.
+        """
         try:
             if not (Path(student_path).exists() and Path(dataset_path).exists()):
                 raise FileNotFoundError("One or both input paths do not exist.")

@@ -2,7 +2,20 @@ from pathlib import Path
 from src.answerdquestion import AnsweredQuestion, RagDataset
 from src.search_result import StudentSearchResults
 
+
 def iou(start1, end1, start2, end2):
+    """Calculate intersection over union for two character ranges.
+
+    Args:
+        start1: Start offset of the first range.
+        end1: Exclusive end offset of the first range.
+        start2: Start offset of the second range.
+        end2: Exclusive end offset of the second range.
+
+    Returns:
+        The ranges' intersection-over-union score, or ``0.0`` for an empty
+        union.
+    """
     intersection = max(0, min(end1, end2) - max(start1, start2))
     union = (end1 - start1) + (end2 - start2) - intersection
     if union <= 0:
@@ -10,12 +23,41 @@ def iou(start1, end1, start2, end2):
     iou = intersection / union
     return iou
 
-def found(file1, file2, ar1 ,ar2, threshold=0.05) -> bool:
+
+def found(file1, file2, ar1, ar2, threshold=0.05) -> bool:
+    """Check whether two source ranges overlap enough to count as a match.
+
+    Args:
+        file1: File path for the first source range.
+        file2: File path for the second source range.
+        ar1: Start and exclusive end offsets for the first range.
+        ar2: Start and exclusive end offsets for the second range.
+        threshold: Minimum intersection-over-union score for a match.
+
+    Returns:
+        ``True`` if the paths match and their overlap reaches the threshold.
+    """
     if file1 != file2:
         return False
     return iou(ar1[0], ar1[1], ar2[0], ar2[1]) >= threshold
 
+
 def evaluate_ssr(student_path, dataset_path, k):
+    """Evaluate retrieved sources against dataset ground truth at each rank.
+
+    Args:
+        student_path: JSON file containing the student's search results.
+        dataset_path: JSON dataset containing questions and reference sources.
+        k: Highest retrieval rank to evaluate; all ranks from 1 to ``k`` are
+            measured.
+
+    Returns:
+        A mapping from each evaluated rank to its mean Recall@rank score.
+
+    Raises:
+        ValueError: If ``k`` is not positive or the dataset has no answered
+            questions with ground-truth sources.
+    """
 
     if k <= 0:
         raise ValueError("k must be positive")
@@ -88,4 +130,3 @@ def evaluate_ssr(student_path, dataset_path, k):
         print(f"Failed retrievals: {failed}")
         print(f"Recall: {recall * 100:.2f}%")
     return recall_results
-                    

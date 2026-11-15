@@ -5,7 +5,20 @@ from pathlib import Path
 from constants import DEFAULT_MAX_CHUNK_SIZE
 
 
-def chunking_files(file_path: Path, max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE):
+def chunking_files(
+    file_path: Path,
+    max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE
+) -> list:
+    """Read and chunk a supported file using its format-specific splitter.
+
+    Args:
+        file_path: Path to the file to read and split.
+        max_chunk_size: Maximum number of characters per chunk.
+
+    Returns:
+        Chunks produced by the splitter for the file's format, or ``None``
+        when the file suffix is unsupported.
+    """
 
     with open(file_path, "r") as file:
         code = file.read()

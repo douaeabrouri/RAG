@@ -1,13 +1,21 @@
 import ast
-from src.minimalsource import  BigChunk
+from src.minimalsource import BigChunk
 from chunking.txt_chunker import chunk_txt
 from constants import DEFAULT_MAX_CHUNK_SIZE
 
+
 def split_long(text: str, limit: int) -> list[str]:
+    """Split long text into pieces no longer than the specified limit.
 
-    void : str = ""
-    part : list[str] = []
+    Args:
+        text: Text to split, preserving line boundaries when possible.
+        limit: Maximum number of characters in each returned piece.
 
+    Returns:
+        Text pieces whose lengths do not exceed ``limit``.
+    """
+    void: str = ""
+    part: list[str] = []
     for line in text.splitlines():
         while(len(line) > limit):
             if void:
@@ -23,7 +31,20 @@ def split_long(text: str, limit: int) -> list[str]:
         part.append(void)
     return part
 
+
 def chunk_py_node(node, lines, pieces, offsets, max_chunk_size):
+    """Convert an AST node into one or more location-aware text pieces.
+
+    Args:
+        node: Python abstract-syntax-tree node to process.
+        lines: Source code split into lines.
+        pieces: Mutable list receiving text and source-location tuples.
+        offsets: Character offsets for the start of each source line.
+        max_chunk_size: Maximum number of characters allowed per piece.
+
+    Returns:
+        None. Results are appended to ``pieces``.
+    """
 
     start = node.lineno
     end = node.end_lineno
@@ -46,13 +67,25 @@ def chunk_py_node(node, lines, pieces, offsets, max_chunk_size):
         for part in split_long(code, max_chunk_size):
             pieces.append((part, start, end, pos, pos + len(part)))
             pos += len(part)
-    
+
+
 def pack(pieces, path, max_chunk_size):
+    """Pack adjacent source pieces into chunks within the size limit.
+
+    Args:
+        pieces: Source text and location tuples to combine.
+        path: Path of the source file represented by the pieces.
+        max_chunk_size: Maximum number of characters per resulting chunk.
+
+    Returns:
+        ``BigChunk`` instances containing packed text and source locations.
+    """
 
     chunks: list[BigChunk] = []
     cur = None   # [text, first_line, last_line, first_char, last_char]
 
     def flush():
+        """Append the current packed piece as a ``BigChunk``."""
         chunks.append(BigChunk(
             id=len(chunks), text=cur[0], file_path=path,
             first_line=cur[1], last_line=cur[2],
@@ -65,7 +98,7 @@ def pack(pieces, path, max_chunk_size):
             cur = None
         if cur:
             cur[0] += "\n\n" + text
-            cur[2] = ll          
+            cur[2] = ll
             cur[4] = lc
         else:
             cur = [text, fl, ll, fc, lc]
@@ -74,7 +107,22 @@ def pack(pieces, path, max_chunk_size):
         flush()
     return chunks
 
-def chunk_python(code, file_path, max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE):
+
+def chunk_python(
+    code,
+    file_path,
+    max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE
+) -> list:
+    """Chunk Python source by AST structure, falling back to text splitting.
+
+    Args:
+        code: Complete Python source text.
+        file_path: Path of the source file, stored in chunk metadata.
+        max_chunk_size: Maximum number of characters per chunk.
+
+    Returns:
+        ``BigChunk`` instances containing source text and location metadata.
+    """
     try:
         tree = ast.parse(code, filename=str(file_path))
     except SyntaxError:

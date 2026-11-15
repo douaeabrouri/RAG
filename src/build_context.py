@@ -1,5 +1,14 @@
 
 def build_context(chunks):
+    """Read source ranges and format them as labeled context blocks.
+
+    Args:
+        chunks: Mapping-like chunk records with file paths and character
+            offsets.
+
+    Returns:
+        Context text containing each source path and its selected contents.
+    """
     blocks = []
 
     for c in chunks:
