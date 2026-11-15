@@ -17,55 +17,75 @@ def found(file1, file2, ar1 ,ar2, threshold=0.05) -> bool:
 
 def evaluate_ssr(student_path, dataset_path, k):
 
+    if k <= 0:
+        raise ValueError("k must be positive")
+
     student = StudentSearchResults.model_validate_json(
         Path(student_path).read_text(encoding="utf-8")
     )
+
     dataset = RagDataset.model_validate_json(
         Path(dataset_path).read_text(encoding="utf-8")
     )
-    
+
     results = student.search_results
-    with_rs = sum(1 for result in results if result.retrieved_sources)
-    with_or_without_rs = len(results)
+
     truth_by_id = {
         question.question_id: question.sources
         for question in dataset.rag_questions
         if isinstance(question, AnsweredQuestion)
+        and question.sources
     }
-
-    i = 1
-    while i <= k:
+    student_by_id = {}
+    for result in results:
+        if result.question_id in student_by_id:
+            raise ValueError(
+                f"Duplicate question ID: {result.question_id}"
+            )
+        student_by_id[result.question_id] = result
+    with_rs = sum(
+        1 for result in results if result.retrieved_sources
+    )
+    recall_results = {}
+    for i in range(1, k + 1):
         scores = []
-        for item in results:
-            truths = truth_by_id.get(item.question_id)
-            if not truths:
+        for question_id, truths in truth_by_id.items():
+            student_result = student_by_id.get(question_id)
+            if student_result is None:
+                scores.append(0.0)
                 continue
-            retrieved = item.retrieved_sources[:i]
+            retrieved = student_result.retrieved_sources[:i]
             hits = 0
-            for t in truths:
-                for r in retrieved:
+            for truth in truths:
+                for source in retrieved:
                     if found(
-                        t.file_path, r.file_path,
-                        (t.first_character_index, t.last_character_index),
-                        (r.first_character_index, r.last_character_index),
+                        truth.file_path,
+                        source.file_path,
+                        (
+                            truth.first_character_index,
+                            truth.last_character_index,
+                        ),
+                        (
+                            source.first_character_index,
+                            source.last_character_index,
+                        ),
                     ):
                         hits += 1
                         break
             scores.append(hits / len(truths))
         if not scores:
-            print("Maybe you compare the wrong files, check your input!")
-            return
+            raise ValueError("No answered questions with ground truth.")
         recall = sum(scores) / len(scores)
-        successful_retrievals = sum(1 for score in scores if score == 1.0)
-        failed_retrievals = sum(1 for score in scores if score == 0.0)
-        print(f"Evaluation Results (Recall@{i})")
-        print("========================================")
-        print(f"Total number of questions with student sources: {with_rs}")
-        print(f"Total number of questions: {len(truth_by_id)}\n")
-        print(f"Questions evaluated: {with_or_without_rs}")
-        print(f"successful_retrievals: {successful_retrievals}")
-        print(f"failed_retrievals: {failed_retrievals}")
-        print(f"recall: {(recall*100):.2f}%")
-        i += 1
-    return recall
+        recall_results[i] = recall
+        successful = sum(1 for score in scores if score == 1.0)
+        failed = sum(1 for score in scores if score == 0.0)
+        print(f"\nEvaluation Results (Recall@{i})")
+        print("=" * 40)
+        print(f"Student questions: {len(results)}")
+        print(f"Questions with retrieved sources: {with_rs}")
+        print(f"Answered questions evaluated: {len(scores)}")
+        print(f"Successful retrievals: {successful}")
+        print(f"Failed retrievals: {failed}")
+        print(f"Recall: {recall * 100:.2f}%")
+    return recall_results
                     
