@@ -4,6 +4,9 @@ ARGS ?= --help
 install:
 	uv sync
 
+install-vllm:
+	mkdir -p data/raw && wget -O /tmp/vllm.zip "https://github.com/69Nesta/42-RAG-Against-The-Machine/raw/refs/heads/main/vllm-0.10.1.zip" && unzip -o /tmp/vllm.zip -d data/raw/
+
 run:
 	$(PYTHON) -m src $(ARGS)
 

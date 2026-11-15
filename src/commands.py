@@ -21,18 +21,18 @@ class CLI:
 
         try:
             if not (0 < max_chunk_size <= DEFAULT_MAX_CHUNK_SIZE):
-                print(f"The chunk max size must be between 1 and {DEFAULT_MAX_CHUNK_SIZE}.")
+                print(f"{RED}The chunk max size must be between 1 and {DEFAULT_MAX_CHUNK_SIZE}.{RESET}")
                 return
             try:
                 raw = Path(raw_data + "/vllm-0.10.1") 
                 raw.mkdir(parents=True, exist_ok=True)
             except FileNotFoundError:
-                print("ERROR: FIle not found")
+                print(f"{RED}ERROR:{RESET} File not found")
                 return
             try:
                 bm25, chunks = build_index(get_files_path(raw), max_chunk_size)
             except Exception as e:
-                print(f"ERROR: {e}")
+                print(f"{RED}ERROR: {e}{RESET}")
                 return
             processed = Path(processed_data)
             processed.mkdir(parents=True, exist_ok=True)
@@ -48,7 +48,7 @@ class CLI:
                 chunks_metadata.append(metadata)
             with (processed / "chunks.json").open("w") as file:
                 json.dump(chunks_metadata, file, indent=2)
-            print("Ingestion complete! Indices saved under data/processed/")
+            print(f"{GREEN}Ingestion complete! Indices saved under data/processed/{RESET}")
         except Exception as e:
             print(f"{RED}ERROR: {e}{RESET}")
 
