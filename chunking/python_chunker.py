@@ -6,36 +6,24 @@ from src.minimalsource import BigChunk
 
 
 def split_long(text: str, limit: int) -> list[str]:
-    """Split long text into pieces no longer than the specified limit.
+    """Split text into contiguous pieces no longer than the specified limit.
 
     Args:
-        text: Text to split, preserving line boundaries when possible.
+        text: Text to split without changing its characters.
         limit: Maximum number of characters in each returned piece.
 
     Returns:
         Text pieces whose lengths do not exceed ``limit``.
     """
-    void: str = ""
-    part: list[str] = []
-    for line in text.splitlines():
-        while (len(line) > limit):
-            if void:
-                part.append(void)
-                void = ""
-            part.append(line[:limit])
-            line = line[limit:]
-        if void and len(void) + len(line) > limit:
-            part.append(void)
-            void = ""
-        void += line
-    if void:
-        part.append(void)
-    return part
+    if limit <= 0:
+        raise ValueError("limit must be positive")
+    return [text[start:start + limit] for start in range(0, len(text), limit)]
 
 
 def chunk_py_node(
     node: ast.AST,
     lines: list[str],
+    source: str,
     pieces: list[tuple[str, int, int, int, int]],
     offsets: list[int],
     max_chunk_size: int,
@@ -56,8 +44,10 @@ def chunk_py_node(
     start = node.lineno
     end = node.end_lineno
     first_char_index = offsets[start - 1]
-    last_char_index = offsets[end - 1] + len(lines[end - 1])
-    code = "\n".join(lines[start - 1:end])
+    last_char_index = offsets[end - 1] + len(
+        lines[end - 1].rstrip("\r\n")
+    )
+    code = source[first_char_index:last_char_index]
     children = getattr(node, "body", None)
 
     if len(code) <= max_chunk_size:
@@ -65,7 +55,9 @@ def chunk_py_node(
 
     elif isinstance(children, list) and children:
         for child in children:
-            chunk_py_node(child, lines, pieces, offsets, max_chunk_size)
+            chunk_py_node(
+                child, lines, source, pieces, offsets, max_chunk_size
+            )
         return
 
     else:
@@ -110,7 +102,15 @@ def pack(
         )
 
     for text, fl, ll, fc, lc in pieces:
-        if cur and len(str(cur[0])) + 2 + len(text) > max_chunk_size:
+        exceeds_text_limit = (
+            cur is not None
+            and len(str(cur[0])) + 2 + len(text) > max_chunk_size
+        )
+        exceeds_source_limit = (
+            cur is not None
+            and lc - int(cur[3]) > max_chunk_size
+        )
+        if cur and (exceeds_text_limit or exceeds_source_limit):
             flush()
             cur = None
         if cur:
@@ -140,11 +140,14 @@ def chunk_python(
     Returns:
         ``BigChunk`` instances containing source text and location metadata.
     """
+    if max_chunk_size <= 0:
+        raise ValueError("max_chunk_size must be positive")
+
     try:
         tree = ast.parse(code, filename=str(file_path))
     except SyntaxError:
         return chunk_txt(file_path, code, max_chunk_size)
-    lines = code.splitlines()
+    lines = code.splitlines(keepends=True)
 
     offsets = [0]
     for line in code.splitlines(keepends=True):
@@ -152,7 +155,17 @@ def chunk_python(
 
     chunks = []
     for node in tree.body:
-        chunk_py_node(node, lines, chunks, offsets, max_chunk_size)
+        chunk_py_node(
+            node, lines, code, chunks, offsets, max_chunk_size
+        )
     chunk = pack(chunks, file_path, max_chunk_size)
+    too_long = [
+        c for c in chunk
+        if c.last_character_index - c.first_character_index > max_chunk_size
+    ]
+    if too_long:
+        raise ValueError(
+            f"Chunk source range exceeds the {max_chunk_size}-character limit"
+        )
 
     return chunk

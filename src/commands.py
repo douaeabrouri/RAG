@@ -1,10 +1,7 @@
-
 import json
 import pickle
 from pathlib import Path
-
 from pydantic import ValidationError
-
 from chunking.chunker import get_files_path
 from constants import DEFAULT_MAX_CHUNK_SIZE, EXIT_FILES, GREEN, RED, RESET
 from evaluation import evaluate_ssr
@@ -191,7 +188,7 @@ class CLI:
             print(f"{RED}ERROR: Dataset file not found: {dataset_path}{RESET}")
         except ValidationError as exc:
             print(f"{RED}ERROR: Invalid dataset file: {exc}{RESET}")
-        except Exception as exc:  # pragma: no cover - CLI error path
+        except Exception as exc:
             print(f"{RED}ERROR: {exc}{RESET}")
 
     def answer_dataset(
@@ -242,6 +239,8 @@ class CLI:
                 out_dir.mkdir(parents=True, exist_ok=True)
                 out_file = out_dir / Path(student_search_results_path).name
                 save_answered(answered, questions["k"], out_file)
+                #should i add load 
+                print(f"{GREEN}Saved student_search_results_and_answer to {out_file}{RESET}")
         except Exception as exc:  # pragma: no cover - CLI error path
             print(f"{RED}ERROR: {exc}{RESET}")
 
@@ -271,5 +270,5 @@ class CLI:
             if not 0 < k:
                 raise ValueError("The value of k must be positive.")
             evaluate_ssr(student_path, dataset_path, k)
-        except Exception as exc:  # pragma: no cover - CLI error path
+        except Exception as exc:
             print(f"{RED}ERROR: {exc}{RESET}")
