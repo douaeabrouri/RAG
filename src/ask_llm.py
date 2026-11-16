@@ -40,9 +40,9 @@ def make_prompt(question, top_chunks) -> str:
         "source code, each block labeled with its file path.\n\n"
         "Rules:\n"
         "- Answer in 1 to 3 sentences.\n"
-        "- Copy identifiers exactly as written in 
-        "the context: endpoint paths, "
-        "function names, class names, parameter names, environment variables.\n"
+        "- Copy identifiers exactly as written in the context: endpoint "
+        "paths, function names, class names, parameter names, environment "
+        "variables.\n"
         "- If the context contains part of the answer, give that part. "
         "Say you don't know only if the context has nothing relevant.\n"
         "- Don't use knowledge from outside the context.\n\n"
@@ -50,6 +50,7 @@ def make_prompt(question, top_chunks) -> str:
         f"Question: {question}\n"
         "Answer:"
     )
+
 
 def ask_llm(question, chunks) -> str:
     """Ask the configured language model to answer using retrieved chunks.

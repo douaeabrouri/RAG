@@ -1,6 +1,8 @@
-from pydantic import BaseModel
 from pathlib import Path
 from typing import List
+
+from pydantic import BaseModel
+
 
 class BigChunk(BaseModel):
     """Text chunk plus its source file and line/character boundaries.
@@ -14,13 +16,15 @@ class BigChunk(BaseModel):
         first_character_index: Inclusive starting character offset.
         last_character_index: Exclusive ending character offset.
     """
-    id    : int
-    text   : str
+
+    id: int
+    text: str
     file_path: Path
-    first_line : int
-    last_line  : int 
+    first_line: int
+    last_line: int
     first_character_index: int
     last_character_index: int
+
 
 class MinimalSource(BaseModel):
     """Compact reference to a source range in a file.
@@ -30,9 +34,11 @@ class MinimalSource(BaseModel):
         first_character_index: Inclusive starting character offset.
         last_character_index: Exclusive ending character offset.
     """
+
     file_path: str
     first_character_index: int
     last_character_index: int
+
 
 class MinimalSearchResults(BaseModel):
     """Search results associated with one dataset question.
@@ -42,9 +48,11 @@ class MinimalSearchResults(BaseModel):
         question: Natural-language question text.
         retrieved_sources: Source ranges returned by retrieval.
     """
+
     question_id: str
     question: str
     retrieved_sources: List[MinimalSource]
+
 
 class MinimalAnswer(MinimalSearchResults):
     """Search-result record augmented with a generated answer.
@@ -52,4 +60,5 @@ class MinimalAnswer(MinimalSearchResults):
     Attributes:
         answer: Answer generated from the retrieved source context.
     """
+
     answer: str

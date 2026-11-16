@@ -1,7 +1,8 @@
 import ast
-from src.minimalsource import BigChunk
+from pathlib import Path
 from chunking.txt_chunker import chunk_txt
 from constants import DEFAULT_MAX_CHUNK_SIZE
+from src.minimalsource import BigChunk
 
 
 def split_long(text: str, limit: int) -> list[str]:
@@ -17,7 +18,7 @@ def split_long(text: str, limit: int) -> list[str]:
     void: str = ""
     part: list[str] = []
     for line in text.splitlines():
-        while(len(line) > limit):
+        while (len(line) > limit):
             if void:
                 part.append(void)
                 void = ""
@@ -32,7 +33,13 @@ def split_long(text: str, limit: int) -> list[str]:
     return part
 
 
-def chunk_py_node(node, lines, pieces, offsets, max_chunk_size):
+def chunk_py_node(
+    node: ast.AST,
+    lines: list[str],
+    pieces: list[tuple[str, int, int, int, int]],
+    offsets: list[int],
+    max_chunk_size: int,
+) -> None:
     """Convert an AST node into one or more location-aware text pieces.
 
     Args:
@@ -53,7 +60,6 @@ def chunk_py_node(node, lines, pieces, offsets, max_chunk_size):
     code = "\n".join(lines[start - 1:end])
     children = getattr(node, "body", None)
 
-    # pieces = []
     if len(code) <= max_chunk_size:
         pieces.append((code, start, end, first_char_index, last_char_index))
 
@@ -69,7 +75,11 @@ def chunk_py_node(node, lines, pieces, offsets, max_chunk_size):
             pos += len(part)
 
 
-def pack(pieces, path, max_chunk_size):
+def pack(
+    pieces: list[tuple[str, int, int, int, int]],
+    path: str | Path,
+    max_chunk_size: int,
+) -> list[BigChunk]:
     """Pack adjacent source pieces into chunks within the size limit.
 
     Args:
@@ -82,22 +92,29 @@ def pack(pieces, path, max_chunk_size):
     """
 
     chunks: list[BigChunk] = []
-    cur = None   # [text, first_line, last_line, first_char, last_char]
+    cur: list[str | int | None] | None = None
 
-    def flush():
+    def flush() -> None:
         """Append the current packed piece as a ``BigChunk``."""
-        chunks.append(BigChunk(
-            id=len(chunks), text=cur[0], file_path=path,
-            first_line=cur[1], last_line=cur[2],
-            first_character_index=cur[3], last_character_index=cur[4],
-        ))
+        assert cur is not None
+        chunks.append(
+            BigChunk(
+                id=len(chunks),
+                text=str(cur[0]),
+                file_path=path,
+                first_line=int(cur[1]),
+                last_line=int(cur[2]),
+                first_character_index=int(cur[3]),
+                last_character_index=int(cur[4]),
+            )
+        )
 
     for text, fl, ll, fc, lc in pieces:
-        if cur and len(cur[0]) + 2 + len(text) > max_chunk_size:
+        if cur and len(str(cur[0])) + 2 + len(text) > max_chunk_size:
             flush()
             cur = None
         if cur:
-            cur[0] += "\n\n" + text
+            cur[0] = str(cur[0]) + "\n\n" + text
             cur[2] = ll
             cur[4] = lc
         else:
@@ -109,10 +126,10 @@ def pack(pieces, path, max_chunk_size):
 
 
 def chunk_python(
-    code,
-    file_path,
-    max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE
-) -> list:
+    code: str,
+    file_path: str | Path,
+    max_chunk_size: int = DEFAULT_MAX_CHUNK_SIZE,
+) -> list[BigChunk]:
     """Chunk Python source by AST structure, falling back to text splitting.
 
     Args:

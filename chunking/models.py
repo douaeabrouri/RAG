@@ -24,7 +24,8 @@ def chunking_files(
         code = file.read()
     if file_path.suffix == ".py":
         return chunk_python(code, file_path, max_chunk_size)
-    elif file_path.suffix == ".md":
+    if file_path.suffix == ".md":
         return chunk_markdown(file_path, code, max_chunk_size)
-    elif file_path.suffix == ".txt":
+    if file_path.suffix == ".txt":
         return chunk_txt(file_path, code, max_chunk_size)
+    return []

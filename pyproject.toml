@@ -13,3 +13,9 @@ dependencies = [
     "rank-bm25>=0.2.2",
     "tqdm>=4.70.1",
 ]
+
+[dependency-groups]
+dev = [
+    "flake8>=7.1.1",
+    "mypy>=1.13.0",
+]

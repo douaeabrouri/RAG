@@ -8,7 +8,7 @@ ALLOWED_FILES = [".py", ".md", ".txt"]
 DEFAULT_MAX_CHUNK_SIZE = 2000
 BASE_DIR = Path(__file__).resolve().parent
 PATH = BASE_DIR / "data" / "raw" / "vllm-0.10.1"
-OLLAM_HOST = "http://127.0.0.1:11434"
+OLLAM_HOST = "http://localhost:11434"
 MODEL_NAME = "qwen3:0.6b"
 CLIENT = Client(host=OLLAM_HOST)
 K = 3

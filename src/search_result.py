@@ -1,7 +1,8 @@
+from typing import List
 
 from pydantic import BaseModel
-from .minimalsource import MinimalSearchResults, MinimalAnswer
-from typing import List
+
+from .minimalsource import MinimalAnswer, MinimalSearchResults
 
 
 class StudentSearchResults(BaseModel):
@@ -11,6 +12,7 @@ class StudentSearchResults(BaseModel):
         search_results: Per-question retrieved source records.
         k: Number of results requested per question.
     """
+
     search_results: List[MinimalSearchResults]
     k: int
 
@@ -22,5 +24,6 @@ class StudentSearchResultsAndAnswer(BaseModel):
         search_results: Per-question retrieval and answer records.
         k: Number of results requested per question.
     """
+
     search_results: List[MinimalAnswer]
     k: int

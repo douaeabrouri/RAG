@@ -1,6 +1,7 @@
 from pathlib import Path
 from src.answerdquestion import AnsweredQuestion, RagDataset
 from src.search_result import StudentSearchResults
+from constants import GREEN, RED, RESET
 
 
 def iou(start1, end1, start2, end2):
@@ -58,7 +59,6 @@ def evaluate_ssr(student_path, dataset_path, k):
         ValueError: If ``k`` is not positive or the dataset has no answered
             questions with ground-truth sources.
     """
-
     if k <= 0:
         raise ValueError("k must be positive")
 
@@ -89,44 +89,41 @@ def evaluate_ssr(student_path, dataset_path, k):
         1 for result in results if result.retrieved_sources
     )
     recall_results = {}
-    for i in range(1, k + 1):
-        scores = []
-        for question_id, truths in truth_by_id.items():
-            student_result = student_by_id.get(question_id)
-            if student_result is None:
-                scores.append(0.0)
-                continue
-            retrieved = student_result.retrieved_sources[:i]
-            hits = 0
-            for truth in truths:
-                for source in retrieved:
-                    if found(
-                        truth.file_path,
-                        source.file_path,
-                        (
-                            truth.first_character_index,
-                            truth.last_character_index,
-                        ),
-                        (
-                            source.first_character_index,
-                            source.last_character_index,
-                        ),
-                    ):
-                        hits += 1
-                        break
-            scores.append(hits / len(truths))
+    scores = []
+    for question_id, truths in truth_by_id.items():
+        student_result = student_by_id.get(question_id)
+        if student_result is None:
+            scores.append(0.0)
+            continue
+        retrieved = student_result.retrieved_sources[:k]
+        hits = 0
+        for truth in truths:
+            for source in retrieved:
+                if found(
+                    truth.file_path,
+                    source.file_path,
+                    (
+                        truth.first_character_index,
+                        truth.last_character_index,
+                    ),
+                    (
+                        source.first_character_index,
+                        source.last_character_index,
+                    ),
+                ):
+                    hits += 1
+                    break
+        scores.append(hits / len(truths))
         if not scores:
             raise ValueError("No answered questions with ground truth.")
-        recall = sum(scores) / len(scores)
-        recall_results[i] = recall
-        successful = sum(1 for score in scores if score == 1.0)
-        failed = sum(1 for score in scores if score == 0.0)
-        print(f"\nEvaluation Results (Recall@{i})")
-        print("=" * 40)
-        print(f"Student questions: {len(results)}")
-        print(f"Questions with retrieved sources: {with_rs}")
-        print(f"Answered questions evaluated: {len(scores)}")
-        print(f"Successful retrievals: {successful}")
-        print(f"Failed retrievals: {failed}")
-        print(f"Recall: {recall * 100:.2f}%")
+    recall = sum(scores) / len(scores)
+    successful = sum(1 for score in scores if score == 1.0)
+    failed = sum(1 for score in scores if score == 0.0)
+    print(f"\nEvaluation Results (Recall@{k})")
+    print("=" * 40)
+    print(f"Questions with retrieved sources: {with_rs}")
+    print(f"Answered questions evaluated: {len(scores)}")
+    print(f"{GREEN}Successful retrievals:{RESET} {successful}")
+    print(f"{RED}Failed retrievals:{RESET} {failed}")
+    print(f"Recall: {recall * 100:.2f}%")
     return recall_results
