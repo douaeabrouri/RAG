@@ -210,11 +210,10 @@ class CLI:
         Raises:
             FileNotFoundError: If either supplied path does not exist.
         """
-        if not (
-            Path(student_search_results_path).exists()
-            and Path(save_directory).exists()
-        ):
-            raise FileNotFoundError("One or both input paths do not exist.")
+        if not Path(student_search_results_path).exists():
+            raise FileNotFoundError(
+                f"Search results file not found: {student_search_results_path}"
+            )
         try:
             with open(Path(student_search_results_path), "r") as file:
                 questions = json.load(file)
@@ -231,16 +230,22 @@ class CLI:
                     MinimalAnswer(
                         question_id=item["question_id"],
                         question=item["question"],
-                        retrieved_sources=to_source(retrieved_sources),
+                        retrieved_sources=retrieved_sources,
                         answer=answer,
                     )
                 )
-                out_dir = Path(save_directory)
-                out_dir.mkdir(parents=True, exist_ok=True)
-                out_file = out_dir / Path(student_search_results_path).name
+                save_path = Path(save_directory)
+                if save_path.suffix.lower() == ".json":
+                    save_path.parent.mkdir(parents=True, exist_ok=True)
+                    out_file = save_path
+                else:
+                    save_path.mkdir(parents=True, exist_ok=True)
+                    out_file = save_path / Path(student_search_results_path).name
                 save_answered(answered, questions["k"], out_file)
-                #should i add load 
-                print(f"{GREEN}Saved student_search_results_and_answer to {out_file}{RESET}")
+            print(
+                f"{GREEN}Saved student_search_results_and_answer to "
+                f"{out_file}{RESET}"
+            )
         except Exception as exc:  # pragma: no cover - CLI error path
             print(f"{RED}ERROR: {exc}{RESET}")
 

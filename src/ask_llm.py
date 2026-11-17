@@ -46,6 +46,7 @@ def make_prompt(question, top_chunks) -> str:
         "- If the context contains part of the answer, give that part. "
         "Say you don't know only if the context has nothing relevant.\n"
         "- Don't use knowledge from outside the context.\n\n"
+        "- Don´t us newline or spaces tp separate the answer from the context."
         f"Context:\n{context}\n\n"
         f"Question: {question}\n"
         "Answer:"
