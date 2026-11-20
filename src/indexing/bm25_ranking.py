@@ -1,10 +1,11 @@
 import pickle
-from chunking.models import chunking_files
+from src.chunking.models import chunking_files
 import numpy as np
 from rank_bm25 import BM25Okapi
 import re
-from constants import DEFAULT_MAX_CHUNK_SIZE
+from src.constants import DEFAULT_MAX_CHUNK_SIZE
 from pathlib import Path
+from tqdm import tqdm
 
 
 def tokenize(text: str) -> list[str]:
@@ -41,7 +42,11 @@ def build_index(
     corpus: list = []
     token_from_corpus: list = []
 
-    for path in ALL_FILES_PATH:
+    for path in tqdm(
+        ALL_FILES_PATH,
+        desc="Indexing files",
+        unit="file"
+    ):
         chunks.extend(chunking_files(path, max_chunk_size))
 
     for obj in chunks:

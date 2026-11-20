@@ -1,4 +1,4 @@
-from constants import ALLOWED_FILES
+from src.constants import ALLOWED_FILES
 from pathlib import Path
 
 

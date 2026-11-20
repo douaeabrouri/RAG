@@ -1,8 +1,8 @@
-from chunking.markdown_chunker import chunk_markdown
-from chunking.python_chunker import chunk_python
-from chunking.txt_chunker import chunk_txt
+from src.chunking.markdown_chunker import chunk_markdown
+from src.chunking.python_chunker import chunk_python
+from src.chunking.txt_chunker import chunk_txt
 from pathlib import Path
-from constants import DEFAULT_MAX_CHUNK_SIZE
+from src.constants import DEFAULT_MAX_CHUNK_SIZE
 
 
 def chunking_files(

@@ -11,12 +11,17 @@ def build_context(chunks):
     """
     blocks = []
 
-    for c in chunks:
-        file_path = c["file_path"]
-        first_index = int(c["first_character_index"])
-        last_index = int(c["last_character_index"])
+    for chunk in chunks:
+        if isinstance(chunk, dict):
+            file_path = chunk["file_path"]
+            first_index = int(chunk["first_character_index"])
+            last_index = int(chunk["last_character_index"])
+        else:
+            file_path = str(chunk.file_path)
+            first_index = int(chunk.first_character_index)
+            last_index = int(chunk.last_character_index)
 
-        with open(file_path, "r") as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             content = file.read()
 
         chunk_text = content[first_index:last_index]

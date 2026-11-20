@@ -1,10 +1,10 @@
-from constants import MODEL_NAME, CLIENT
+from src.constants import MODEL_NAME, CLIENT
 from src.minimalsource import MinimalSource, MinimalAnswer
 from src.build_context import build_context
 import re
 
 
-def to_source(top_chunks) -> list[MinimalAnswer]:
+def to_source(top_chunks) -> list[MinimalSource]:
     """Convert retrieved chunks into compact source references.
 
     Args:

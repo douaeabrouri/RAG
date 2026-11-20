@@ -1,7 +1,7 @@
 import ast
 from pathlib import Path
-from chunking.txt_chunker import chunk_txt
-from constants import DEFAULT_MAX_CHUNK_SIZE
+from src.chunking.txt_chunker import chunk_txt
+from src.constants import DEFAULT_MAX_CHUNK_SIZE
 from src.minimalsource import BigChunk
 
 

@@ -1,12 +1,13 @@
 import json
 import pickle
 from pathlib import Path
+from tqdm import tqdm
 from pydantic import ValidationError
-from chunking.chunker import get_files_path
-from constants import DEFAULT_MAX_CHUNK_SIZE, EXIT_FILES, GREEN, RED, RESET
-from evaluation import evaluate_ssr
-from indexing.bm25_ranking import build_index, search as search_chunks
-from managing_answers.save import save_answered, save_unanswered
+from src.chunking.chunker import get_files_path
+from src.constants import DEFAULT_MAX_CHUNK_SIZE, EXIT_FILES, GREEN, RED, RESET
+from src.evaluation import evaluate_ssr
+from src.indexing.bm25_ranking import build_index, search as search_chunks
+from src.managing_answers.save import save_answered, save_unanswered
 from src.answerdquestion import RagDataset
 from src.ask_llm import ask_llm, to_source
 from src.minimalsource import MinimalAnswer, MinimalSearchResults
@@ -167,7 +168,11 @@ class CLI:
             with open(dataset_path, "r", encoding="utf-8") as file:
                 questions = RagDataset.model_validate_json(file.read())
 
-            for question in questions.rag_questions:
+            for question in tqdm(
+                questions.rag_questions,
+                desc="Searching questions",
+                unit="question"
+            ):
                 top_chunks = search_chunks(question.question, bm25, chunks, k)
                 searched.append(
                     MinimalSearchResults(
@@ -220,7 +225,11 @@ class CLI:
             if not questions:
                 raise ValueError("Empty file!!")
             answered: list[MinimalAnswer] = []
-            for item in questions["search_results"]:
+            for item in tqdm(
+                questions["search_results"],
+                desc="Generating answers",
+                unit="question"
+            ):
                 retrieved_sources = item["retrieved_sources"]
                 if retrieved_sources:
                     answer = ask_llm(item["question"], retrieved_sources)
@@ -240,16 +249,18 @@ class CLI:
                     out_file = save_path
                 else:
                     save_path.mkdir(parents=True, exist_ok=True)
-                    out_file = save_path / Path(student_search_results_path).name
+                    out_file = (
+                            save_path / Path(student_search_results_path).name
+                    )
                 save_answered(answered, questions["k"], out_file)
             print(
                 f"{GREEN}Saved student_search_results_and_answer to "
                 f"{out_file}{RESET}"
             )
-        except Exception as exc:  # pragma: no cover - CLI error path
+        except Exception as exc:
             print(f"{RED}ERROR: {exc}{RESET}")
 
-    def evaluate_search_results(
+    def evaluate(
         self,
         student_path: str,
         dataset_path: str,

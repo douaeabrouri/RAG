@@ -1,8 +1,6 @@
 from typing import List
-
 from pydantic import BaseModel
-
-from .minimalsource import MinimalAnswer, MinimalSearchResults
+from src.minimalsource import MinimalAnswer, MinimalSearchResults
 
 
 class StudentSearchResults(BaseModel):

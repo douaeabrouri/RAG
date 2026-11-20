@@ -1,7 +1,7 @@
 from pathlib import Path
 from src.answerdquestion import AnsweredQuestion, RagDataset
 from src.search_result import StudentSearchResults
-from constants import GREEN, RED, RESET
+from src.constants import GREEN, RED, RESET
 
 
 def iou(start1, end1, start2, end2):
